@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中学地理 | 学習ポータル</title>
+    <style>
+        :root {
+            --primary-color: #1b7a43; /* 地理に合わせたグリーン基調 */
+            --pdf-color: #d93025;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 0.5rem;
+            margin-top: 2rem;
+            color: #222;
+        }
+        .unit-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+        .unit-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .unit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .unit-card a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+        .unit-card.pdf-card a {
+            color: var(--pdf-color);
+        }
+        .unit-card p {
+            margin: 0.5rem 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #888;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>中学地理 学習ポータル</h1>
+        <p>定期テスト対策・復習用Web教材</p>
+    </header>
+    <main class="container">
+        <h2>学習資料・PDF</h2>
+        <ul class="unit-list">
+            <li class="unit-card pdf-card">
+                <!-- PDFファイル名に合わせて href を書き換えてください -->
+                <a href="Asia_Digital_Atlas.pdf" target="_blank" rel="noopener noreferrer">📄 アジア州まとめ（PDFを開く）</a>
+                <p>アジア州についてまとめたPDF資料です。</p>
+            </li>
+        </ul>
+
+        <h2>世界地理</h2>
+        <ul class="unit-list">
+            <li class="unit-card">
+                <a href="geography_unit1.html">第3章：世界の諸地域（アジア・州別理解）</a>
+                <p>アジア州について</p>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        &copy; hato810school-code
+    </footer>
+</body>
+</html>
