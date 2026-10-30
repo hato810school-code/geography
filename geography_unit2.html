@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中学地理：第4節 北アメリカ州 まとめノート</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 0 20px 40px;
+            background-color: #f4f7f9;
+        }
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            border-bottom: 3px solid #2b6cb0;
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
+        .instruction {
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            background: #e2e8f0;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .note-card {
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        h2 {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 1.25em;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+        h3 {
+            border-left: 5px solid #3182ce;
+            padding-left: 10px;
+            color: #2d3748;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        li {
+            margin-bottom: 12px;
+            padding-left: 1.2em;
+            text-indent: -1.2em;
+        }
+        li::before {
+            content: "●";
+            color: #3182ce;
+            margin-right: 8px;
+            font-size: 0.8em;
+            vertical-align: middle;
+        }
+        
+        /* 穴埋め枠のスタイル */
+        .blank {
+            display: inline-block;
+            min-width: 90px;
+            padding: 2px 10px;
+            margin: 0 4px;
+            background-color: #2d3748; /* 未タップ時は暗色 */
+            color: #2d3748;            /* 文字を同色にして隠す */
+            border-bottom: 2px solid #1a202c;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-indent: 0;
+            vertical-align: middle;
+            text-align: center;
+            font-weight: bold;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .blank:hover {
+            opacity: 0.85;
+        }
+        /* タップ・クリックで正解を表示 */
+        .blank.revealed {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            border-bottom: 2px solid #e53e3e;
+        }
+
+        .controls {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+        .btn:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>第4節 北アメリカ州 まとめノート</h1>
+<div class="instruction">
+    💡 <strong>使い方：</strong> 黒塗りの四角をタップ（クリック）すると正解が表示されます。もう一度タップすると元に戻ります。
+</div>
+
+<div class="controls">
+    <button class="btn" onclick="toggleAll(true)">すべて表示</button>
+    <button class="btn" onclick="toggleAll(false)">すべて隠す</button>
+</div>
+
+<!-- 1. 自然環境と気候 -->
+<div class="note-card">
+    <h2>1. 自然環境と気候区分</h2>
+    <ul>
+        <li><strong>西部の山脈：</strong> 環太平洋造山帯（新期造山帯）に属し、標高4,000mを超える険しい山々が連なる<span class="blank" onclick="reveal(this)">ロッキー山脈</span>がある。</li>
+        <li><strong>東部の山脈：</strong> 古期造山帯に属し、標高1,000m前後となだらかで石炭資源が豊富な<span class="blank" onclick="reveal(this)">アパラチア山脈</span>がある。</li>
+        <li><strong>中央部の大平原：</strong>
+            <ul>
+                <li>ロッキー山脈の東側に広がる高原状の乾燥した平原を<span class="blank" onclick="reveal(this)">グレートプレーンズ</span>という。</li>
+                <li>ミシシッピ川流域に広がる肥沃な長草草原を<span class="blank" onclick="reveal(this)">プレーリー</span>という。</li>
+            </ul>
+        </li>
+        <li><strong>農業と気候の境界線：</strong> 年間降水量約<span class="blank" onclick="reveal(this)">500mm</span>の境界となる<span class="blank" onclick="reveal(this)">西経100度</span>線を境に、東側は湿潤で畑作・酪農、西側は乾燥して放牧が行われる。</li>
+        <li><strong>特徴的な気候：</strong> 太平洋沿岸南部のカリフォルニア州は、夏に乾燥し冬に雨が降る<span class="blank" onclick="reveal(this)">地中海性気候</span>である。</li>
+    </ul>
+</div>
+
+<!-- 2. 歴史と多文化社会 -->
+<div class="note-card">
+    <h2>2. 人口構成と多文化社会</h2>
+    <ul>
+        <li><strong>先住民：</strong> もともと北アメリカに住んでいた人々は、現在<span class="blank" onclick="reveal(this)">ネイティブアメリカン</span>と総称される。</li>
+        <li><strong>中南米からの移住者：</strong> メキシコやカリブ海諸国などから移住したスペイン語を話す人々を<span class="blank" onclick="reveal(this)">ヒスパニック</span>と呼び、アメリカ合衆国最大のマイノリティ集団となっている。</li>
+        <li><strong>文化の融合：</strong> かつて奴隷として連れてこられたアフリカ系の人々の伝統音楽とヨーロッパ音楽が融合し、南部で<span class="blank" onclick="reveal(this)">ジャズ</span>などの音楽が誕生した。</li>
+        <li><strong>カナダの言語事情：</strong> 歴史的背景から、連邦全体で英語と<span class="blank" onclick="reveal(this)">フランス語</span>が対等な公用語として認められている（特にケベック州で定着）。</li>
+    </ul>
+</div>
+
+<!-- 3. 企業的農業と適地適作 -->
+<div class="note-card">
+    <h2>3. 現代の農業（適地適作とアグリビジネス）</h2>
+    <ul>
+        <li><strong>農業の基本方針：</strong> 気候や土壌条件に最も適した作物を大規模に栽培する<span class="blank" onclick="reveal(this)">適地適作</span>が行われている。</li>
+        <li><strong>主な農業地域：</strong>
+            <ul>
+                <li>五大湖周辺や大西洋沿岸：大都市向けの生乳や乳製品を供給する<span class="blank" onclick="reveal(this)">酪農</span>地帯。</li>
+                <li>中央平原：大豆とともに豚や肉牛の飼料となる作物を育てる<span class="blank" onclick="reveal(this)">とうもろこし</span>地帯（コーンベルト）。</li>
+                <li>プレーリー周辺：春小麦や冬小麦を大規模機械化で栽培する<span class="blank" onclick="reveal(this)">小麦</span>地帯。</li>
+            </ul>
+        </li>
+        <li><strong>肉牛の肥育：</strong> 放牧地で育てた肉牛を集め、出荷前にトウモロコシなどを与えて急速に太らせる大規模肥育場を<span class="blank" onclick="reveal(this)">フィードロット</span>という。</li>
+        <li><strong>巨大企業の影響力：</strong> 農業の種子開発から輸送・輸出・販売までを支配する巨大多国籍企業を<span class="blank" onclick="reveal(this)">アグリビジネス</span>（穀物メジャーなど）と呼ぶ。</li>
+    </ul>
+</div>
+
+<!-- 4. 工業と先端技術産業 -->
+<div class="note-card">
+    <h2>4. 工業の発展と産業構造の転換</h2>
+    <ul>
+        <li><strong>伝統的工業地域：</strong> アパラチアの石炭と五大湖周辺の鉄鉱石を結びつけ、ピッツバーグの鉄鋼、デトロイトの<span class="blank" onclick="reveal(this)">自動車</span>産業などが発展した。</li>
+        <li><strong>生産方式の革新：</strong> ベルトコンベアによる流れ作業を取り入れ、製品を安価に均一供給する<span class="blank" onclick="reveal(this)">大量生産方式</span>が確立された。</li>
+        <li><strong>サンベルトの成長：</strong> 北緯37度以南の温暖で土地が安く、豊富な労働力がある地域は<span class="blank" onclick="reveal(this)">サンベルト</span>と呼ばれ、航空宇宙や先端技術産業が急速に発展した。</li>
+        <li><strong>ICT産業の集積地：</strong> サンフランシスコ郊外（サンノゼ近郊）には、大学や研究機関と結びついた<span class="blank" onclick="reveal(this)">シリコンバレー</span>が形成された。</li>
+        <li><strong>新エネルギー：</strong> 近年、地下深くの頁岩層から採掘技術の進歩で採掘可能になった<span class="blank" onclick="reveal(this)">シェールガス</span>（シェールオイル）が、エネルギー自給に貢献している。</li>
+    </ul>
+</div>
+
+<!-- 5. 現代の生活様式と地球環境問題 -->
+<div class="note-card">
+    <h2>5. ライフスタイルと環境問題</h2>
+    <ul>
+        <li><strong>車社会化：</strong> 広大な国土を移動するため、生活や都市構造全体が自動車に依存する<span class="blank" onclick="reveal(this)">モータリゼーション</span>が高度に進展した。</li>
+        <li><strong>環境への負荷：</strong> 大量生産・大量消費の生活様式により、1人あたりの<span class="blank" onclick="reveal(this)">二酸化炭素</span>排出量が多く、未分別のごみ埋め立て問題も深刻である。</li>
+        <li><strong>食品ロス削減：</strong> まだ食べられる廃棄食品を引き取り、福祉施設や生活困窮者に無償配布する<span class="blank" onclick="reveal(this)">フードバンク</span>の取り組みが定着している。</li>
+    </ul>
+</div>
+
+<script>
+    function reveal(element) {
+        element.classList.toggle('revealed');
+    }
+
+    function toggleAll(show) {
+        const blanks = document.querySelectorAll('.blank');
+        blanks.forEach(blank => {
+            if (show) {
+                blank.classList.add('revealed');
+            } else {
+                blank.classList.remove('revealed');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
