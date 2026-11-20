@@ -1,0 +1,1937 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>ヨーロッパ州 まとめノート＆インタラクティブ穴埋め問題</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;family=Noto+Serif+JP:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Briefing style tokens */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --on-secondary: #ffffff;
+      --tertiary: #785008;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Custom semantic & map surface tokens harmonized with Briefing */
+      --positive: #2b6e52;
+      --warning: #785008;
+      --focus: #1f4e5f;
+      --tag-bg: #f5e6c4;
+      --cloze-hidden-bg: #f1efe8;
+      --cloze-hidden-hover: #e6e2d6;
+      --cloze-revealed-bg: #fbf0cc;
+      --cloze-revealed-hover: #f7e6ad;
+      --map-ocean: #e4edf2;
+      --map-land: #f1efe8;
+      --map-land-muted: #e6e2d6;
+      --map-border: #c8c4b8;
+      --btn-secondary-border: #c8c4b8;
+      --secondary-soft-bg: #e7eff2;
+
+      /* Fonts (Japanese families listed first) */
+      --font-headline: 'Noto Serif JP', 'Source Serif 4', serif;
+      --font-body: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', 'Noto Sans JP', monospace;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.01em;
+      --label-tracking: 0.08em;
+      --focus-ring: 0 0 0 2px var(--background), 0 0 0 4px var(--focus);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2rem, 1.4rem + 2.4vw, 3.1rem);
+      --headline-size: clamp(1.375rem, 1.15rem + 1vw, 1.85rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      position: static !important;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1080px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .page-grid * {
+      min-width: 0;
+    }
+
+    /* Masthead */
+    .masthead {
+      padding-top: var(--space-sm);
+    }
+
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      line-height: 1.2;
+    }
+
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      letter-spacing: 0.04em;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.18;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      color: var(--secondary);
+      line-height: 1.55;
+      margin: var(--space-sm) 0 0 0;
+      max-width: 65ch;
+    }
+
+    /* Control Deck */
+    .control-deck {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: var(--section-rule);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .control-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .progress-block {
+      display: grid;
+      gap: var(--space-xs);
+      flex: 1 1 260px;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .progress-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-count {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--secondary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    .control-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--btn-secondary-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-container);
+    }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--label-size);
+    }
+
+    .btn:focus-visible,
+    .jump-link:focus-visible,
+    .cloze:focus-visible,
+    .map-tab-btn:focus-visible,
+    .essay-toggle:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--card-border);
+    }
+
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 36px;
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      text-decoration: none;
+      border-radius: var(--rounded);
+      font-size: var(--label-size);
+      font-weight: 600;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+
+    .jump-link:hover {
+      background: var(--surface-container-high);
+    }
+
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Main Study Sections */
+    .study-main {
+      display: grid;
+      gap: var(--space-2xl);
+    }
+
+    .study-section {
+      display: grid;
+      gap: var(--space-md);
+      scroll-margin-top: var(--space-lg);
+    }
+
+    .section-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+    }
+
+    .section-top-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-progress-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      line-height: 1.25;
+      letter-spacing: var(--heading-tracking);
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .section-lead {
+      color: var(--on-surface-variant);
+      margin: 0;
+      max-width: 65ch;
+    }
+
+    /* Card Grids & Figure Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+    }
+
+    .figure-card-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .figure-card-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .figure-card-desc {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    /* Prose Cloze Panels */
+    .note-panel {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .note-subhead {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin: 0;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .note-tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tertiary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      line-height: 1.2;
+    }
+
+    .cloze-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .cloze-item {
+      padding-left: var(--space-md);
+      border-left: 3px solid var(--outline-variant);
+      line-height: 2.15;
+    }
+
+    .cloze-item-strong {
+      border-left-color: var(--secondary);
+    }
+
+    /* Interactive Cloze Blank Button */
+    .cloze {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      vertical-align: baseline;
+      min-height: 34px;
+      padding: var(--space-xs) var(--space-sm);
+      margin: 0 var(--space-xs);
+      border-radius: var(--rounded);
+      font-size: 0.96em;
+      font-weight: 700;
+      line-height: 1.35;
+      cursor: pointer;
+      border: 1.5px dashed var(--secondary);
+      background-color: var(--cloze-hidden-bg);
+      color: var(--secondary);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+      user-select: none;
+    }
+
+    .cloze:hover {
+      background-color: var(--cloze-hidden-hover);
+    }
+
+    .cloze-num {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      padding: 0 var(--space-xs);
+      background: var(--surface-container-low);
+      border-radius: var(--badge-radius);
+    }
+
+    .cloze-placeholder {
+      letter-spacing: 0;
+      min-width: 3.5em;
+      text-align: center;
+    }
+
+    .cloze-answer {
+      display: none;
+    }
+
+    .cloze[aria-expanded="true"] {
+      border-style: solid;
+      border-color: var(--secondary);
+      background-color: var(--cloze-revealed-bg);
+      color: var(--on-surface);
+      box-shadow: inset 0 -2px 0 var(--secondary);
+    }
+
+    .cloze[aria-expanded="true"]:hover {
+      background-color: var(--cloze-revealed-hover);
+    }
+
+    .cloze[aria-expanded="true"] .cloze-placeholder {
+      display: none;
+    }
+
+    .cloze[aria-expanded="true"] .cloze-answer {
+      display: inline;
+    }
+
+    .cloze[aria-expanded="true"] .cloze-num {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Aside / Callout Box */
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .aside-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--tertiary);
+      margin: 0;
+    }
+
+    .aside-body {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      line-height: 1.65;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+
+    .briefing-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+
+    .briefing-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      border-bottom: var(--section-rule);
+      padding: var(--space-sm) var(--space-md);
+      white-space: nowrap;
+    }
+
+    .briefing-table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+      line-height: 1.8;
+    }
+
+    .briefing-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Interactive Europe Map Explorer */
+    .atlas-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .atlas-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .map-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .map-tab-btn {
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid var(--btn-secondary-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+
+    .map-tab-btn:hover {
+      background: var(--surface-container);
+    }
+
+    .map-tab-btn[aria-pressed="true"] {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      border-color: var(--secondary);
+    }
+
+    .atlas-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: stretch;
+    }
+
+    .map-stage {
+      position: relative;
+      min-height: 360px;
+      background: var(--map-ocean);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-stage svg {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      display: block;
+    }
+
+    .map-country {
+      fill: var(--map-land);
+      stroke: var(--map-border);
+      stroke-width: 0.7px;
+      transition: fill var(--dur-short) var(--ease-out);
+    }
+
+    .map-country--muted {
+      fill: var(--map-land-muted);
+    }
+
+    .map-country--data1 {
+      fill: var(--data-1);
+      fill-opacity: 0.25;
+      stroke: var(--data-1);
+    }
+
+    .map-country--data2 {
+      fill: var(--data-2);
+      fill-opacity: 0.28;
+      stroke: var(--data-2);
+    }
+
+    .map-country--data3 {
+      fill: var(--data-3);
+      fill-opacity: 0.25;
+      stroke: var(--data-3);
+    }
+
+    .map-country--data4 {
+      fill: var(--data-4);
+      fill-opacity: 0.24;
+      stroke: var(--data-4);
+    }
+
+    .map-river {
+      fill: none;
+      stroke: var(--data-1);
+      stroke-width: 2.2px;
+      stroke-linecap: round;
+    }
+
+    .map-flow {
+      fill: none;
+      stroke: var(--data-4);
+      stroke-width: 2.5px;
+      stroke-dasharray: 5 4;
+    }
+
+    .map-flow--wind {
+      stroke: var(--data-3);
+    }
+
+    .map-pin {
+      cursor: pointer;
+    }
+
+    .map-pin circle {
+      fill: var(--primary-container);
+      stroke: var(--primary);
+      stroke-width: 2px;
+      transition: transform var(--dur-micro) var(--ease-out);
+    }
+
+    .map-pin.is-active circle {
+      fill: var(--secondary);
+      stroke: var(--on-secondary);
+    }
+
+    .map-pin text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--on-surface);
+      paint-order: stroke;
+      stroke: var(--background);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    .atlas-side {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+      align-content: space-between;
+    }
+
+    .atlas-legend {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: var(--badge-radius);
+      flex-shrink: 0;
+      border: 1px solid var(--outline-variant);
+    }
+
+    .swatch-data1 { background: var(--data-1); }
+    .swatch-data2 { background: var(--data-2); }
+    .swatch-data3 { background: var(--data-3); }
+    .swatch-data4 { background: var(--data-4); }
+    .swatch-gold  { background: var(--primary-container); }
+
+    .atlas-detail {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .atlas-detail-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .atlas-detail-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      margin: 0;
+    }
+
+    .atlas-detail-body {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .map-caption {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Essay Practice Cards */
+    .essay-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .essay-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .essay-q {
+      margin: 0;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    .essay-answer {
+      display: none;
+      background: var(--secondary-soft-bg);
+      border-left: 4px solid var(--secondary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    .essay-answer.is-open {
+      display: block;
+    }
+
+    .essay-toggle {
+      justify-self: start;
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: var(--rounded);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .essay-toggle:hover {
+      background: var(--surface-container-high);
+    }
+
+    /* Bottom Action Footer */
+    .bottom-bar {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .sources-note {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      padding-bottom: var(--space-xl);
+      border-top: var(--card-border);
+      padding-top: var(--space-md);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 780px) {
+      .atlas-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+
+      .note-panel,
+      .control-deck,
+      .atlas-card,
+      .essay-card {
+        padding: var(--space-md);
+      }
+
+      .control-actions {
+        width: 100%;
+      }
+
+      .control-actions .btn {
+        flex: 1 1 auto;
+      }
+
+      .cloze-item {
+        padding-left: var(--space-sm);
+        line-height: 2.25;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="page-grid">
+   <header class="masthead">
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">Geography Dossier</span> <span class="dossier-meta">CH.03 SEC.02 / EUROPE</span>
+     </div>
+     <span class="dossier-meta">社会科（地理）定期テスト対策・穴埋めまとめノート</span>
+    </div>
+    <h1 class="title">ヨーロッパ州 完全攻略ノート</h1>
+    <p class="standfirst">高緯度でも温暖な気候のしくみから、3つの農業形態、民族・言語と宗教の重なり、ECからEUへの統合、そして現代の経済格差と環境問題まで。空欄をタップして重要語句を定着させましょう。</p>
+   </header>
+   <section class="control-deck" aria-label="学習コントロールパネル">
+    <div class="control-top">
+     <div class="progress-block">
+      <div class="progress-header">
+       <span class="progress-label">表示中の解答数（タップで個別に切り替え可能）</span> <span class="progress-count"><span id="revealed-count">0</span> / <span id="total-count">0</span> 語</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-wrap">
+       <div class="progress-fill" id="progress-fill"></div>
+      </div>
+     </div>
+     <div class="control-actions">
+      <button type="button" class="btn btn-primary" id="btn-show-all"> 
+       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />
+       </svg> すべて表示 
+      </button> <button type="button" class="btn btn-secondary" id="btn-hide-all"> 
+       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" /><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c6.4 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3.6 7 10 7a9.74 9.74 0 0 0 5.39-1.61" /><line x1="2" y1="2" x2="22" y2="22" />
+       </svg> すべて隠す 
+      </button>
+     </div>
+    </div>
+    <nav class="jump-nav" aria-label="章ジャンプメニュー">
+     <a class="jump-link" href="#sec-01"><span class="index-num">01</span>自然・気候</a> <a class="jump-link" href="#sec-atlas"><span class="index-num">MAP</span>地理図解</a> <a class="jump-link" href="#sec-02"><span class="index-num">02</span>農業の特色</a> <a class="jump-link" href="#sec-03"><span class="index-num">03</span>民族・宗教</a> <a class="jump-link" href="#sec-04"><span class="index-num">04</span>EU・工業</a> <a class="jump-link" href="#sec-05"><span class="index-num">05</span>課題・環境</a> <a class="jump-link" href="#sec-06"><span class="index-num">06</span>記述対策</a>
+    </nav>
+   </section>
+   <main class="study-main">
+    <!-- SECTION 01 -->
+    <section class="study-section" id="sec-01" data-section="01">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 01</span> <span class="dossier-meta">NATURAL ENVIRONMENT &amp; CLIMATE</span>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress-tag" data-sec-count="01">0 / 0</span> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="show" data-sec-target="01">この章を表示</button> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="hide" data-sec-target="01">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading">自然環境と気候：暖流と偏西風がもたらす温暖な風土</h2>
+     <p class="section-lead">ヨーロッパの大部分は日本より高緯度にありますが、海流と風のはたらきによって暮らしやすい気候が生まれています。</p>
+     <div class="card-grid">
+      <article class="figure-card">
+       <span class="figure-card-label">01 / CLIMATE MECHANISM</span>
+       <h3 class="figure-card-title">高緯度でも冬に凍らない港</h3>
+       <p class="figure-card-desc">ロンドンやパリは北緯48〜51度付近（樺太〜北海道以北と同程度）に位置しますが、暖流と西風の影響で冬でも比較的温暖です。</p>
+      </article>
+      <article class="figure-card">
+       <span class="figure-card-label">02 / COAST &amp; RIVERS</span>
+       <h3 class="figure-card-title">氷河地形と国際河川</h3>
+       <p class="figure-card-desc">北部の氷河に削られた複雑な海岸線と、複数の国を貫き条約で自由航行が認められる大河が物流と文化を結びます。</p>
+      </article>
+      <article class="figure-card">
+       <span class="figure-card-label">03 / SURROUNDING SEAS</span>
+       <h3 class="figure-card-title">3つの主要な海域</h3>
+       <p class="figure-card-desc">石油を産出する「北海」、バルト三国に面する「バルト海」、ドナウ川が流れ込む「黒海」が大陸を取り囲んでいます。</p>
+      </article>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">気候</span> 高緯度の温暖な気候と地中海沿岸の気候</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item cloze-item-strong">ヨーロッパ西部（イギリスやフランスなど）は高緯度に位置しているが、赤道付近から北上する暖流の <button type="button" class="cloze" data-id="c01" aria-expanded="false"><span class="cloze-num">1</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">北大西洋海流</span></button> の上を、一年中西から吹く <button type="button" class="cloze" data-id="c02" aria-expanded="false"><span class="cloze-num">2</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">偏西風</span></button> が通って暖かい空気を運ぶため、冬でも比較的温暖な <button type="button" class="cloze" data-id="c03" aria-expanded="false"><span class="cloze-num">3</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">西岸海洋性気候</span></button> となる。</li>
+       <li class="cloze-item">南部の地中海沿岸（イタリアやスペインなど）では、夏に亜熱帯高気圧におおわれて雨が少なく乾燥し、冬に雨が降る <button type="button" class="cloze" data-id="c04" aria-expanded="false"><span class="cloze-num">4</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">地中海性気候</span></button> がみられる。</li>
+      </ul>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">地形・資源</span> 氷河が生んだ海岸・国際河川・北海の資源</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">ノルウェー・スウェーデン・フィンランドの北欧三国がある <button type="button" class="cloze" data-id="c05" aria-expanded="false"><span class="cloze-num">5</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">スカンディナビア半島</span></button> の海岸では、長年にわたり積もった雪が固まった <button type="button" class="cloze" data-id="c06" aria-expanded="false"><span class="cloze-num">6</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">氷河</span></button> によって深く削られてできた、ギザギザの複雑な海岸線である <button type="button" class="cloze" data-id="c07" aria-expanded="false"><span class="cloze-num">7</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">フィヨルド</span></button> が多くみられる。</li>
+       <li class="cloze-item">複数の国や国境を流れ、沿岸国が自由に使えるよう条約が結ばれている河川を <button type="button" class="cloze" data-id="c08" aria-expanded="false"><span class="cloze-num">8</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">国際河川</span></button> といい、代表例として北海へ注ぐ <button type="button" class="cloze" data-id="c09" aria-expanded="false"><span class="cloze-num">9</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ライン川</span></button> や、黒海へ注ぐ <button type="button" class="cloze" data-id="c10" aria-expanded="false"><span class="cloze-num">10</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ドナウ川</span></button> が挙げられる。</li>
+       <li class="cloze-item">イギリスとスカンディナビア半島に挟まれた海域では <button type="button" class="cloze" data-id="c11" aria-expanded="false"><span class="cloze-num">11</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">北海油田</span></button> が発見され、イギリス、ノルウェー、オランダなどが産油国となっている。</li>
+      </ul>
+     </div>
+    </section>
+    <!-- INTERACTIVE ATLAS -->
+    <section class="atlas-card" id="sec-atlas" aria-label="ヨーロッパ地理インタラクティブ図解">
+     <div class="atlas-header">
+      <div>
+       <span class="dossier-meta">INTERACTIVE ATLAS</span>
+       <h2 class="section-heading">地図でつなぐ自然・農業・文化の分布</h2>
+      </div>
+      <div class="map-tabs" role="group" aria-label="地図レイヤー切替">
+       <button type="button" class="map-tab-btn" data-layer="climate" aria-pressed="true">自然・気候・資源</button> <button type="button" class="map-tab-btn" data-layer="agriculture" aria-pressed="false">3大農業の分布</button> <button type="button" class="map-tab-btn" data-layer="culture" aria-pressed="false">民族・言語と宗教</button>
+      </div>
+     </div>
+     <div class="atlas-grid">
+      <div class="map-stage" id="europe-map-stage">
+       <svg id="europe-map-svg" viewBox="0 0 640 420" role="img" aria-label="ヨーロッパ州の自然・農業・文化分布図"></svg>
+      </div>
+      <div class="atlas-side">
+       <div class="atlas-legend" id="atlas-legend"></div>
+       <div class="atlas-detail" id="atlas-detail">
+        <span class="atlas-detail-kicker" id="atlas-detail-kicker">POINT GUIDE</span>
+        <h3 class="atlas-detail-title" id="atlas-detail-title">地図上のピンをタップして確認</h3>
+        <p class="atlas-detail-body" id="atlas-detail-body">上のボタンで「自然・気候・資源」「3大農業の分布」「民族・言語と宗教」を切り替え、地図上の黄色いマーカーを選ぶと重要ポイントが表示されます。</p>
+       </div>
+      </div>
+     </div>
+     <p class="map-caption">Boundaries: Natural Earth (public domain) / ピンをクリックまたはタップすると解説が切り替わります。</p>
+    </section>
+    <!-- SECTION 02 -->
+    <section class="study-section" id="sec-02" data-section="02">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 02</span> <span class="dossier-meta">AGRICULTURAL PATTERNS</span>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress-tag" data-sec-count="02">0 / 0</span> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="show" data-sec-target="02">この章を表示</button> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="hide" data-sec-target="02">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading">農業の地域的特色：気候と市場に合わせた3つのスタイル</h2>
+     <p class="section-lead">ヨーロッパの農業は、緯度や降水量の違い、大都市の近さを生かして地域ごとに明確な特色をもっています。</p>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">農業①</span> 混合農業（中・西ヨーロッパ）</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item cloze-item-strong"><button type="button" class="cloze" data-id="c12" aria-expanded="false"><span class="cloze-num">12</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ドイツ</span></button> などで盛んな農業で、小麦やじゃがいもなどの作物の栽培と、牛や豚などの <button type="button" class="cloze" data-id="c13" aria-expanded="false"><span class="cloze-num">13</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">家畜</span></button> の飼育を組み合わせた <button type="button" class="cloze" data-id="c14" aria-expanded="false"><span class="cloze-num">14</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">混合農業</span></button> が行われている。 <button type="button" class="cloze" data-id="c15" aria-expanded="false"><span class="cloze-num">15</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">小麦</span></button> やじゃがいもは人が食べ、牧草やえん麦は家畜のえさにする仕組みのため、ドイツではパンやじゃがいもとソーセージが食卓に多く並ぶ。</li>
+      </ul>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">農業②</span> 酪農（北・西ヨーロッパ）</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">イギリス、 <button type="button" class="cloze" data-id="c16" aria-expanded="false"><span class="cloze-num">16</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">デンマーク</span></button> 、 <button type="button" class="cloze" data-id="c17" aria-expanded="false"><span class="cloze-num">17</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">オランダ</span></button> などヨーロッパ北部では、冷涼な気候や大都市に近い立地を生かし、乳牛を飼育して牛乳やバター・チーズなどの <button type="button" class="cloze" data-id="c18" aria-expanded="false"><span class="cloze-num">18</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">乳製品</span></button> を生産・加工する <button type="button" class="cloze" data-id="c19" aria-expanded="false"><span class="cloze-num">19</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">酪農</span></button> が盛んである。</li>
+      </ul>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">農業③</span> 地中海式農業（南ヨーロッパ）</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">イタリアや <button type="button" class="cloze" data-id="c20" aria-expanded="false"><span class="cloze-num">20</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">スペイン</span></button> などの地中海沿岸では、夏の乾燥と冬の雨に合わせた <button type="button" class="cloze" data-id="c21" aria-expanded="false"><span class="cloze-num">21</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">地中海式農業</span></button> が行われる。乾燥する夏には乾燥に強い <button type="button" class="cloze" data-id="c22" aria-expanded="false"><span class="cloze-num">22</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">オリーブ</span></button> や <button type="button" class="cloze" data-id="c23" aria-expanded="false"><span class="cloze-num">23</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ぶどう</span></button> ・オレンジなどを育て、雨の多い冬には小麦などを栽培する。</li>
+      </ul>
+     </div>
+     <div class="table-wrap">
+      <table class="briefing-table">
+       <thead>
+        <tr>
+         <th>農業スタイル</th>
+         <th>主な地域・国</th>
+         <th>特徴と主な生産物</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td><strong>酪農</strong></td>
+         <td>北部（イギリス・デンマーク・オランダ）</td>
+         <td>冷涼な気候と大都市の近くで乳牛を飼育。牛乳・バター・チーズなど。</td>
+        </tr>
+        <tr>
+         <td><strong>混合農業</strong></td>
+         <td>中西部（ドイツ・フランス北部など）</td>
+         <td>小麦・じゃがいも（食用）と家畜（牛・豚）＋牧草・えん麦（飼料）を組み合わせる。</td>
+        </tr>
+        <tr>
+         <td><strong>地中海式農業</strong></td>
+         <td>地中海沿岸（イタリア・スペインなど）</td>
+         <td>夏は乾燥に強いオリーブ・ぶどう・オレンジ、冬は雨を生かして小麦を栽培。</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </section>
+    <!-- SECTION 03 -->
+    <section class="study-section" id="sec-03" data-section="03">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 03</span> <span class="dossier-meta">PEOPLES, LANGUAGES &amp; RELIGION</span>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress-tag" data-sec-count="03">0 / 0</span> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="show" data-sec-target="03">この章を表示</button> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="hide" data-sec-target="03">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading">民族・言語と宗教：3つの系統とキリスト教の宗派</h2>
+     <p class="section-lead">ローマ帝国時代から広がったキリスト教は3つの宗派に分かれ、民族・言語の分布とほぼ一致して地域ごとの文化を形づくっています。</p>
+     <div class="note-panel">
+      <ul class="cloze-list">
+       <li class="cloze-item">ヨーロッパの多くの国で信仰されている <button type="button" class="cloze" data-id="c24" aria-expanded="false"><span class="cloze-num">24</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">キリスト教</span></button> は、ローマ帝国の東西分裂や16世紀の <button type="button" class="cloze" data-id="c25" aria-expanded="false"><span class="cloze-num">25</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">宗教改革</span></button> を経て、主に3つの宗派に分かれた。</li>
+       <li class="cloze-item cloze-item-strong"><strong>北・西ヨーロッパ：</strong>イギリス、ドイツ、オランダ、スウェーデンなどでは <button type="button" class="cloze" data-id="c26" aria-expanded="false"><span class="cloze-num">26</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ゲルマン系</span></button> の民族・言語が多く、ルターやカルバンらの宗教改革から生まれた <button type="button" class="cloze" data-id="c27" aria-expanded="false"><span class="cloze-num">27</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">プロテスタント</span></button> の信者が多い。</li>
+       <li class="cloze-item cloze-item-strong"><strong>南・西ヨーロッパ：</strong>イタリア、スペイン、ポルトガル、フランスなどでは <button type="button" class="cloze" data-id="c28" aria-expanded="false"><span class="cloze-num">28</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ラテン系</span></button> の民族・言語が多く、バチカンにいるローマ教皇をトップとする <button type="button" class="cloze" data-id="c29" aria-expanded="false"><span class="cloze-num">29</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">カトリック</span></button> の信者が多い。</li>
+       <li class="cloze-item cloze-item-strong"><strong>東ヨーロッパ・ロシア：</strong>ロシア、ウクライナ、ブルガリア、ポーランドなどでは <button type="button" class="cloze" data-id="c30" aria-expanded="false"><span class="cloze-num">30</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">スラブ系</span></button> の民族・言語が多く、東ローマ帝国（ビザンツ帝国）に起源をもちモスクワなどに拠点がある <button type="button" class="cloze" data-id="c31" aria-expanded="false"><span class="cloze-num">31</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">正教会</span></button> の信者が多い。</li>
+      </ul>
+     </div>
+     <aside class="aside-box">
+      <h3 class="aside-title">CHECK POINT / 例外も押さえよう</h3>
+      <p class="aside-body">民族・言語と宗派の分布は大きく重なりますが、<strong>ポーランド</strong>のようにスラブ系でありながらカトリックの信者が多い国などの例外もあります。テストでは「地域＋系統＋宗派＋代表国」のセットで整理しておきましょう。</p>
+     </aside>
+    </section>
+    <!-- SECTION 04 -->
+    <section class="study-section" id="sec-04" data-section="04">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 04</span> <span class="dossier-meta">EU INTEGRATION &amp; INDUSTRY</span>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress-tag" data-sec-count="04">0 / 0</span> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="show" data-sec-target="04">この章を表示</button> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="hide" data-sec-target="04">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading">ヨーロッパの統合と工業：ECからEUへの歩みと先端技術</h2>
+     <p class="section-lead">二度の大戦の反省から始まった経済・政治の統合により、域内での自由な移動と国際分業による高付加価値な工業が発展しました。</p>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">統合</span> ECからEUへの発展と仕組み</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">第二次世界大戦の大きな損害を反省し、ヨーロッパが協力して平和と発展を目指すため、1967年にフランス・西ドイツ・イタリア・オランダ・ベルギー・ルクセンブルクの6か国で <button type="button" class="cloze" data-id="c32" aria-expanded="false"><span class="cloze-num">32</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">EC（ヨーロッパ共同体）</span></button> が発足した。</li>
+       <li class="cloze-item cloze-item-strong">その後加盟国を増やし、1993年に経済だけでなく政治・通貨面の統合も深めた <button type="button" class="cloze" data-id="c33" aria-expanded="false"><span class="cloze-num">33</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">EU（ヨーロッパ連合）</span></button> が発足した。</li>
+       <li class="cloze-item">EUの主な特徴として、多くの加盟国で使われる共通通貨 <button type="button" class="cloze" data-id="c34" aria-expanded="false"><span class="cloze-num">34</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ユーロ</span></button> の導入、国境を越えて <button type="button" class="cloze" data-id="c35" aria-expanded="false"><span class="cloze-num">35</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">パスポート</span></button> なしで自由に行き来できる仕組み、連合内の政策などを決める <button type="button" class="cloze" data-id="c36" aria-expanded="false"><span class="cloze-num">36</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ヨーロッパ議会</span></button> の設置がある。</li>
+      </ul>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">工業・資源</span> 先端技術産業の国際分業とエネルギー</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">先進国が多いEUでは、最先端の技術を用いる <button type="button" class="cloze" data-id="c37" aria-expanded="false"><span class="cloze-num">37</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">先端技術産業</span></button> （ハイテク産業）が中心となっている。</li>
+       <li class="cloze-item">EU最大の航空機産業国である <button type="button" class="cloze" data-id="c38" aria-expanded="false"><span class="cloze-num">38</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">フランス</span></button> を中心とする <button type="button" class="cloze" data-id="c39" aria-expanded="false"><span class="cloze-num">39</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">航空宇宙産業</span></button> では、EU各国で分担して製造した部品をフランスに集めて組み立てる国際分業が行われている。</li>
+       <li class="cloze-item">EU随一の生産性を誇る <button type="button" class="cloze" data-id="c40" aria-expanded="false"><span class="cloze-num">40</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">ドイツ</span></button> をはじめ、フランス・イタリア・イギリス・スウェーデンなどでは、有名メーカーを多数抱える <button type="button" class="cloze" data-id="c41" aria-expanded="false"><span class="cloze-num">41</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">自動車産業</span></button> が盛んである。また、スイスでは高級時計などの精密機械工業や医薬品工業が発達している。</li>
+       <li class="cloze-item">西ヨーロッパでは石炭や鉄鉱石が枯渇した国も多く、エネルギー資源に乏しいフランスでは自国で産出するウランを使った <button type="button" class="cloze" data-id="c42" aria-expanded="false"><span class="cloze-num">42</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">原子力発電</span></button> に国内電力の大部分を頼っている。</li>
+      </ul>
+     </div>
+    </section>
+    <!-- SECTION 05 -->
+    <section class="study-section" id="sec-05" data-section="05">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 05</span> <span class="dossier-meta">CHALLENGES &amp; ENVIRONMENT</span>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress-tag" data-sec-count="05">0 / 0</span> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="show" data-sec-target="05">この章を表示</button> <button type="button" class="btn btn-secondary btn-sm" data-sec-action="hide" data-sec-target="05">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading">現代の課題と環境問題：経済格差・移民問題と持続可能性</h2>
+     <p class="section-lead">EUの拡大と自由化は成長をもたらした一方、地域間の経済格差や社会の摩擦、国境を越えた環境への対応という新たな課題を生んでいます。</p>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">社会の課題</span> 東西の経済格差と出稼ぎ・移民問題</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item cloze-item-strong">EUが東へ拡大するなかで、工業が発達した <button type="button" class="cloze" data-id="c43" aria-expanded="false"><span class="cloze-num">43</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">西ヨーロッパ</span></button> と、内陸・東側の <button type="button" class="cloze" data-id="c44" aria-expanded="false"><span class="cloze-num">44</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">東ヨーロッパ</span></button> との間で <button type="button" class="cloze" data-id="c45" aria-expanded="false"><span class="cloze-num">45</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">経済格差</span></button> が広がっている。</li>
+       <li class="cloze-item">EU内は移動が自由なため、賃金の安い東ヨーロッパから西ヨーロッパへ <button type="button" class="cloze" data-id="c46" aria-expanded="false"><span class="cloze-num">46</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">出稼ぎ</span></button> に出る人が増えた。その結果、もともと働いていた人の仕事が奪われて失業者が増え、 <button type="button" class="cloze" data-id="c47" aria-expanded="false"><span class="cloze-num">47</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">移民</span></button> や出稼ぎ労働者に対する悪感情や対立が生じることが問題になっている。</li>
+       <li class="cloze-item">また、ギリシャの経済危機がEU全体の金融不安を招いたほか、 <button type="button" class="cloze" data-id="c48" aria-expanded="false"><span class="cloze-num">48</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">イギリス</span></button> がEUからの離脱を選択するなど、統合のあり方が揺れる局面も生じている。</li>
+      </ul>
+     </div>
+     <div class="note-panel">
+      <h3 class="note-subhead"><span class="note-tag">環境対策</span> 酸性雨と地球温暖化への取り組み</h3>
+      <ul class="cloze-list">
+       <li class="cloze-item">工業地帯の拡大や自動車の普及に伴う排気ガスが原因となり、国境を越えて森林や湖沼に被害をもたらす <button type="button" class="cloze" data-id="c49" aria-expanded="false"><span class="cloze-num">49</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">酸性雨</span></button> が問題となり、ヨーロッパ各国で排出規制が進められた。</li>
+       <li class="cloze-item">二酸化炭素などの温室効果ガスによる <button type="button" class="cloze" data-id="c50" aria-expanded="false"><span class="cloze-num">50</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">地球温暖化</span></button> を防ぐため、EUでは排出削減目標を掲げ、風力や太陽光などの <button type="button" class="cloze" data-id="c51" aria-expanded="false"><span class="cloze-num">51</span><span class="cloze-placeholder">タップで表示</span><span class="cloze-answer">再生可能エネルギー</span></button> の導入や環境対策を国際的に主導している。</li>
+      </ul>
+     </div>
+    </section>
+    <!-- SECTION 06 -->
+    <section class="study-section" id="sec-06" data-section="06">
+     <div class="section-top">
+      <div class="section-top-meta">
+       <span class="dossier-pill">Section 06</span> <span class="dossier-meta">EXAM WRITING DRILL</span>
+      </div>
+     </div>
+     <h2 class="section-heading">定期テスト直前：記述問題チェック</h2>
+     <p class="section-lead">理由を問われる記述問題では、テストのルール通り語尾を「〜ため。」「〜から。」で結び、漢字を正確に書くことが得点のカギです。</p>
+     <div class="essay-grid">
+      <article class="essay-card">
+       <span class="figure-card-label">DRILL 01 / 気候の理由</span>
+       <p class="essay-q">問1．イギリスやドイツなどヨーロッパ西部は高緯度に位置するにもかかわらず、同緯度の他の地域と比べて冬でも温暖である理由を説明しなさい。（語尾：「〜ため。」）</p>
+       <button type="button" class="essay-toggle" data-essay="e1" aria-expanded="false">模範解答を表示</button>
+       <div class="essay-answer" id="e1">
+        <strong>【模範解答】</strong>赤道付近から北上する暖流の<strong>北大西洋海流</strong>の上を、一年中西から吹く<strong>偏西風</strong>が通り、温暖な空気を大陸に運び込む<strong>ため。</strong>
+       </div>
+      </article>
+      <article class="essay-card">
+       <span class="figure-card-label">DRILL 02 / 農業の特色</span>
+       <p class="essay-q">問2．ドイツなどで盛んな「混合農業」の特色について、「作物」と「家畜」という語句を用いて簡潔に説明しなさい。（語尾：「〜から。」）</p>
+       <button type="button" class="essay-toggle" data-essay="e2" aria-expanded="false">模範解答を表示</button>
+       <div class="essay-answer" id="e2">
+        <strong>【模範解答】</strong>小麦やじゃがいもなどの<strong>作物</strong>の栽培と、牛や豚などの<strong>家畜</strong>の飼育を組み合わせ、人が食べる作物と家畜のえさを同じ農場で循環させて生産する農業だ<strong>から。</strong>
+       </div>
+      </article>
+      <article class="essay-card">
+       <span class="figure-card-label">DRILL 03 / EUの課題</span>
+       <p class="essay-q">問3．EUにおいて、西ヨーロッパと東ヨーロッパの経済格差がどのような社会問題につながっているか説明しなさい。（語尾：「〜ため。」）</p>
+       <button type="button" class="essay-toggle" data-essay="e3" aria-expanded="false">模範解答を表示</button>
+       <div class="essay-answer" id="e3">
+        <strong>【模範解答】</strong>EU内は自由に行き来できることから、東ヨーロッパから西ヨーロッパへ<strong>出稼ぎ</strong>に出る人が増え、受け入れ国で仕事を奪われて失業者が増えたり、<strong>移民</strong>への悪感情が生じたりしている<strong>ため。</strong>
+       </div>
+      </article>
+     </div>
+    </section>
+    <!-- Bottom quick controls -->
+    <div class="bottom-bar" aria-label="下部一括操作バー">
+     <span class="progress-count">学習完了チェック：現在 <strong id="revealed-count-bottom">0</strong> / <strong id="total-count-bottom">0</strong> 語を表示中</span>
+     <div class="control-actions">
+      <button type="button" class="btn btn-primary" id="btn-show-all-bottom">すべて表示</button> <button type="button" class="btn btn-secondary" id="btn-hide-all-bottom">すべて隠す</button>
+     </div>
+    </div>
+    <footer class="sources-note">
+     <strong>出典・参考資料：</strong>第1学年 社会科地理『第3章 世界の諸地域（2節 ヨーロッパ州）』授業まとめ資料、および『第1学年2学期 社会科期末テスト必勝法』学習計画表にもとづき作成。地図データ：Natural Earth (public domain)。
+    </footer>
+   </main>
+  </div>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),y,Ba=[];Ba[w]=7;y=Object.freeze(Ba);function z(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function A(a){return a!=null&&a[Aa]===Fa}function B(a,b){return b===void 0?a.h!==E&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==E}var E={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ba=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function F(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(0-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return F(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return F(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return F(Ta(64,a));if(Ya(a))return b==="string"?db(a):F(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(A(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;z(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.R=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.R(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.R(b,!1,!0,c,this.U,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(z([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(A(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(A(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=z(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:A(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=E);a.l=E;return a}function Lb(a){var b=a.j,c=b[w]|0;return B(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(B(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==E)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&B(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=E,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return A(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:y}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=B(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,z(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=z(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.U=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(A(f)){if(!B(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&z(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!B(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!B(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?B(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?B(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===y?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,G=!0,C=0,D=0;for(;C<p.length;C++){let H=gb(p[C],d,!1,r);if(H instanceof d){if(!q){let x=B(H);t&&=!x;G&&=x}p[D++]=H}}D<C&&(p.length=D);l|=4;l=G?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!B(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!B(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===y?7:a[w]|0;(d=B(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.T=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.extensions=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Y=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=
+e(),m[n]=e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Y?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let G=e.l,C=c[G];if(C==null){let D=c.extensions;if(D){let H=D[G];if(H){let x=Sc(H);x!=null&&(C=c[G]=x)}}}if(C==null||!C(e,d,G)){var f=e;let D=f.m;zc(f);if(f.N)var g=void 0;else{let H=f.h.h-D;f.h.h=D;c:{var h=f.h;f=H;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let x=h.h;var m=x+f;if(m>h.i)throw Error();h.h=m;if(h.J&&h.o)var n=h.l.subarray(x,x+f);else{var l=h.l;m=
+x;f=x+f;n=m===f?new Uint8Array(0):l.slice(m,f)}f=n;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;var p=G,r=g;r&&((f=m[xa]??(m[xa]=new wb))[p]??(f[p]=[])).push(r)}}let t=tb(d);t&&(t.h=c.T[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.extensions;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.da)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.ca){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,
+t)}):r(b,O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=F(Ta(64,c));break a;default:c=F(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===y?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=B(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===y?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===y?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.D=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.D;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}C(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.C(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.B(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}B(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.aa;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.B=this.h=this.closed=!1;this.D=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.B=this.h=!0;this.D=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.C(a)}C(a){var b=this.h,c=this.m;return this.B||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.D,c=this.h;this.B?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.C(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{V:c,Z:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.P.next(c);else if(b==="AppDataChange"&&c)a.S?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.O.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.V(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.Z),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.A=Ld();this.API_VERSION="1.0";this.P=new Ad;this.O=new Dd;this.F=new Map;this.X=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.W=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.A);a.includes(10)&&(window.onerror=this.X,window.addEventListener("unhandledrejection",this.W));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.S=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}hasCapability(a){return a!==0&&ld(this.A).includes(a)}addThemeChangeListener(a,b){this.P.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.O.subscribe(a)}notifyAppReady(){ld(this.A).includes(4)&&
+this.sendMessage("AppReady")}notifyAppError(a){ld(this.A).includes(10)&&this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof
+Error?b:Error(String(b));}return null}triggerFileDownload(a){a=JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.A).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    (function () {
+      'use strict';
+
+      var TOTAL_BLANKS = 0;
+      var clozeButtons = [];
+      var revealedSet = new Set();
+      var currentLayer = 'climate';
+      var activePinId = 'drift';
+
+      var LAYER_DATA = {
+        climate: {
+          legend: [
+            { swatch: 'swatch-data4', text: '北大西洋海流（暖流）' },
+            { swatch: 'swatch-data3', text: '偏西風（一年中西から吹く風）' },
+            { swatch: 'swatch-data1', text: '国際河川（ライン川・ドナウ川）' },
+            { swatch: 'swatch-gold', text: 'タップできる重要地点' }
+          ],
+          pins: [
+            {
+              id: 'drift',
+              label: '北大西洋海流・偏西風',
+              lon: -6.5,
+              lat: 54.0,
+              kicker: 'CLIMATE / 西岸海洋性気候',
+              title: '北大西洋海流 × 偏西風',
+              body: `高緯度のヨーロッパ西部が冬でも温暖で、港が凍りにくい最大の理由です。暖流の上を偏西風が通り、暖かい空気を運びます。`
+            },
+            {
+              id: 'fjord',
+              label: 'フィヨルド',
+              lon: 7.5,
+              lat: 61.5,
+              kicker: 'LANDFORM / スカンディナビア半島',
+              title: '氷河が削ったギザギザの海岸線',
+              body: `ノルウェーなどの海岸に多くみられる「フィヨルド」は、長年にわたり積もった氷河の浸食によって深く削られて生まれました。`
+            },
+            {
+              id: 'northsea',
+              label: '北海油田',
+              lon: 2.8,
+              lat: 56.5,
+              kicker: 'RESOURCE / 北海',
+              title: '北海油田（イギリス・ノルウェー・オランダ）',
+              body: `イギリスとスカンディナビア半島に挟まれた北海で発見され、周辺の国々が産油国となっています。`
+            },
+            {
+              id: 'rhine',
+              label: 'ライン川',
+              lon: 7.2,
+              lat: 49.8,
+              kicker: 'RIVER / 国際河川',
+              title: 'ライン川（アルプス〜北海）',
+              body: `複数の国や国境を流れ、条約によって沿岸国が自由に航行できる国際河川の代表例です。`
+            },
+            {
+              id: 'danube',
+              label: 'ドナウ川',
+              lon: 20.5,
+              lat: 45.8,
+              kicker: 'RIVER / 国際河川',
+              title: 'ドナウ川（ドイツ〜黒海）',
+              body: `中・東ヨーロッパの多くの国を貫き、黒海へ注ぐ国際河川です。`
+            },
+            {
+              id: 'med',
+              label: '地中海性気候',
+              lon: 11.5,
+              lat: 41.8,
+              kicker: 'CLIMATE / 南ヨーロッパ',
+              title: '夏の乾燥と冬の雨',
+              body: `地中海沿岸は夏に亜熱帯高気圧におおわれて乾燥し、冬に偏西風の影響で雨が降るため、オリーブやぶどうの栽培に適しています。`
+            }
+          ]
+        },
+        agriculture: {
+          legend: [
+            { swatch: 'swatch-data1', text: '酪農（イギリス・デンマーク・オランダ）' },
+            { swatch: 'swatch-data3', text: '混合農業（ドイツ・フランス北部など）' },
+            { swatch: 'swatch-data2', text: '地中海式農業（イタリア・スペインなど）' }
+          ],
+          countries: {
+            'United Kingdom': 'map-country--data1',
+            'Ireland': 'map-country--data1',
+            'Denmark': 'map-country--data1',
+            'Netherlands': 'map-country--data1',
+            'Germany': 'map-country--data3',
+            'France': 'map-country--data3',
+            'Belgium': 'map-country--data3',
+            'Poland': 'map-country--data3',
+            'Italy': 'map-country--data2',
+            'Spain': 'map-country--data2',
+            'Portugal': 'map-country--data2',
+            'Greece': 'map-country--data2'
+          },
+          pins: [
+            {
+              id: 'dairy',
+              label: '酪農（北欧・西欧）',
+              lon: 9.2,
+              lat: 56.0,
+              kicker: 'AGRICULTURE / 北部',
+              title: '酪農（イギリス・デンマーク・オランダ）',
+              body: `冷涼な気候と大都市に近い立地を生かし、乳牛を飼育して牛乳・バター・チーズなどの乳製品を生産・加工します。`
+            },
+            {
+              id: 'mixed',
+              label: '混合農業（ドイツ等）',
+              lon: 10.4,
+              lat: 51.0,
+              kicker: 'AGRICULTURE / 中西部',
+              title: '混合農業（作物＋家畜）',
+              body: `人が食べる小麦やじゃがいもの栽培と、牛や豚などの家畜の飼育を組み合わせ、牧草やえん麦をえさにする合理的な農業です。`
+            },
+            {
+              id: 'med-ag',
+              label: '地中海式農業',
+              lon: -3.5,
+              lat: 40.0,
+              kicker: 'AGRICULTURE / 南部',
+              title: '地中海式農業（イタリア・スペイン）',
+              body: `乾燥する夏にオリーブ・ぶどう・オレンジを育て、雨が多い冬に小麦などを栽培します。`
+            }
+          ]
+        },
+        culture: {
+          legend: [
+            { swatch: 'swatch-data1', text: 'ゲルマン系・プロテスタント中心' },
+            { swatch: 'swatch-data2', text: 'ラテン系・カトリック中心' },
+            { swatch: 'swatch-data4', text: 'スラブ系・正教会中心（例外：ポーランド等はカトリック）' }
+          ],
+          countries: {
+            'United Kingdom': 'map-country--data1',
+            'Germany': 'map-country--data1',
+            'Netherlands': 'map-country--data1',
+            'Denmark': 'map-country--data1',
+            'Norway': 'map-country--data1',
+            'Sweden': 'map-country--data1',
+            'Austria': 'map-country--data1',
+            'Switzerland': 'map-country--data1',
+            'France': 'map-country--data2',
+            'Italy': 'map-country--data2',
+            'Spain': 'map-country--data2',
+            'Portugal': 'map-country--data2',
+            'Belgium': 'map-country--data2',
+            'Russia': 'map-country--data4',
+            'Ukraine': 'map-country--data4',
+            'Belarus': 'map-country--data4',
+            'Bulgaria': 'map-country--data4',
+            'Serbia': 'map-country--data4',
+            'Romania': 'map-country--data4',
+            'Greece': 'map-country--data4'
+          },
+          pins: [
+            {
+              id: 'germanic',
+              label: 'ゲルマン系・プロテスタント',
+              lon: 10.4,
+              lat: 52.0,
+              kicker: 'CULTURE / 北・西ヨーロッパ',
+              title: 'ゲルマン系言語 × プロテスタント',
+              body: `イギリス・ドイツ・オランダ・スウェーデンなどが該当します。16世紀の宗教改革（ルターやカルバン）によって広まりました。`
+            },
+            {
+              id: 'latin',
+              label: 'ラテン系・カトリック',
+              lon: 12.5,
+              lat: 42.5,
+              kicker: 'CULTURE / 南・西ヨーロッパ',
+              title: 'ラテン系言語 × カトリック',
+              body: `イタリア・スペイン・ポルトガル・フランスなどが該当し、バチカンのローマ教皇をトップとする宗派が多く信仰されています。`
+            },
+            {
+              id: 'slavic',
+              label: 'スラブ系・正教会',
+              lon: 31.0,
+              lat: 50.5,
+              kicker: 'CULTURE / 東ヨーロッパ・ロシア',
+              title: 'スラブ系言語 × 正教会',
+              body: `ロシア・ウクライナ・ブルガリアなどに多くみられます（東ローマ帝国に起源をもち、モスクワなどに拠点があります）。`
+            }
+          ]
+        }
+      };
+
+      var europeGeo = null;
+      var mapProjection = null;
+
+      function updateProgressUI() {
+        var revealed = revealedSet.size;
+        var pct = TOTAL_BLANKS > 0 ? Math.round((revealed / TOTAL_BLANKS) * 100) : 0;
+
+        var revEl = document.getElementById('revealed-count');
+        var totEl = document.getElementById('total-count');
+        var revBot = document.getElementById('revealed-count-bottom');
+        var totBot = document.getElementById('total-count-bottom');
+        var fillEl = document.getElementById('progress-fill');
+        var wrapEl = document.getElementById('progress-bar-wrap');
+
+        if (revEl) revEl.textContent = String(revealed);
+        if (totEl) totEl.textContent = String(TOTAL_BLANKS);
+        if (revBot) revBot.textContent = String(revealed);
+        if (totBot) totBot.textContent = String(TOTAL_BLANKS);
+        if (fillEl) fillEl.style.width = pct + '%';
+        if (wrapEl) wrapEl.setAttribute('aria-valuenow', String(pct));
+
+        var secTags = document.querySelectorAll('[data-sec-count]');
+        secTags.forEach(function (tag) {
+          var secId = tag.getAttribute('data-sec-count');
+          var secEl = document.querySelector('[data-section="' + secId + '"]');
+          if (!secEl) return;
+          var btns = secEl.querySelectorAll('.cloze');
+          var openCount = 0;
+          btns.forEach(function (b) {
+            if (b.getAttribute('aria-expanded') === 'true') openCount += 1;
+          });
+          tag.textContent = openCount + ' / ' + btns.length;
+        });
+      }
+
+      function applyRevealedStateToDom() {
+        clozeButtons.forEach(function (btn) {
+          var id = btn.getAttribute('data-id');
+          var isOpen = revealedSet.has(id);
+          btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        updateProgressUI();
+      }
+
+      async function persistState() {
+        if (!window.notebookAppApi || typeof window.notebookAppApi.setAppState !== 'function') {
+          return;
+        }
+        try {
+          await window.notebookAppApi.setAppState({
+            revealedIds: Array.from(revealedSet),
+            activeLayer: currentLayer,
+            activePinId: activePinId
+          });
+        } catch (err) {
+          // Ignore persistence transport errors safely
+        }
+      }
+
+      function toggleCloze(btn) {
+        if (!btn) return;
+        var id = btn.getAttribute('data-id');
+        if (!id) return;
+        if (revealedSet.has(id)) {
+          revealedSet.delete(id);
+        } else {
+          revealedSet.add(id);
+        }
+        applyRevealedStateToDom();
+        persistState();
+      }
+
+      function setAllCloze(show) {
+        revealedSet.clear();
+        if (show) {
+          clozeButtons.forEach(function (btn) {
+            var id = btn.getAttribute('data-id');
+            if (id) revealedSet.add(id);
+          });
+        }
+        applyRevealedStateToDom();
+        persistState();
+      }
+
+      function setSectionCloze(secId, show) {
+        var secEl = document.querySelector('[data-section="' + secId + '"]');
+        if (!secEl) return;
+        var btns = secEl.querySelectorAll('.cloze');
+        btns.forEach(function (btn) {
+          var id = btn.getAttribute('data-id');
+          if (!id) return;
+          if (show) {
+            revealedSet.add(id);
+          } else {
+            revealedSet.delete(id);
+          }
+        });
+        applyRevealedStateToDom();
+        persistState();
+      }
+
+      function updateDetailPanel(pin) {
+        var kickerEl = document.getElementById('atlas-detail-kicker');
+        var titleEl = document.getElementById('atlas-detail-title');
+        var bodyEl = document.getElementById('atlas-detail-body');
+        if (!pin) return;
+        if (kickerEl) kickerEl.textContent = pin.kicker;
+        if (titleEl) titleEl.textContent = pin.title;
+        if (bodyEl) bodyEl.textContent = pin.body;
+      }
+
+      function renderLegend(layerKey) {
+        var legendEl = document.getElementById('atlas-legend');
+        if (!legendEl) return;
+        var config = LAYER_DATA[layerKey];
+        if (!config) return;
+        legendEl.innerHTML = '';
+        config.legend.forEach(function (item) {
+          var row = document.createElement('div');
+          row.className = 'legend-item';
+          var swatch = document.createElement('span');
+          swatch.className = 'legend-swatch ' + item.swatch;
+          var label = document.createElement('span');
+          label.textContent = item.text;
+          row.appendChild(swatch);
+          row.appendChild(label);
+          legendEl.appendChild(row);
+        });
+      }
+
+      function renderMapLayer() {
+        var svgEl = document.getElementById('europe-map-svg');
+        if (!svgEl || !window.d3) return;
+
+        var config = LAYER_DATA[currentLayer];
+        if (!config) return;
+
+        renderLegend(currentLayer);
+
+        var tabBtns = document.querySelectorAll('.map-tab-btn');
+        tabBtns.forEach(function (btn) {
+          var isCurrent = btn.getAttribute('data-layer') === currentLayer;
+          btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+        });
+
+        var hasActivePin = config.pins.some(function (p) { return p.id === activePinId; });
+        if (!hasActivePin && config.pins.length > 0) {
+          activePinId = config.pins[0].id;
+        }
+        var currentPin = config.pins.find(function (p) { return p.id === activePinId; }) || config.pins[0];
+        updateDetailPanel(currentPin);
+
+        if (!europeGeo || !mapProjection) return;
+
+        var svg = d3.select(svgEl);
+        svg.selectAll('*').remove();
+
+        var pathGen = d3.geoPath(mapProjection);
+
+        // 1. Countries layer
+        var countryClasses = config.countries || {};
+        svg.append('g')
+          .selectAll('path')
+          .data(europeGeo.features)
+          .join('path')
+          .attr('d', pathGen)
+          .attr('class', function (d) {
+            var name = d.properties && d.properties.name ? d.properties.name : '';
+            if (countryClasses[name]) {
+              return 'map-country ' + countryClasses[name];
+            }
+            return currentLayer === 'climate' ? 'map-country' : 'map-country map-country--muted';
+          });
+
+        // 2. Climate flows & international rivers (only in climate layer)
+        if (currentLayer === 'climate') {
+          var lineGen = d3.line()
+            .x(function (pt) { return mapProjection(pt)[0]; })
+            .y(function (pt) { return mapProjection(pt)[1]; })
+            .curve(d3.curveCatmullRom);
+
+          // North Atlantic Drift warm current path
+          var driftCoords = [[-16, 44], [-10, 51], [-4, 57], [4, 62], [11, 66]];
+          svg.append('path')
+            .attr('d', lineGen(driftCoords))
+            .attr('class', 'map-flow');
+
+          // Westerlies wind arrow
+          var windCoords = [[-14, 50], [-4, 50.5], [6, 51.2]];
+          svg.append('path')
+            .attr('d', lineGen(windCoords))
+            .attr('class', 'map-flow map-flow--wind');
+
+          // Rhine River approximation
+          var rhineCoords = [[9.5, 46.8], [8.2, 48.5], [7.5, 50.3], [6.1, 51.8], [4.5, 52.0]];
+          svg.append('path')
+            .attr('d', lineGen(rhineCoords))
+            .attr('class', 'map-river');
+
+          // Danube River approximation
+          var danubeCoords = [[8.5, 48.0], [13.5, 48.5], [16.4, 48.2], [19.0, 47.4], [20.5, 44.8], [28.8, 45.2]];
+          svg.append('path')
+            .attr('d', lineGen(danubeCoords))
+            .attr('class', 'map-river');
+        }
+
+        // 3. Interactive pins
+        var pinsGroup = svg.append('g');
+        config.pins.forEach(function (pin) {
+          var xy = mapProjection([pin.lon, pin.lat]);
+          if (!xy) return;
+          var g = pinsGroup.append('g')
+            .attr('class', 'map-pin' + (pin.id === activePinId ? ' is-active' : ''))
+            .attr('transform', 'translate(' + xy[0].toFixed(1) + ',' + xy[1].toFixed(1) + ')')
+            .attr('tabindex', '0')
+            .attr('role', 'button')
+            .attr('aria-label', pin.label);
+
+          g.append('circle')
+            .attr('r', pin.id === activePinId ? 8 : 6.5);
+
+          g.append('text')
+            .attr('x', 11)
+            .attr('y', 4)
+            .text(pin.label);
+
+          g.on('click', function () {
+            activePinId = pin.id;
+            renderMapLayer();
+            persistState();
+          });
+
+          g.on('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              activePinId = pin.id;
+              renderMapLayer();
+              persistState();
+            }
+          });
+        });
+      }
+
+      async function initEuropeMap() {
+        var svgEl = document.getElementById('europe-map-svg');
+        if (!svgEl) return;
+
+        renderLegend(currentLayer);
+        var config = LAYER_DATA[currentLayer];
+        if (config && config.pins.length > 0) {
+          var initialPin = config.pins.find(function (p) { return p.id === activePinId; }) || config.pins[0];
+          updateDetailPanel(initialPin);
+        }
+
+        if (!window.d3 || !window.topojson) {
+          return;
+        }
+
+        try {
+          var res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json');
+          if (!res.ok) throw new Error('Map fetch failed');
+          var topo = await res.json();
+          europeGeo = topojson.feature(topo, topo.objects.countries);
+
+          mapProjection = d3.geoConicConformal()
+            .center([12, 52])
+            .rotate([-12, 0])
+            .parallels([42, 62])
+            .scale(680)
+            .translate([320, 225]);
+
+          renderMapLayer();
+        } catch (err) {
+          // Graceful fallback schematic message if offline
+          var svg = d3.select(svgEl);
+          svg.selectAll('*').remove();
+          svg.append('text')
+            .attr('x', 320)
+            .attr('y', 200)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '14')
+            .text('地図データの読み込みに失敗しました（オンライン環境で表示されます）');
+        }
+      }
+
+      function setupInteractions() {
+        clozeButtons = Array.prototype.slice.call(document.querySelectorAll('.cloze'));
+        TOTAL_BLANKS = clozeButtons.length;
+
+        clozeButtons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            toggleCloze(btn);
+          });
+        });
+
+        var showAllTop = document.getElementById('btn-show-all');
+        var hideAllTop = document.getElementById('btn-hide-all');
+        var showAllBot = document.getElementById('btn-show-all-bottom');
+        var hideAllBot = document.getElementById('btn-hide-all-bottom');
+
+        if (showAllTop) showAllTop.addEventListener('click', function () { setAllCloze(true); });
+        if (hideAllTop) hideAllTop.addEventListener('click', function () { setAllCloze(false); });
+        if (showAllBot) showAllBot.addEventListener('click', function () { setAllCloze(true); });
+        if (hideAllBot) hideAllBot.addEventListener('click', function () { setAllCloze(false); });
+
+        var secActionBtns = document.querySelectorAll('[data-sec-action]');
+        secActionBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var action = btn.getAttribute('data-sec-action');
+            var target = btn.getAttribute('data-sec-target');
+            if (target) {
+              setSectionCloze(target, action === 'show');
+            }
+          });
+        });
+
+        var mapTabBtns = document.querySelectorAll('.map-tab-btn');
+        mapTabBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var layer = btn.getAttribute('data-layer');
+            if (layer && LAYER_DATA[layer]) {
+              currentLayer = layer;
+              renderMapLayer();
+              persistState();
+            }
+          });
+        });
+
+        var essayToggles = document.querySelectorAll('.essay-toggle');
+        essayToggles.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var targetId = btn.getAttribute('data-essay');
+            var ansEl = targetId ? document.getElementById(targetId) : null;
+            if (!ansEl) return;
+            var willOpen = !ansEl.classList.contains('is-open');
+            ansEl.classList.toggle('is-open', willOpen);
+            btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            btn.textContent = willOpen ? '模範解答を隠す' : '模範解答を表示';
+          });
+        });
+      }
+
+      async function initApp() {
+        setupInteractions();
+
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+          try {
+            var saved = await window.notebookAppApi.getAppState();
+            if (saved && typeof saved === 'object') {
+              if (Array.isArray(saved.revealedIds)) {
+                saved.revealedIds.forEach(function (id) {
+                  revealedSet.add(String(id));
+                });
+              }
+              if (saved.activeLayer && LAYER_DATA[saved.activeLayer]) {
+                currentLayer = saved.activeLayer;
+              }
+              if (saved.activePinId) {
+                activePinId = String(saved.activePinId);
+              }
+            }
+          } catch (err) {
+            // Fall back to empty default state
+          }
+        }
+
+        applyRevealedStateToDom();
+        await initEuropeMap();
+
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+          window.notebookAppApi.notifyAppReady();
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
+      }
+    })();
+  </script>
+ </body>
+</html>
