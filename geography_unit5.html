@@ -1,0 +1,1972 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>アフリカ州 まとめノート＆インタラクティブ穴埋め演習</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;family=Noto+Serif+JP:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js" defer></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+      --button-border-muted: #c8c4b8;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --primary-container-wash: #f5e6c4;
+      --secondary: #1f4e5f;
+      --on-secondary: #ffffff;
+      --secondary-soft: #e6eff2;
+      --tertiary: #785008;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      /* Shared semantic & focus tokens */
+      --positive: #2b6e52;
+      --positive-soft: #e5f0eb;
+      --warning: #d99000;
+      --focus: #1f4e5f;
+
+      /* Data series & map palette */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+      --map-ocean: #e9eff2;
+      --map-land-other: #eae6dc;
+      --map-land-africa: #ffffff;
+      --map-border: #bdb7a8;
+
+      /* Fonts */
+      --font-headline: 'Noto Serif JP', 'Source Serif 4', serif;
+      --font-body: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', 'Noto Sans JP', monospace;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(1.85rem, 1.3rem + 2.4vw, 3rem);
+      --headline-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.875rem);
+      --subhead-size: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+      --shadow-subtle: 0 2px 8px rgba(23, 24, 26, 0.06);
+      --shadow-lift: 0 4px 12px rgba(23, 24, 26, 0.1);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Briefing Dossier Header */
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--badge-radius);
+      display: inline-block;
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.18;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.55;
+      color: var(--secondary);
+      margin: var(--space-sm) 0 0;
+      max-width: 65ch;
+    }
+
+    /* Overview KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .kpi-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.65rem;
+      line-height: 1.2;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .kpi-note {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    /* Global Study Controls */
+    .control-deck {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: var(--section-rule);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-subtle);
+    }
+    .control-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .progress-wrap {
+      display: grid;
+      gap: var(--space-xs);
+      min-width: 220px;
+      flex: 1 1 240px;
+    }
+    .progress-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .progress-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+    .progress-count {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-track {
+      height: 8px;
+      width: 100%;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      overflow: hidden;
+      border: 1px solid var(--outline-variant);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--secondary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .control-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+      text-decoration: none;
+    }
+    .btn:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background: var(--secondary);
+      box-shadow: var(--shadow-subtle);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--button-border-muted);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+      box-shadow: var(--shadow-subtle);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: 0 0.875rem;
+      font-size: 0.875rem;
+    }
+    .btn-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      border-top: var(--card-border);
+      padding-top: var(--space-sm);
+    }
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 0.75rem;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+    .jump-link:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline-variant);
+    }
+    .jump-link:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .jump-num {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .usage-hint {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+    }
+    .sample-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--rounded);
+      border: 1.5px dashed var(--secondary);
+      background: var(--surface-container-low);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    .sample-chip.is-revealed {
+      border-style: solid;
+      border-color: var(--primary);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Section Architecture */
+    .study-section {
+      display: grid;
+      gap: var(--space-md);
+      scroll-margin-top: var(--space-lg);
+    }
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+    }
+    .section-title-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      background: var(--secondary-soft);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--badge-radius);
+    }
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.25;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .section-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .section-status {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Study Cards & Prose */
+    .note-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .note-grid.is-single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .note-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .card-subtitle {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--secondary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .study-prose {
+      margin: 0;
+      line-height: 2.35;
+      color: var(--on-surface);
+      max-width: 65ch;
+    }
+    .study-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .study-list li {
+      line-height: 2.25;
+    }
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .aside-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .aside-text {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 2.1;
+      color: var(--on-surface);
+    }
+
+    /* Interactive Cloze Blank Button */
+    .cloze-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      min-height: 44px;
+      min-width: 7.25rem;
+      padding: 0.25rem 0.85rem;
+      margin: 0.1rem 0.2rem;
+      vertical-align: middle;
+      border-radius: var(--rounded);
+      border: 1.5px dashed var(--secondary);
+      background-color: var(--secondary-soft);
+      color: var(--secondary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color var(--dur-short) var(--ease-in-out),
+                  color var(--dur-short) var(--ease-in-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .cloze-btn:hover {
+      background-color: var(--surface-container-high);
+      box-shadow: var(--shadow-subtle);
+    }
+    .cloze-btn:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .cloze-btn:active {
+      transform: scale(0.97);
+    }
+    .cloze-btn[aria-expanded="true"] {
+      border-style: solid;
+      border-color: var(--primary);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 var(--tertiary);
+    }
+    .cloze-btn[aria-expanded="true"]:hover {
+      background-color: var(--primary-container-wash);
+      box-shadow: var(--shadow-subtle);
+    }
+    .cloze-num {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      opacity: 0.85;
+      padding-right: 0.25rem;
+      border-right: 1px solid currentColor;
+    }
+    .cloze-mask {
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    .data-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--section-rule);
+      background: var(--surface-container);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: middle;
+      line-height: 1.7;
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tag-amber {
+      display: inline-block;
+      background: var(--primary-container-wash);
+      color: var(--tertiary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--rounded);
+    }
+
+    /* Interactive Africa Vector Map */
+    .atlas-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .atlas-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .layer-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .layer-btn {
+      min-height: 44px;
+      padding: 0 0.875rem;
+      border-radius: var(--rounded);
+      border: 1px solid var(--button-border-muted);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .layer-btn:hover {
+      background: var(--surface-container);
+    }
+    .layer-btn:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .layer-btn[aria-pressed="true"] {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      border-color: var(--secondary);
+    }
+    .atlas-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .map-stage {
+      position: relative;
+      background: var(--map-ocean);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      min-height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .map-stage svg {
+      width: 100%;
+      height: auto;
+      min-height: 430px;
+      display: block;
+    }
+    .map-status-msg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      text-align: center;
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+      background: var(--map-ocean);
+    }
+    .map-status-msg[hidden] { display: none; }
+    .atlas-inspector {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .spot-list {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .spot-item-btn {
+      width: 100%;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+    .spot-item-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .spot-item-btn:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .spot-item-btn[aria-current="true"] {
+      border-color: var(--secondary);
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+    .spot-detail-box {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .spot-detail-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+    .spot-detail-title {
+      font-family: var(--font-headline);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .spot-detail-desc {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+    }
+    .map-caption {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    /* Descriptive Exam Checkpoints */
+    .exam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .exam-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      align-content: start;
+    }
+    .exam-q {
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.65;
+      color: var(--on-surface);
+    }
+    .exam-rule {
+      font-size: 0.8125rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      margin: 0;
+    }
+    .exam-answer-box {
+      background: var(--surface-container);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--on-surface);
+    }
+    .exam-answer-box[hidden] { display: none; }
+
+    /* Bottom Action Footer */
+    .footer-bar {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .footer-meta {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 820px) {
+      .note-grid,
+      .atlas-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-xl);
+        gap: var(--space-lg);
+      }
+      .note-card,
+      .atlas-card,
+      .control-deck,
+      .exam-card {
+        padding: var(--space-md);
+      }
+      .map-stage,
+      .map-stage svg {
+        min-height: 360px;
+      }
+      .cloze-btn {
+        min-width: 6.25rem;
+        padding: 0.2rem 0.65rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="page-grid">
+   <!-- Dossier Header -->
+   <header>
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">BRIEFING</span> <span class="dossier-meta">WORLD GEOGRAPHY · CHAPTER 3 SECTION 3 · AFRICA</span>
+     </div>
+     <span class="dossier-meta">INTERACTIVE CLOZE NOTEBOOK</span>
+    </div>
+    <h1 class="title">アフリカ州 完全整理まとめノート＆穴埋め演習</h1>
+    <p class="standfirst">位置と自然環境から、植民地時代の国境線、モノカルチャー経済と鉱産資源、そしてAUと持続可能な開発まで。重要語句をタップして知識を定着させる地理総整理ノート。</p>
+    <div class="kpi-grid">
+     <div class="figure-card">
+      <div class="kpi-label">CONTINENTAL RANK</div>
+      <div class="kpi-value">54か国</div>
+      <div class="kpi-note">世界第2位の面積と急速に増加する人口</div>
+     </div>
+     <div class="figure-card">
+      <div class="kpi-label">LONGEST RIVER</div>
+      <div class="kpi-value">6,650 km</div>
+      <div class="kpi-note">ナイル川（地中海へ注ぐ世界最長の大河）</div>
+     </div>
+     <div class="figure-card">
+      <div class="kpi-label">HISTORICAL IMPACT</div>
+      <div class="kpi-value">直線的国境</div>
+      <div class="kpi-note">緯線・経線に沿った植民地境界と多民族構造</div>
+     </div>
+     <div class="figure-card">
+      <div class="kpi-label">STUDY TARGET</div>
+      <div class="kpi-value" id="kpi-total-terms">36語句</div>
+      <div class="kpi-note">暗記必須キーワード＋記述対策3問を収録</div>
+     </div>
+    </div>
+   </header>
+   <!-- Interactive Control Deck -->
+   <section class="control-deck" aria-label="学習コントロールパネル">
+    <div class="control-top">
+     <div class="progress-wrap">
+      <div class="progress-header">
+       <span class="progress-title">穴埋め確認の進捗</span> <span class="progress-count" id="progress-label">0 / 36 確認済み（0%）</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="36" aria-valuenow="0" id="progress-bar-wrap">
+       <div class="progress-fill" id="progress-fill"></div>
+      </div>
+     </div>
+     <div class="control-actions">
+      <button type="button" class="btn btn-primary" onclick="revealAll()"> <i data-lucide="eye" class="btn-icon" aria-hidden="true"></i> すべて表示 </button> <button type="button" class="btn btn-secondary" onclick="hideAll()"> <i data-lucide="eye-off" class="btn-icon" aria-hidden="true"></i> すべて隠す </button>
+     </div>
+    </div>
+    <div class="usage-hint">
+     <span>使い方：</span> <span class="sample-chip" aria-hidden="true">01 ・・・・</span> <span>をタップ／クリックすると</span> <span class="sample-chip is-revealed" aria-hidden="true">01 正解語句</span> <span>が表示されます（もう一度押すと再び隠れます）。学習状態は自動で保存されます。</span>
+    </div>
+    <nav class="jump-nav" aria-label="章へのクイック移動">
+     <a class="jump-link" href="#sec-1"><span class="jump-num">01</span> 位置と自然環境</a> <a class="jump-link" href="#sec-atlas"><span class="jump-num">MAP</span> 地図で確認</a> <a class="jump-link" href="#sec-2"><span class="jump-num">02</span> 歴史と国境</a> <a class="jump-link" href="#sec-3"><span class="jump-num">03</span> 農業とモノカルチャー</a> <a class="jump-link" href="#sec-4"><span class="jump-num">04</span> 鉱産資源と産業</a> <a class="jump-link" href="#sec-5"><span class="jump-num">05</span> 現代の課題と国際協力</a> <a class="jump-link" href="#sec-6"><span class="jump-num">06</span> 記述対策</a>
+    </nav>
+   </section>
+   <!-- Section 01: 位置と自然環境 -->
+   <section class="study-section" id="sec-1" aria-labelledby="sec-1-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">01</span> <span class="dossier-meta">LOCATION &amp; ENVIRONMENT</span>
+      </div>
+      <h2 class="section-heading" id="sec-1-title">赤道を挟んで対称に広がる気候帯と大地の地形</h2>
+     </div>
+     <div class="section-controls">
+      <span class="section-status" id="status-sec-1">0 / 11</span> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('1', true)">この節を表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('1', false)">隠す</button>
+     </div>
+    </div>
+    <div class="note-grid">
+     <article class="note-card">
+      <h3 class="card-subtitle">赤道を中心とした気候帯と森林・草原</h3>
+      <p class="study-prose">アフリカ大陸はほぼ中央を <button type="button" class="cloze-btn" id="cloze-c01" data-id="c01" data-sec="1" data-answer="赤道" aria-expanded="false" aria-label="穴埋め01：正解を表示" onclick="toggleCloze('c01')"> <span class="cloze-num">01</span><span class="cloze-mask">・・・・</span> </button> が東西に横切っており、これを境に南北ほぼ対称に気候帯が分布しています。赤道直下には年中高温多雨の <button type="button" class="cloze-btn" id="cloze-c02" data-id="c02" data-sec="1" data-answer="熱帯雨林気候" aria-expanded="false" aria-label="穴埋め02：正解を表示" onclick="toggleCloze('c02')"> <span class="cloze-num">02</span><span class="cloze-mask">・・・・</span> </button> が広がり、中央部の <button type="button" class="cloze-btn" id="cloze-c03" data-id="c03" data-sec="1" data-answer="コンゴ盆地" aria-expanded="false" aria-label="穴埋め03：正解を表示" onclick="toggleCloze('c03')"> <span class="cloze-num">03</span><span class="cloze-mask">・・・・</span> </button> にはマングローブ林や熱帯林の大森林帯がみられます。その外側には、雨季と乾季がはっきり分かれる <button type="button" class="cloze-btn" id="cloze-c04" data-id="c04" data-sec="1" data-answer="サバナ気候" aria-expanded="false" aria-label="穴埋め04：正解を表示" onclick="toggleCloze('c04')"> <span class="cloze-num">04</span><span class="cloze-mask">・・・・</span> </button> が広がり、背の高い草が生える草原（サバンナ）にはシマウマやライオン、ゾウなど多様な野生動物が生息しています。</p>
+      <h3 class="card-subtitle">砂漠・サヘルの砂漠化と二大地形</h3>
+      <p class="study-prose">さらに北側と南側の回帰線付近には乾燥帯が広がり、北部には世界最大の <button type="button" class="cloze-btn" id="cloze-c05" data-id="c05" data-sec="1" data-answer="サハラ砂漠" aria-expanded="false" aria-label="穴埋め05：正解を表示" onclick="toggleCloze('c05')"> <span class="cloze-num">05</span><span class="cloze-mask">・・・・</span> </button> があります。砂漠の周辺ではラクダなどの遊牧が行われ、交易路には水が湧き出る <button type="button" class="cloze-btn" id="cloze-c06" data-id="c06" data-sec="1" data-answer="オアシス" aria-expanded="false" aria-label="穴埋め06：正解を表示" onclick="toggleCloze('c06')"> <span class="cloze-num">06</span><span class="cloze-mask">・・・・</span> </button> が点在します。サハラ砂漠の南縁に位置する半乾燥地域は <button type="button" class="cloze-btn" id="cloze-c07" data-id="c07" data-sec="1" data-answer="サヘル" aria-expanded="false" aria-label="穴埋め07：正解を表示" onclick="toggleCloze('c07')"> <span class="cloze-num">07</span><span class="cloze-mask">・・・・</span> </button> とよばれ、人口増加に伴う <button type="button" class="cloze-btn" id="cloze-c08" data-id="c08" data-sec="1" data-answer="過放牧" aria-expanded="false" aria-label="穴埋め08：正解を表示" onclick="toggleCloze('c08')"> <span class="cloze-num">08</span><span class="cloze-mask">・・・・</span> </button> や過耕作、土地を休ませない無理な焼畑農業によって急速に <button type="button" class="cloze-btn" id="cloze-c09" data-id="c09" data-sec="1" data-answer="砂漠化" aria-expanded="false" aria-label="穴埋め09：正解を表示" onclick="toggleCloze('c09')"> <span class="cloze-num">09</span><span class="cloze-mask">・・・・</span> </button> が進行しています。</p>
+      <p class="study-prose">大陸北東部を南から北へ流れ地中海に注ぐのが、定期的な氾濫によって古代エジプト文明をはぐくんだ世界最長の <button type="button" class="cloze-btn" id="cloze-c10" data-id="c10" data-sec="1" data-answer="ナイル川" aria-expanded="false" aria-label="穴埋め10：正解を表示" onclick="toggleCloze('c10')"> <span class="cloze-num">10</span><span class="cloze-mask">・・・・</span> </button> です。また、大陸の東部には地面が引き裂かれてできた巨大な谷である <button type="button" class="cloze-btn" id="cloze-c11" data-id="c11" data-sec="1" data-answer="アフリカ大地溝帯（リフトバレー）" aria-expanded="false" aria-label="穴埋め11：正解を表示" onclick="toggleCloze('c11')"> <span class="cloze-num">11</span><span class="cloze-mask">・・・・</span> </button> が南北に連なり、キリマンジャロ山などの火山や細長い湖が分布しています。</p>
+     </article>
+     <aside class="aside-box">
+      <h3 class="aside-title">テスト頻出のポイント整理</h3>
+      <p class="aside-text"><strong>1. 赤道と標高の関係：</strong>ケニアやエチオピア周辺は赤道に近いものの、アフリカ大地溝帯沿いで<strong>標高が高い</strong>ため一年を通じて比較的涼しく過ごしやすい気候になります（高地トレーニングで長距離走が強い地域としても有名）。</p>
+      <p class="aside-text"><strong>2. 南北端の温帯：</strong>大陸の北西端（地中海沿岸）や南端（ケープタウン周辺）では、夏に乾燥し冬に雨が降る<strong>地中海性気候</strong>などの温帯がみられます。</p>
+      <p class="aside-text"><strong>3. 砂漠化のメカニズム：</strong>干ばつなどの自然要因に加え、「家畜の増やしすぎ（過放牧）」「休耕なしの連続耕作（過耕作）」「薪用の伐採」という人為的要因が重なり、サヘルの植生が失われています。</p>
+     </aside>
+    </div>
+   </section>
+   <!-- Interactive Vector Atlas -->
+   <section class="study-section" id="sec-atlas" aria-labelledby="sec-atlas-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">MAP</span> <span class="dossier-meta">INTERACTIVE VECTOR ATLAS</span>
+      </div>
+      <h2 class="section-heading" id="sec-atlas-title">地図で確認するアフリカ州の自然・歴史・資源</h2>
+     </div>
+    </div>
+    <div class="atlas-card">
+     <div class="atlas-toolbar">
+      <div class="layer-group" role="group" aria-label="地図レイヤー切り替え">
+       <button type="button" class="layer-btn" id="layer-nature" aria-pressed="true" onclick="setMapLayer('nature')">01 自然・地形</button> <button type="button" class="layer-btn" id="layer-history" aria-pressed="false" onclick="setMapLayer('history')">02 歴史・国境</button> <button type="button" class="layer-btn" id="layer-agriculture" aria-pressed="false" onclick="setMapLayer('agriculture')">03 農業・商品作物</button> <button type="button" class="layer-btn" id="layer-resources" aria-pressed="false" onclick="setMapLayer('resources')">04 鉱産資源・AU</button>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm" id="map-quiz-toggle" aria-pressed="false" onclick="toggleMapQuiz()"> <i data-lucide="help-circle" class="btn-icon" aria-hidden="true"></i> 地図ラベルを隠す </button>
+     </div>
+     <div class="atlas-layout">
+      <div class="map-stage" id="map-stage">
+       <svg id="africa-map" viewBox="0 0 660 520" role="img" aria-label="アフリカ州のインタラクティブ地図"></svg>
+       <div class="map-status-msg" id="map-status-msg">地図データを読み込み中…</div>
+      </div>
+      <div class="atlas-inspector">
+       <div>
+        <div class="kpi-label" id="inspector-layer-label">LAYER 01 · 自然・地形スポット</div>
+        <div class="spot-list" id="spot-list"></div>
+       </div>
+       <div class="spot-detail-box" id="spot-detail-box">
+        <span class="spot-detail-kicker" id="spot-detail-kicker">SPOT GUIDE</span>
+        <h3 class="spot-detail-title" id="spot-detail-title">スポットを選択してください</h3>
+        <p class="spot-detail-desc" id="spot-detail-desc">地図上のピンまたは左のリストから地域を選ぶと、試験に出る重要ポイントを確認できます。</p>
+       </div>
+      </div>
+     </div>
+     <div class="map-caption">
+      <span>地図境界データ: Natural Earth (public domain / world-atlas)</span> <span>※ピンの位置は各地域・国の代表的な地理的位置を示しています</span>
+     </div>
+    </div>
+   </section>
+   <!-- Section 02: 歴史と国境 -->
+   <section class="study-section" id="sec-2" aria-labelledby="sec-2-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">02</span> <span class="dossier-meta">HISTORY &amp; BORDERS</span>
+      </div>
+      <h2 class="section-heading" id="sec-2-title">ヨーロッパの植民地支配と直線的な国境線が残した課題</h2>
+     </div>
+     <div class="section-controls">
+      <span class="section-status" id="status-sec-2">0 / 8</span> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('2', true)">この節を表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('2', false)">隠す</button>
+     </div>
+    </div>
+    <div class="note-grid">
+     <article class="note-card">
+      <h3 class="card-subtitle">植民地分割と奴隷貿易の歴史</h3>
+      <p class="study-prose">大航海時代から19世紀後半以降にかけて、アフリカ大陸のほとんどの地域（エチオピア・リベリアなどを除く）は、イギリスやフランスなどの <button type="button" class="cloze-btn" id="cloze-c12" data-id="c12" data-sec="2" data-answer="宗主国" aria-expanded="false" aria-label="穴埋め12：正解を表示" onclick="toggleCloze('c12')"> <span class="cloze-num">12</span><span class="cloze-mask">・・・・</span> </button> と呼ばれるヨーロッパ諸国によって分割され、 <button type="button" class="cloze-btn" id="cloze-c13" data-id="c13" data-sec="2" data-answer="植民地" aria-expanded="false" aria-label="穴埋め13：正解を表示" onclick="toggleCloze('c13')"> <span class="cloze-num">13</span><span class="cloze-mask">・・・・</span> </button> とされました。本国へ鉱産資源や農作物を送るために自由を奪われただけでなく、1,000万人を超える人々が <button type="button" class="cloze-btn" id="cloze-c14" data-id="c14" data-sec="2" data-answer="奴隷" aria-expanded="false" aria-label="穴埋め14：正解を表示" onclick="toggleCloze('c14')"> <span class="cloze-num">14</span><span class="cloze-mask">・・・・</span> </button> として大西洋を越え、南北アメリカの綿花畑やさとうきび農園へ強制連行されました。</p>
+      <h3 class="card-subtitle">直線的な国境線と独立後の紛争</h3>
+      <p class="study-prose">地図を見ると、アフリカ大陸（特にサハラ砂漠周辺）には定規で引いたような国境が数多くみられます。これはヨーロッパ諸国が植民地の領有範囲を決める際、地図上の <button type="button" class="cloze-btn" id="cloze-c15" data-id="c15" data-sec="2" data-answer="緯線や経線" aria-expanded="false" aria-label="穴埋め15：正解を表示" onclick="toggleCloze('c15')"> <span class="cloze-num">15</span><span class="cloze-mask">・・・・</span> </button> に沿って機械的に <button type="button" class="cloze-btn" id="cloze-c16" data-id="c16" data-sec="2" data-answer="直線的な国境線" aria-expanded="false" aria-label="穴埋め16：正解を表示" onclick="toggleCloze('c16')"> <span class="cloze-num">16</span><span class="cloze-mask">・・・・</span> </button> を引いたためです。</p>
+      <p class="study-prose">こうした境界設定は、現地に住む人々の <button type="button" class="cloze-btn" id="cloze-c17" data-id="c17" data-sec="2" data-answer="民族や言語" aria-expanded="false" aria-label="穴埋め17：正解を表示" onclick="toggleCloze('c17')"> <span class="cloze-num">17</span><span class="cloze-mask">・・・・</span> </button> 、文化圏をまったく無視して決められました。その結果、一つの国内に対立する複数の民族が押し込められたり、逆に同じ民族が国境で分断されたりしました。第二次世界大戦後に多くの国が独立（1960年は「アフリカの年」）した後も、この構造が原因となって各地で <button type="button" class="cloze-btn" id="cloze-c18" data-id="c18" data-sec="2" data-answer="民族紛争" aria-expanded="false" aria-label="穴埋め18：正解を表示" onclick="toggleCloze('c18')"> <span class="cloze-num">18</span><span class="cloze-mask">・・・・</span> </button> や内戦が絶えない要因となっています。また、かつて支配していた国の言語（英語・フランス語・ポルトガル語など）が現在も <button type="button" class="cloze-btn" id="cloze-c19" data-id="c19" data-sec="2" data-answer="公用語" aria-expanded="false" aria-label="穴埋め19：正解を表示" onclick="toggleCloze('c19')"> <span class="cloze-num">19</span><span class="cloze-mask">・・・・</span> </button> として使われ、食文化などにも旧宗主国の影響が色濃く残っています。</p>
+     </article>
+     <aside class="aside-box">
+      <h3 class="aside-title">宗主国の違いと現在の言語分布</h3>
+      <ul class="study-list">
+       <li><strong>イギリス領だった地域（ケニア・ガーナ・ナイジェリア・南アフリカなど）：</strong>英語が公用語または広く通用。</li>
+       <li><strong>フランス領だった地域（コートジボワール・セネガル・アルジェリアなど）：</strong>フランス語が公用語。西・北アフリカではフランスパンなど食文化にも影響。</li>
+       <li><strong>ポルトガル領だった地域（アンゴラ・モザンビークなど）：</strong>ポルトガル語が公用語。</li>
+      </ul>
+      <p class="aside-text">※複数の民族が国内に存在するため、特定の民族語ではなく旧宗主国の言語を共通の公用語として使い続けている国が多くあります。</p>
+     </aside>
+    </div>
+   </section>
+   <!-- Section 03: 農業とモノカルチャー経済 -->
+   <section class="study-section" id="sec-3" aria-labelledby="sec-3-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">03</span> <span class="dossier-meta">AGRICULTURE &amp; MONOCULTURE</span>
+      </div>
+      <h2 class="section-heading" id="sec-3-title">プランテーションとモノカルチャー経済の構造的リスク</h2>
+     </div>
+     <div class="section-controls">
+      <span class="section-status" id="status-sec-3">0 / 7</span> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('3', true)">この節を表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('3', false)">隠す</button>
+     </div>
+    </div>
+    <div class="note-grid is-single">
+     <article class="note-card">
+      <h3 class="card-subtitle">プランテーションと代表的な商品作物</h3>
+      <p class="study-prose">植民地時代、宗主国の経済的利益のために各地に大規模農園である <button type="button" class="cloze-btn" id="cloze-c20" data-id="c20" data-sec="3" data-answer="プランテーション" aria-expanded="false" aria-label="穴埋め20：正解を表示" onclick="toggleCloze('c20')"> <span class="cloze-num">20</span><span class="cloze-mask">・・・・</span> </button> がつくられ、現地の人々の主食ではなく、ヨーロッパへ輸出するための商品作物が強制的に栽培されました。たとえば西アフリカのギニア湾沿岸ではチョコレートなどの原料となる <button type="button" class="cloze-btn" id="cloze-c21" data-id="c21" data-sec="3" data-answer="カカオ" aria-expanded="false" aria-label="穴埋め21：正解を表示" onclick="toggleCloze('c21')"> <span class="cloze-num">21</span><span class="cloze-mask">・・・・</span> </button> の栽培が盛んで、世界最大の生産国コートジボワールと並んで <button type="button" class="cloze-btn" id="cloze-c22" data-id="c22" data-sec="3" data-answer="ガーナ" aria-expanded="false" aria-label="穴埋め22：正解を表示" onclick="toggleCloze('c22')"> <span class="cloze-num">22</span><span class="cloze-mask">・・・・</span> </button> が世界有数の産地として知られています。また東アフリカの高原地域では <button type="button" class="cloze-btn" id="cloze-c23" data-id="c23" data-sec="3" data-answer="コーヒー" aria-expanded="false" aria-label="穴埋め23：正解を表示" onclick="toggleCloze('c23')"> <span class="cloze-num">23</span><span class="cloze-mask">・・・・</span> </button> や茶の栽培が盛んで、とくにアラビカ種の原産地の一つである <button type="button" class="cloze-btn" id="cloze-c24" data-id="c24" data-sec="3" data-answer="エチオピア" aria-expanded="false" aria-label="穴埋め24：正解を表示" onclick="toggleCloze('c24')"> <span class="cloze-num">24</span><span class="cloze-mask">・・・・</span> </button> やケニアなどが有名です。</p>
+      <h3 class="card-subtitle">モノカルチャー経済とは何か・なぜ危険なのか</h3>
+      <p class="study-prose">このように、国の経済が特定の単一の農産物や鉱産物の輸出に大きく依存する仕組みを <button type="button" class="cloze-btn" id="cloze-c25" data-id="c25" data-sec="3" data-answer="モノカルチャー経済" aria-expanded="false" aria-label="穴埋め25：正解を表示" onclick="toggleCloze('c25')"> <span class="cloze-num">25</span><span class="cloze-mask">・・・・</span> </button> といいます。モノカルチャー経済には重大な弱点があり、干ばつや害虫などによる不作や、国際市場での <button type="button" class="cloze-btn" id="cloze-c26" data-id="c26" data-sec="3" data-answer="価格の暴落" aria-expanded="false" aria-label="穴埋め26：正解を表示" onclick="toggleCloze('c26')"> <span class="cloze-num">26</span><span class="cloze-mask">・・・・</span> </button> が起きると、外貨収入が一気に減って国の経済が大打撃を受けます。また、輸出用作物の生産に土地や労働力が集中する結果、国内の主食（キャッサバやとうもろこし、米など）が不足して食料を輸入に頼らざるを得なくなる問題も生じています。</p>
+      <div class="table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>地域区分</th>
+          <th>主な農作物・形態</th>
+          <th>代表的な国・地域</th>
+          <th>試験での着眼点</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td><span class="tag-amber">西アフリカ</span></td>
+          <td>カカオ（プランテーション）</td>
+          <td>コートジボワール、ガーナ</td>
+          <td>日本の輸入チョコレート原料の多くを占める</td>
+         </tr>
+         <tr>
+          <td><span class="tag-amber">東アフリカ高地</span></td>
+          <td>コーヒー・茶</td>
+          <td>エチオピア、ケニア</td>
+          <td>標高が高く冷涼・適度な降雨が栽培に適する</td>
+         </tr>
+         <tr>
+          <td><span class="tag-amber">中部・熱帯域</span></td>
+          <td>焼畑農業（キャッサバ・ヤムいも）</td>
+          <td>コンゴ盆地・ギニア湾岸の内陸</td>
+          <td>森林を焼き灰を肥料とする伝統的な自給農業</td>
+         </tr>
+         <tr>
+          <td><span class="tag-amber">乾燥・半乾燥域</span></td>
+          <td>オアシス農業・遊牧</td>
+          <td>サハラ砂漠・サヘル周辺</td>
+          <td>ラクダや羊・ヤギの移動放牧、なつめやし栽培</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- Section 04: 鉱産資源と産業 -->
+   <section class="study-section" id="sec-4" aria-labelledby="sec-4-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">04</span> <span class="dossier-meta">MINERAL RESOURCES &amp; INDUSTRY</span>
+      </div>
+      <h2 class="section-heading" id="sec-4-title">豊かな地下資源の輸出と近年の経済成長</h2>
+     </div>
+     <div class="section-controls">
+      <span class="section-status" id="status-sec-4">0 / 5</span> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('4', true)">この節を表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('4', false)">隠す</button>
+     </div>
+    </div>
+    <div class="note-grid">
+     <article class="note-card">
+      <h3 class="card-subtitle">エネルギー資源と希少金属の宝庫</h3>
+      <p class="study-prose">アフリカ大陸は砂漠や高原など農耕に厳しい土地が多い一方で、地下には世界的に重要な鉱産資源が豊富に埋蔵されています。エネルギー資源としては、ギニア湾岸の西アフリカ（とくに大陸最大の人口と経済規模をもつ <button type="button" class="cloze-btn" id="cloze-c28" data-id="c28" data-sec="4" data-answer="ナイジェリア" aria-expanded="false" aria-label="穴埋め28：正解を表示" onclick="toggleCloze('c28')"> <span class="cloze-num">28</span><span class="cloze-mask">・・・・</span> </button> やアンゴラ）や北アフリカ（アルジェリア・リビアなど）で <button type="button" class="cloze-btn" id="cloze-c27" data-id="c27" data-sec="4" data-answer="原油" aria-expanded="false" aria-label="穴埋め27：正解を表示" onclick="toggleCloze('c27')"> <span class="cloze-num">27</span><span class="cloze-mask">・・・・</span> </button> や天然ガスが大量に産出します。</p>
+      <p class="study-prose">金属資源では、大陸最南端に位置しアフリカ随一の工業国でもある <button type="button" class="cloze-btn" id="cloze-c29" data-id="c29" data-sec="4" data-answer="南アフリカ共和国" aria-expanded="false" aria-label="穴埋め29：正解を表示" onclick="toggleCloze('c29')"> <span class="cloze-num">29</span><span class="cloze-mask">・・・・</span> </button> が代表的で、金や石炭、鉄鉱石のほか、世界有数の産出量を誇る <button type="button" class="cloze-btn" id="cloze-c30" data-id="c30" data-sec="4" data-answer="ダイヤモンド" aria-expanded="false" aria-label="穴埋め30：正解を表示" onclick="toggleCloze('c30')"> <span class="cloze-num">30</span><span class="cloze-mask">・・・・</span> </button> や、自動車部品・電子機器・バッテリー製造に欠かせないプラチナ、クロム、コバルトなどの <button type="button" class="cloze-btn" id="cloze-c31" data-id="c31" data-sec="4" data-answer="レアメタル" aria-expanded="false" aria-label="穴埋め31：正解を表示" onclick="toggleCloze('c31')"> <span class="cloze-num">31</span><span class="cloze-mask">・・・・</span> </button> （希少金属）を多く産出・輸出しています。</p>
+     </article>
+     <aside class="aside-box">
+      <h3 class="aside-title">主要鉱産資源と産出国まとめ</h3>
+      <ul class="study-list">
+       <li><strong>原油・天然ガス：</strong>ナイジェリア、アンゴラ、アルジェリアなど。</li>
+       <li><strong>金・プラチナ・クロム：</strong>南アフリカ共和国（BRICS加盟国の一つ）。</li>
+       <li><strong>ダイヤモンド：</strong>ボツワナ、南アフリカ共和国、コンゴ民主共和国など。</li>
+       <li><strong>銅・コバルト：</strong>ザンビア、コンゴ民主共和国（「カッパーベルト」とよばれる銅山帯。EV電池用のコバルトが急増）。</li>
+      </ul>
+      <p class="aside-text">近年は資源輸出による外貨獲得や外国企業の工場進出により高い<strong>経済成長</strong>を遂げる都市が増えている一方、加工前の「原料のまま輸出する構造」から抜け出し、国内での加工業・製造業を育てることが大きな目標となっています。</p>
+     </aside>
+    </div>
+   </section>
+   <!-- Section 05: 現代の課題と国際協力 -->
+   <section class="study-section" id="sec-5" aria-labelledby="sec-5-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">05</span> <span class="dossier-meta">CHALLENGES &amp; COOPERATION</span>
+      </div>
+      <h2 class="section-heading" id="sec-5-title">人口増加と貧困の克服、AUによる地域統合と国際連携</h2>
+     </div>
+     <div class="section-controls">
+      <span class="section-status" id="status-sec-5">0 / 5</span> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('5', true)">この節を表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSection('5', false)">隠す</button>
+     </div>
+    </div>
+    <div class="note-grid">
+     <article class="note-card">
+      <h3 class="card-subtitle">人口急増と貧困・飢餓・感染症への取り組み</h3>
+      <p class="study-prose">現代のアフリカ州では、医療の普及などにより世界で最も急速な <button type="button" class="cloze-btn" id="cloze-c32" data-id="c32" data-sec="5" data-answer="人口増加" aria-expanded="false" aria-label="穴埋め32：正解を表示" onclick="toggleCloze('c32')"> <span class="cloze-num">32</span><span class="cloze-mask">・・・・</span> </button> が続いており、若年層の割合が極めて高いのが特徴です。これは将来的に巨大な労働力・消費市場（経済成長の原動力）となる可能性を秘める一方、現状では食料生産や学校・病院・雇用の整備が追いつかず、各地で深刻な <button type="button" class="cloze-btn" id="cloze-c33" data-id="c33" data-sec="5" data-answer="貧困・飢餓" aria-expanded="false" aria-label="穴埋め33：正解を表示" onclick="toggleCloze('c33')"> <span class="cloze-num">33</span><span class="cloze-mask">・・・・</span> </button> や安全な飲料水の不足、都市部でのスラム拡大、感染症などの問題が生じています。</p>
+      <h3 class="card-subtitle">AUによる地域統合と外国との関係・持続可能な開発</h3>
+      <p class="study-prose">こうした課題にアフリカ自身で立ち向かうため、2002年にほぼ全土の国々が加盟する <button type="button" class="cloze-btn" id="cloze-c34" data-id="c34" data-sec="5" data-answer="AU（アフリカ連合）" aria-expanded="false" aria-label="穴埋め34：正解を表示" onclick="toggleCloze('c34')"> <span class="cloze-num">34</span><span class="cloze-mask">・・・・</span> </button> が発足しました（本部はエチオピアのアディスアベバ）。AUは紛争の調停や平和維持だけでなく、アフリカ大陸自由貿易圏（AfCFTA）の創設など地域統合を進めています。</p>
+      <p class="study-prose">また、産業の発展に不可欠な道路・鉄道・港湾・発電所などの <button type="button" class="cloze-btn" id="cloze-c35" data-id="c35" data-sec="5" data-answer="インフラ整備" aria-expanded="false" aria-label="穴埋め35：正解を表示" onclick="toggleCloze('c35')"> <span class="cloze-num">35</span><span class="cloze-mask">・・・・</span> </button> を進めるため、近年は資源確保や市場開拓を狙う中国や欧米、日本など外国からの投資や技術協力が活発化しています。同時に、公正な価格で取引して生産者を支えるフェアトレード、サヘル地域での植林による緑化、太陽光・地熱などの再生可能エネルギーの導入、産業の多角化を通じた <button type="button" class="cloze-btn" id="cloze-c36" data-id="c36" data-sec="5" data-answer="持続可能な開発" aria-expanded="false" aria-label="穴埋め36：正解を表示" onclick="toggleCloze('c36')"> <span class="cloze-num">36</span><span class="cloze-mask">・・・・</span> </button> が強く求められています。</p>
+     </article>
+     <aside class="aside-box">
+      <h3 class="aside-title">国際関係とアフリカ支援のポイント</h3>
+      <ul class="study-list">
+       <li><strong>中国との関係：</strong>資源の安定確保などを目的に、鉄道・道路・スタジアム建設や巨額融資を実施し、アフリカ最大の貿易相手国となっている（一方で返済負担＝債務問題も指摘される）。</li>
+       <li><strong>日本との関係：</strong>「アフリカ開発会議（TICAD）」を主導し、人材育成や農業技術指導、インフラの質的向上などで協力している。</li>
+       <li><strong>脱モノカルチャー：</strong>スマホ決済（ケニアのM-PESAなど）の急速な普及やICT産業の育成により、一次産品に頼らない新しい経済成長モデルも広がり始めている。</li>
+      </ul>
+     </aside>
+    </div>
+   </section>
+   <!-- Section 06: 記述・思考力チェック -->
+   <section class="study-section" id="sec-6" aria-labelledby="sec-6-title">
+    <div class="section-head">
+     <div class="section-title-group">
+      <div class="section-eyebrow">
+       <span class="index-num">06</span> <span class="dossier-meta">EXAM WRITING CHECKPOINT</span>
+      </div>
+      <h2 class="section-heading" id="sec-6-title">定期テスト対策：理由を答える記述問題チェック</h2>
+     </div>
+    </div>
+    <div class="exam-grid">
+     <article class="exam-card">
+      <div class="dossier-meta">QUESTION 01 · 国境線の成り立ち</div>
+      <p class="exam-q">アフリカ大陸の国々の国境線には、直線的なものが多くみられる。その歴史的な理由を簡潔に説明しなさい。</p>
+      <p class="exam-rule">記述ルール：語尾は「〜ため。」「〜から。」で終えること</p>
+      <button type="button" class="btn btn-secondary btn-sm" id="desc-btn-1" aria-expanded="false" onclick="toggleDescAnswer('1')">模範解答を表示</button>
+      <div class="exam-answer-box" id="desc-ans-1" hidden>
+       <strong>【模範解答】</strong>かつてヨーロッパ諸国が植民地として分割する際、現地の民族や言語を無視して緯線や経線をもとに機械的に国境線を引いたため。
+      </div>
+     </article>
+     <article class="exam-card">
+      <div class="dossier-meta">QUESTION 02 · モノカルチャー経済</div>
+      <p class="exam-q">特定の農産物や鉱産物の輸出に頼る「モノカルチャー経済」が国の経済にとって不安定である理由を説明しなさい。</p>
+      <p class="exam-rule">記述ルール：語尾は「〜ため。」「〜から。」で終えること</p>
+      <button type="button" class="btn btn-secondary btn-sm" id="desc-btn-2" aria-expanded="false" onclick="toggleDescAnswer('2')">模範解答を表示</button>
+      <div class="exam-answer-box" id="desc-ans-2" hidden>
+       <strong>【模範解答】</strong>天候不順による不作や、国際市場での価格の暴落が起きた場合、他に主な輸出品がないため国の収入が激減して経済が大打撃を受けるから。
+      </div>
+     </article>
+     <article class="exam-card">
+      <div class="dossier-meta">QUESTION 03 · サヘルと砂漠化</div>
+      <p class="exam-q">サハラ砂漠南縁のサヘル地帯で、近年急速に砂漠化が進行している人為的な理由を説明しなさい。</p>
+      <p class="exam-rule">記述ルール：語尾は「〜ため。」「〜から。」で終えること</p>
+      <button type="button" class="btn btn-secondary btn-sm" id="desc-btn-3" aria-expanded="false" onclick="toggleDescAnswer('3')">模範解答を表示</button>
+      <div class="exam-answer-box" id="desc-ans-3" hidden>
+       <strong>【模範解答】</strong>急激な人口増加に伴い、土地を休ませずに過放牧や過耕作、無理な焼畑農業が続けられて植物が育たなくなったため。
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- Footer Quick Actions -->
+   <footer class="footer-bar">
+    <p class="footer-meta">アフリカ州まとめノート｜全36語句の穴埋め演習＆定期テスト記述対策</p>
+    <div class="control-actions">
+     <button type="button" class="btn btn-primary btn-sm" onclick="revealAll()">すべて表示</button> <button type="button" class="btn btn-secondary btn-sm" onclick="hideAll()">すべて隠す</button> <a class="btn btn-secondary btn-sm" href="#top" onclick="scrollToTop(event)">先頭へ戻る</a>
+    </div>
+   </footer>
+  </div>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),y,Ba=[];Ba[w]=7;y=Object.freeze(Ba);function z(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function A(a){return a!=null&&a[Aa]===Fa}function B(a,b){return b===void 0?a.h!==E&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==E}var E={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ba=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function F(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(0-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return F(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return F(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return F(Ta(64,a));if(Ya(a))return b==="string"?db(a):F(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(A(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;z(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.R=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.R(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.R(b,!1,!0,c,this.U,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(z([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(A(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(A(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=z(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:A(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=E);a.l=E;return a}function Lb(a){var b=a.j,c=b[w]|0;return B(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(B(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==E)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&B(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=E,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return A(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:y}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=B(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,z(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=z(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.U=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(A(f)){if(!B(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&z(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!B(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!B(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?B(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?B(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===y?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,G=!0,C=0,D=0;for(;C<p.length;C++){let H=gb(p[C],d,!1,r);if(H instanceof d){if(!q){let x=B(H);t&&=!x;G&&=x}p[D++]=H}}D<C&&(p.length=D);l|=4;l=G?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!B(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!B(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===y?7:a[w]|0;(d=B(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.T=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.extensions=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Y=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=
+e(),m[n]=e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Y?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let G=e.l,C=c[G];if(C==null){let D=c.extensions;if(D){let H=D[G];if(H){let x=Sc(H);x!=null&&(C=c[G]=x)}}}if(C==null||!C(e,d,G)){var f=e;let D=f.m;zc(f);if(f.N)var g=void 0;else{let H=f.h.h-D;f.h.h=D;c:{var h=f.h;f=H;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let x=h.h;var m=x+f;if(m>h.i)throw Error();h.h=m;if(h.J&&h.o)var n=h.l.subarray(x,x+f);else{var l=h.l;m=
+x;f=x+f;n=m===f?new Uint8Array(0):l.slice(m,f)}f=n;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;var p=G,r=g;r&&((f=m[xa]??(m[xa]=new wb))[p]??(f[p]=[])).push(r)}}let t=tb(d);t&&(t.h=c.T[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.extensions;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.da)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.ca){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,
+t)}):r(b,O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=F(Ta(64,c));break a;default:c=F(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===y?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=B(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===y?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===y?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.D=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.D;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}C(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.C(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.B(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}B(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.aa;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.B=this.h=this.closed=!1;this.D=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.B=this.h=!0;this.D=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.C(a)}C(a){var b=this.h,c=this.m;return this.B||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.D,c=this.h;this.B?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.C(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{V:c,Z:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.P.next(c);else if(b==="AppDataChange"&&c)a.S?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.O.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.V(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.Z),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.A=Ld();this.API_VERSION="1.0";this.P=new Ad;this.O=new Dd;this.F=new Map;this.X=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.W=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.A);a.includes(10)&&(window.onerror=this.X,window.addEventListener("unhandledrejection",this.W));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.S=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}hasCapability(a){return a!==0&&ld(this.A).includes(a)}addThemeChangeListener(a,b){this.P.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.O.subscribe(a)}notifyAppReady(){ld(this.A).includes(4)&&
+this.sendMessage("AppReady")}notifyAppError(a){ld(this.A).includes(10)&&this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof
+Error?b:Error(String(b));}return null}triggerFileDownload(a){a=JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.A).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    const TOTAL_CLOZE = 36;
+    const SECTION_TOTALS = { '1': 11, '2': 8, '3': 7, '4': 5, '5': 5 };
+
+    const appState = {
+      revealedIds: [],
+      revealedDescIds: [],
+      mapLayer: 'nature',
+      mapQuizMode: false,
+      selectedSpotId: null
+    };
+
+    const MAP_LAYERS = {
+      nature: {
+        label: `LAYER 01 · 自然・地形スポット`,
+        colorVar: `--data-1`,
+        spots: [
+          {
+            id: `n-sahara`,
+            name: `サハラ砂漠`,
+            lon: 11.0,
+            lat: 23.5,
+            kicker: `世界最大の砂漠`,
+            desc: `北回帰線付近の乾燥帯に広がる世界最大の砂漠。交易路には水が湧くオアシスが点在し、周辺ではラクダなどの遊牧が行われる。`
+          },
+          {
+            id: `n-sahel`,
+            name: `サヘル（サヘル地帯）`,
+            lon: 8.0,
+            lat: 14.5,
+            kicker: `砂漠化が進行する半乾燥地帯`,
+            desc: `サハラ砂漠の南縁に帯状に広がる地域。人口増に伴う過放牧や過耕作、薪の伐採などにより急速に砂漠化が進んでいる。`
+          },
+          {
+            id: `n-nile`,
+            name: `ナイル川`,
+            lon: 31.2,
+            lat: 26.8,
+            kicker: `世界最長の河川（約6,650 km）`,
+            desc: `赤道付近のビクトリア湖やエチオピア高原から北流し、地中海に注ぐ世界最長の大河。流域に古代エジプト文明が生まれた。`
+          },
+          {
+            id: `n-congo`,
+            name: `コンゴ盆地`,
+            lon: 21.5,
+            lat: -0.5,
+            kicker: `赤道直下の熱帯雨林`,
+            desc: `赤道直下に位置し、年中高温多雨の熱帯雨林気候に属する。コンゴ川流域に広大な熱帯林（ジャングル）が広がる。`
+          },
+          {
+            id: `n-rift`,
+            name: `アフリカ大地溝帯`,
+            lon: 36.8,
+            lat: -2.0,
+            kicker: `リフトバレー（大地溝帯）`,
+            desc: `紅海から東アフリカを南北に縦断する巨大な断層・谷。キリマンジャロなどの火山や細長い湖が連なり、周辺は標高が高く涼しい。`
+          }
+        ]
+      },
+      history: {
+        label: `LAYER 02 · 歴史と国境の課題`,
+        colorVar: `--data-4`,
+        spots: [
+          {
+            id: `h-north`,
+            name: `直線的な国境線（サハラ周辺）`,
+            lon: 25.0,
+            lat: 22.0,
+            kicker: `緯線・経線に沿った植民地境界`,
+            desc: `リビア・エジプト・チャド・スーダンなどの国境に顕著。ヨーロッパの宗主国が地形や民族を無視して緯線・経線で機械的に分割した名残。`
+          },
+          {
+            id: `h-west`,
+            name: `西アフリカ（奴隷貿易と植民地）`,
+            lon: -2.0,
+            lat: 8.5,
+            kicker: `大西洋奴隷貿易と旧宗主国言語`,
+            desc: `大航海時代以降、多くの人々が奴隷として南北アメリカへ連行された。現在も英語圏（ガーナ等）とフランス語圏（コートジボワール等）が隣り合う。`
+          },
+          {
+            id: `h-central`,
+            name: `中部・東部の民族紛争地域`,
+            lon: 29.8,
+            lat: -2.0,
+            kicker: `国境と民族分布のズレ`,
+            desc: `民族や言語の分布を無視した国境設定により、独立後も異なる民族間の対立や内戦・難民問題が課題となってきた地域がある。`
+          }
+        ]
+      },
+      agriculture: {
+        label: `LAYER 03 · 農業・商品作物`,
+        colorVar: `--data-3`,
+        spots: [
+          {
+            id: `a-civ`,
+            name: `コートジボワール（カカオ世界1位）`,
+            lon: -5.5,
+            lat: 7.5,
+            kicker: `プランテーション・カカオ栽培`,
+            desc: `ギニア湾に面した熱帯気候を生かし、カカオの生産・輸出で世界最大規模。旧フランス領でフランス語が公用語。`
+          },
+          {
+            id: `a-ghana`,
+            name: `ガーナ（カカオ世界有数）`,
+            lon: -1.2,
+            lat: 7.8,
+            kicker: `日本へのカカオ豆主要輸出国`,
+            desc: `コートジボワールとともにカカオのモノカルチャー経済の代表例。天候や国際価格の変動が国家収入を左右しやすい。`
+          },
+          {
+            id: `a-ethiopia`,
+            name: `エチオピア（コーヒーの原産地）`,
+            lon: 39.5,
+            lat: 9.0,
+            kicker: `高地でのコーヒー栽培`,
+            desc: `冷涼な高原の気候を生かしたコーヒー生産が盛ん。近年は生産物の多角化や持続可能な農業支援も注目される。`
+          }
+        ]
+      },
+      resources: {
+        label: `LAYER 04 · 鉱産資源・AUと国際協力`,
+        colorVar: `--data-2`,
+        spots: [
+          {
+            id: `r-nigeria`,
+            name: `ナイジェリア（原油）`,
+            lon: 8.5,
+            lat: 9.0,
+            kicker: `アフリカ最大の産油国・人口大国`,
+            desc: `ニジェール川デルタ周辺で原油・天然ガスを大量に産出。人口2億人を超え、都市化と経済成長が進む一方、環境汚染や格差が課題。`
+          },
+          {
+            id: `r-congo`,
+            name: `コンゴ民主共和国・ザンビア（銅・レアメタル）`,
+            lon: 25.5,
+            lat: -10.5,
+            kicker: `カッパーベルトとコバルト`,
+            desc: `世界有数の銅やコバルト（EV電池などに不可欠なレアメタル）、ダイヤモンドの産地。インフラ整備を伴う外国投資が拡大。`
+          },
+          {
+            id: `r-sa`,
+            name: `南アフリカ共和国（金・ダイヤモンド・レアメタル）`,
+            lon: 24.5,
+            lat: -29.0,
+            kicker: `アフリカ最大の鉱工業国`,
+            desc: `金・ダイヤモンド・プラチナ・クロムなどのレアメタルや石炭・鉄鉱石が豊富。自動車などの工業も発達したBRICSの一員。`
+          },
+          {
+            id: `r-au`,
+            name: `エチオピア・アディスアベバ（AU本部）`,
+            lon: 38.75,
+            lat: 9.03,
+            kicker: `AU（アフリカ連合）の拠点`,
+            desc: `2002年に発足したAUの本部が置かれる都市。紛争の平和的解決や域内自由貿易（地域統合）、鉄道などのインフラ整備が進む。`
+          }
+        ]
+      }
+    };
+
+    let mapGeoReady = false;
+    let mapSvgElements = null;
+    let mapProjection = null;
+
+    function getCssToken(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function updateClozeElement(btn, revealed) {
+      if (!btn) return;
+      const num = btn.querySelector('.cloze-num');
+      const textEl = btn.querySelector('.cloze-mask, .cloze-answer');
+      const answer = btn.dataset.answer || '';
+      const idNum = (btn.dataset.id || '').replace('c', '');
+      btn.setAttribute('aria-expanded', revealed ? 'true' : 'false');
+      btn.setAttribute(
+        'aria-label',
+        revealed ? `穴埋め${idNum}：${answer}（タップで隠す）` : `穴埋め${idNum}：正解を表示`
+      );
+      if (num) num.textContent = idNum;
+      if (textEl) {
+        if (revealed) {
+          textEl.className = 'cloze-answer';
+          textEl.textContent = answer;
+        } else {
+          textEl.className = 'cloze-mask';
+          textEl.textContent = '・・・・';
+        }
+      }
+    }
+
+    function updateProgressUI() {
+      const revealedSet = new Set(appState.revealedIds);
+      const count = revealedSet.size;
+      const pct = Math.round((count / TOTAL_CLOZE) * 100);
+
+      const labelEl = document.getElementById('progress-label');
+      if (labelEl) labelEl.textContent = `${count} / ${TOTAL_CLOZE} 確認済み（${pct}%）`;
+
+      const fillEl = document.getElementById('progress-fill');
+      if (fillEl) fillEl.style.width = `${pct}%`;
+
+      const barWrap = document.getElementById('progress-bar-wrap');
+      if (barWrap) barWrap.setAttribute('aria-valuenow', String(count));
+
+      const kpiTerms = document.getElementById('kpi-total-terms');
+      if (kpiTerms) {
+        kpiTerms.textContent = count > 0 ? `${count} / ${TOTAL_CLOZE} 確認` : `${TOTAL_CLOZE}語句`;
+      }
+
+      Object.keys(SECTION_TOTALS).forEach(sec => {
+        const btns = document.querySelectorAll(`.cloze-btn[data-sec="${sec}"]`);
+        let secCount = 0;
+        btns.forEach(b => {
+          if (revealedSet.has(b.dataset.id)) secCount += 1;
+        });
+        const statusEl = document.getElementById(`status-sec-${sec}`);
+        if (statusEl) statusEl.textContent = `${secCount} / ${SECTION_TOTALS[sec]}`;
+      });
+    }
+
+    async function persistState() {
+      if (typeof window.notebookAppApi !== 'undefined' && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            revealedIds: appState.revealedIds,
+            revealedDescIds: appState.revealedDescIds,
+            mapLayer: appState.mapLayer,
+            mapQuizMode: appState.mapQuizMode,
+            selectedSpotId: appState.selectedSpotId
+          });
+        } catch (err) {
+          // Graceful fallback if host API rejects transiently
+        }
+      }
+    }
+
+    function toggleCloze(id) {
+      const btn = document.getElementById(`cloze-${id}`);
+      if (!btn) return;
+      const idx = appState.revealedIds.indexOf(id);
+      const willReveal = idx === -1;
+      if (willReveal) {
+        appState.revealedIds.push(id);
+      } else {
+        appState.revealedIds.splice(idx, 1);
+      }
+      updateClozeElement(btn, willReveal);
+      updateProgressUI();
+      persistState();
+    }
+
+    function revealAll() {
+      const allBtns = document.querySelectorAll('.cloze-btn');
+      const nextIds = [];
+      allBtns.forEach(btn => {
+        if (btn.dataset.id) {
+          nextIds.push(btn.dataset.id);
+          updateClozeElement(btn, true);
+        }
+      });
+      appState.revealedIds = nextIds;
+      updateProgressUI();
+      persistState();
+    }
+
+    function hideAll() {
+      const allBtns = document.querySelectorAll('.cloze-btn');
+      allBtns.forEach(btn => {
+        updateClozeElement(btn, false);
+      });
+      appState.revealedIds = [];
+      updateProgressUI();
+      persistState();
+    }
+
+    function toggleSection(sec, show) {
+      const btns = document.querySelectorAll(`.cloze-btn[data-sec="${sec}"]`);
+      const idSet = new Set(appState.revealedIds);
+      btns.forEach(btn => {
+        const id = btn.dataset.id;
+        if (!id) return;
+        if (show) {
+          idSet.add(id);
+        } else {
+          idSet.delete(id);
+        }
+        updateClozeElement(btn, show);
+      });
+      appState.revealedIds = Array.from(idSet);
+      updateProgressUI();
+      persistState();
+    }
+
+    function toggleDescAnswer(num) {
+      const ansBox = document.getElementById(`desc-ans-${num}`);
+      const btn = document.getElementById(`desc-btn-${num}`);
+      if (!ansBox || !btn) return;
+      const isHidden = ansBox.hasAttribute('hidden');
+      if (isHidden) {
+        ansBox.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = '模範解答を隠す';
+        if (appState.revealedDescIds.indexOf(num) === -1) {
+          appState.revealedDescIds.push(num);
+        }
+      } else {
+        ansBox.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '模範解答を表示';
+        appState.revealedDescIds = appState.revealedDescIds.filter(x => x !== num);
+      }
+      persistState();
+    }
+
+    function scrollToTop(event) {
+      if (event) event.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderInspector() {
+      const layer = MAP_LAYERS[appState.mapLayer] || MAP_LAYERS.nature;
+      const labelEl = document.getElementById('inspector-layer-label');
+      if (labelEl) labelEl.textContent = layer.label;
+
+      const listEl = document.getElementById('spot-list');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+
+      if (!appState.selectedSpotId || !layer.spots.some(s => s.id === appState.selectedSpotId)) {
+        appState.selectedSpotId = layer.spots[0].id;
+      }
+
+      layer.spots.forEach((spot, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'spot-item-btn';
+        btn.setAttribute('aria-current', spot.id === appState.selectedSpotId ? 'true' : 'false');
+        btn.onclick = function() { selectMapSpot(spot.id); };
+
+        const labelText = appState.mapQuizMode ? `スポット ${index + 1}（ラベル非表示中）` : spot.name;
+        btn.innerHTML = `<span>${labelText}</span><span class="index-num">0${index + 1}</span>`;
+        listEl.appendChild(btn);
+      });
+
+      const activeSpot = layer.spots.find(s => s.id === appState.selectedSpotId) || layer.spots[0];
+      const kickerEl = document.getElementById('spot-detail-kicker');
+      const titleEl = document.getElementById('spot-detail-title');
+      const descEl = document.getElementById('spot-detail-desc');
+      if (kickerEl) kickerEl.textContent = activeSpot.kicker;
+      if (titleEl) titleEl.textContent = appState.mapQuizMode ? `ヒント：${activeSpot.kicker}（※場所を確認）` : activeSpot.name;
+      if (descEl) descEl.textContent = activeSpot.desc;
+    }
+
+    function renderMapMarkers() {
+      if (!mapGeoReady || !mapSvgElements || !mapProjection) return;
+      const layer = MAP_LAYERS[appState.mapLayer] || MAP_LAYERS.nature;
+      const accentColor = getCssToken(layer.colorVar) || '#1f4e5f';
+      const inkColor = getCssToken('--on-surface') || '#17181a';
+      const cardColor = getCssToken('--surface-container-low') || '#ffffff';
+      const goldColor = getCssToken('--primary-container') || '#f2b705';
+
+      // Layer-specific schematic overlays (Nile, Rift Valley, Sahel band)
+      mapSvgElements.overlayLayer.selectAll('*').remove();
+
+      if (appState.mapLayer === 'nature') {
+        const pathGen = d3.geoPath(mapProjection);
+
+        // Sahel semi-arid belt schematic polygon
+        const sahelCoords = [[[-16.5, 16.5], [38.0, 15.5], [38.0, 12.0], [-16.5, 13.0], [-16.5, 16.5]]];
+        mapSvgElements.overlayLayer.append('path')
+          .datum({ type: 'Feature', geometry: { type: 'Polygon', coordinates: sahelCoords } })
+          .attr('d', pathGen)
+          .attr('fill', goldColor)
+          .attr('fill-opacity', 0.28)
+          .attr('stroke', getCssToken('--tertiary'))
+          .attr('stroke-width', 1)
+          .attr('stroke-dasharray', '4 3');
+
+        // Nile River schematic polyline
+        const nileCoords = [[32.6, 0.4], [31.5, 5.0], [32.5, 15.6], [32.9, 25.7], [31.2, 30.1]];
+        mapSvgElements.overlayLayer.append('path')
+          .datum({ type: 'Feature', geometry: { type: 'LineString', coordinates: nileCoords } })
+          .attr('d', pathGen)
+          .attr('fill', 'none')
+          .attr('stroke', getCssToken('--data-1'))
+          .attr('stroke-width', 2.8)
+          .attr('stroke-linecap', 'round');
+
+        // Rift Valley schematic line
+        const riftCoords = [[40.5, 11.5], [36.8, 0.2], [35.5, -6.0], [34.5, -14.0]];
+        mapSvgElements.overlayLayer.append('path')
+          .datum({ type: 'Feature', geometry: { type: 'LineString', coordinates: riftCoords } })
+          .attr('d', pathGen)
+          .attr('fill', 'none')
+          .attr('stroke', getCssToken('--data-4'))
+          .attr('stroke-width', 2.4)
+          .attr('stroke-dasharray', '6 4');
+      }
+
+      // Draw interactive pins
+      mapSvgElements.markerLayer.selectAll('*').remove();
+      const groups = mapSvgElements.markerLayer.selectAll('g.map-pin')
+        .data(layer.spots, d => d.id)
+        .join('g')
+        .attr('class', 'map-pin')
+        .attr('transform', d => {
+          const coords = mapProjection([d.lon, d.lat]);
+          return coords ? `translate(${coords[0]}, ${coords[1]})` : 'translate(-100, -100)';
+        })
+        .style('cursor', 'pointer')
+        .attr('tabindex', '0')
+        .attr('role', 'button')
+        .attr('aria-label', (d, i) => appState.mapQuizMode ? `地点${i + 1}` : d.name)
+        .on('click', function(event, d) {
+          selectMapSpot(d.id);
+        })
+        .on('keydown', function(event, d) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectMapSpot(d.id);
+          }
+        });
+
+      groups.append('circle')
+        .attr('r', d => d.id === appState.selectedSpotId ? 13 : 9)
+        .attr('fill', d => d.id === appState.selectedSpotId ? goldColor : accentColor)
+        .attr('stroke', inkColor)
+        .attr('stroke-width', d => d.id === appState.selectedSpotId ? 2.5 : 1.5);
+
+      groups.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '0.35em')
+        .attr('font-family', getCssToken('--font-label'))
+        .attr('font-size', '10px')
+        .attr('font-weight', '700')
+        .attr('fill', d => d.id === appState.selectedSpotId ? inkColor : cardColor)
+        .text((d, i) => `${i + 1}`);
+
+      if (!appState.mapQuizMode) {
+        groups.append('rect')
+          .attr('x', 14)
+          .attr('y', -11)
+          .attr('rx', 3)
+          .attr('height', 22)
+          .attr('width', d => Math.min(180, d.name.length * 11 + 14))
+          .attr('fill', cardColor)
+          .attr('fill-opacity', 0.92)
+          .attr('stroke', getCssToken('--outline-variant'))
+          .attr('stroke-width', 1);
+
+        groups.append('text')
+          .attr('x', 20)
+          .attr('y', 4)
+          .attr('font-family', getCssToken('--font-body'))
+          .attr('font-size', '11px')
+          .attr('font-weight', '700')
+          .attr('fill', inkColor)
+          .text(d => d.name.length > 13 ? `${d.name.slice(0, 12)}…` : d.name);
+      }
+    }
+
+    function setMapLayer(layerKey) {
+      if (!MAP_LAYERS[layerKey]) return;
+      appState.mapLayer = layerKey;
+      appState.selectedSpotId = MAP_LAYERS[layerKey].spots[0].id;
+
+      ['nature', 'history', 'agriculture', 'resources'].forEach(key => {
+        const btn = document.getElementById(`layer-${key}`);
+        if (btn) btn.setAttribute('aria-pressed', key === layerKey ? 'true' : 'false');
+      });
+
+      renderInspector();
+      renderMapMarkers();
+      persistState();
+    }
+
+    function toggleMapQuiz() {
+      appState.mapQuizMode = !appState.mapQuizMode;
+      const btn = document.getElementById('map-quiz-toggle');
+      if (btn) {
+        btn.setAttribute('aria-pressed', appState.mapQuizMode ? 'true' : 'false');
+        btn.innerHTML = appState.mapQuizMode
+          ? `<i data-lucide="eye" class="btn-icon" aria-hidden="true"></i>地図ラベルを表示`
+          : `<i data-lucide="help-circle" class="btn-icon" aria-hidden="true"></i>地図ラベルを隠す`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+      renderInspector();
+      renderMapMarkers();
+      persistState();
+    }
+
+    function selectMapSpot(spotId) {
+      appState.selectedSpotId = spotId;
+      renderInspector();
+      renderMapMarkers();
+      persistState();
+    }
+
+    async function initAfricaMap() {
+      const svgEl = document.getElementById('africa-map');
+      const statusEl = document.getElementById('map-status-msg');
+      if (!svgEl || typeof d3 === 'undefined' || typeof topojson === 'undefined') {
+        if (statusEl) statusEl.textContent = '地図ライブラリの読み込みが待機中です。上のスポットリストは引き続きご利用いただけます。';
+        return;
+      }
+
+      try {
+        const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json');
+        if (!res.ok) throw new Error('Map fetch failed');
+        const topo = await res.json();
+        const countries = topojson.feature(topo, topo.objects.countries);
+
+        const width = 660;
+        const height = 520;
+        const africaBounds = {
+          type: 'Feature',
+          geometry: {
+            type: 'Polygon',
+            coordinates: [[[-20, 38], [53, 38], [53, -36], [-20, -36], [-20, 38]]]
+          }
+        };
+
+        mapProjection = d3.geoNaturalEarth1().fitExtent([[26, 22], [width - 26, height - 22]], africaBounds);
+        const pathGen = d3.geoPath(mapProjection);
+        const svg = d3.select(svgEl);
+        svg.selectAll('*').remove();
+
+        // Graticule lines
+        svg.append('path')
+          .datum(d3.geoGraticule().step([15, 15])())
+          .attr('d', pathGen)
+          .attr('fill', 'none')
+          .attr('stroke', getCssToken('--outline-variant'))
+          .attr('stroke-width', 0.7)
+          .attr('stroke-dasharray', '2 3');
+
+        // Country polygons
+        const africaIsoSet = new Set([
+          '012', '024', '072', '108', '120', '132', '140', '148', '174', '178', '180', '204',
+          '226', '231', '232', '262', '266', '270', '288', '324', '384', '404', '426', '430',
+          '434', '450', '454', '466', '478', '480', '504', '508', '516', '562', '566', '624',
+          '646', '678', '686', '694', '706', '710', '716', '728', '729', '732', '748', '768',
+          '788', '800', '818', '834', '854', '894'
+        ]);
+
+        svg.append('g')
+          .selectAll('path')
+          .data(countries.features)
+          .join('path')
+          .attr('d', pathGen)
+          .attr('fill', d => africaIsoSet.has(String(d.id).padStart(3, '0'))
+            ? getCssToken('--map-land-africa')
+            : getCssToken('--map-land-other'))
+          .attr('stroke', getCssToken('--map-border'))
+          .attr('stroke-width', 0.75);
+
+        // Equator line highlighted
+        const equatorFeature = {
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: [[-24, 0], [58, 0]] }
+        };
+        svg.append('path')
+          .datum(equatorFeature)
+          .attr('d', pathGen)
+          .attr('fill', 'none')
+          .attr('stroke', getCssToken('--data-4'))
+          .attr('stroke-width', 1.6)
+          .attr('stroke-dasharray', '6 4');
+
+        const eqPoint = mapProjection([-16, 0]);
+        if (eqPoint) {
+          svg.append('text')
+            .attr('x', eqPoint[0])
+            .attr('y', eqPoint[1] - 6)
+            .attr('font-family', getCssToken('--font-body'))
+            .attr('font-size', '11px')
+            .attr('font-weight', '700')
+            .attr('fill', getCssToken('--data-4'))
+            .text('赤道 (0°)');
+        }
+
+        const overlayLayer = svg.append('g');
+        const markerLayer = svg.append('g');
+        mapSvgElements = { overlayLayer, markerLayer };
+        mapGeoReady = true;
+
+        if (statusEl) statusEl.setAttribute('hidden', '');
+        renderMapMarkers();
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = 'オフライン環境または通信制限のため地図ポリゴンを読み込めませんでした。右のスポットリストから各地域のポイントをご確認いただけます。';
+        }
+      }
+    }
+
+    function applyRestoredState(saved) {
+      if (!saved || typeof saved !== 'object') return;
+
+      if (Array.isArray(saved.revealedIds)) {
+        appState.revealedIds = saved.revealedIds.filter(id => typeof id === 'string');
+        const idSet = new Set(appState.revealedIds);
+        document.querySelectorAll('.cloze-btn').forEach(btn => {
+          updateClozeElement(btn, idSet.has(btn.dataset.id));
+        });
+      }
+
+      if (Array.isArray(saved.revealedDescIds)) {
+        appState.revealedDescIds = saved.revealedDescIds;
+        saved.revealedDescIds.forEach(num => {
+          const ansBox = document.getElementById(`desc-ans-${num}`);
+          const btn = document.getElementById(`desc-btn-${num}`);
+          if (ansBox && btn) {
+            ansBox.removeAttribute('hidden');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.textContent = '模範解答を隠す';
+          }
+        });
+      }
+
+      if (saved.mapLayer && MAP_LAYERS[saved.mapLayer]) {
+        appState.mapLayer = saved.mapLayer;
+        ['nature', 'history', 'agriculture', 'resources'].forEach(key => {
+          const btn = document.getElementById(`layer-${key}`);
+          if (btn) btn.setAttribute('aria-pressed', key === saved.mapLayer ? 'true' : 'false');
+        });
+      }
+
+      if (typeof saved.mapQuizMode === 'boolean') {
+        appState.mapQuizMode = saved.mapQuizMode;
+        const quizBtn = document.getElementById('map-quiz-toggle');
+        if (quizBtn) {
+          quizBtn.setAttribute('aria-pressed', saved.mapQuizMode ? 'true' : 'false');
+          quizBtn.innerHTML = saved.mapQuizMode
+            ? `<i data-lucide="eye" class="btn-icon" aria-hidden="true"></i>地図ラベルを表示`
+            : `<i data-lucide="help-circle" class="btn-icon" aria-hidden="true"></i>地図ラベルを隠す`;
+        }
+      }
+
+      if (typeof saved.selectedSpotId === 'string') {
+        appState.selectedSpotId = saved.selectedSpotId;
+      }
+    }
+
+    async function initApp() {
+      if (typeof window.notebookAppApi !== 'undefined' && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) applyRestoredState(saved);
+        } catch (err) {
+          // Proceed cleanly with fresh state
+        }
+      }
+
+      updateProgressUI();
+      renderInspector();
+      if (window.lucide) window.lucide.createIcons();
+      initAfricaMap();
+
+      if (typeof window.notebookAppApi !== 'undefined' && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+ </body>
+</html>
