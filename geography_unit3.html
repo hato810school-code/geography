@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>南アメリカ州 まとめノート＆赤文字穴埋め演習</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Serif+JP:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+      --btn-secondary-border: #c8c4b8;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --tertiary: #785008;
+      --tag-amber-bg: #f5e6c4;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      /* Interactive blank reveal tokens (blackout -> red text) */
+      --blank-mask-bg: #17181a;
+      --blank-mask-hover: #2d3035;
+      --blank-mask-hint: #a3a7ae;
+      --reveal-bg: #fdf2f2;
+      --reveal-border: #e6b8b5;
+      --reveal-ink: #b42318;
+
+      /* Map tokens */
+      --map-ocean: #eef3f5;
+      --map-land: #e8e4d9;
+      --map-land-active: #d3e1e6;
+      --map-border: #b8b2a4;
+      --map-equator: #9e3b2b;
+
+      /* Data series */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Semantic & focus */
+      --positive: #2b6e52;
+      --warning: #d99000;
+      --focus: #1f4e5f;
+
+      /* Fonts (Japanese families first per non-Latin rules) */
+      --font-headline: 'Noto Serif JP', 'Source Serif 4', serif;
+      --font-body: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', 'Noto Sans JP', monospace;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2rem, 1.4rem + 2.6vw, 3.125rem);
+      --headline-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Shape & effects */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.04em;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Dossier header & section bars */
+    .dossier-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      line-height: 1.2;
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    /* Masthead */
+    .masthead {
+      padding-top: var(--space-sm);
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      color: var(--secondary);
+      margin: var(--space-sm) 0 0;
+      max-width: 65ch;
+      line-height: 1.55;
+    }
+
+    /* Overview KPI strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .figure-card-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-weight: 600;
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .figure-card-value {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .figure-card-note {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+      line-height: 1.45;
+    }
+
+    /* Control Deck */
+    .control-deck {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: var(--section-rule);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out),
+                  transform var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-in-out);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--btn-secondary-border);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+    }
+    .btn-compact {
+      min-height: 36px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.8125rem;
+    }
+    .btn-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex: 1 1 240px;
+      max-width: 360px;
+    }
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--error);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .progress-text {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Section quick navigation */
+    .toc-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      padding-top: var(--space-sm);
+      border-top: var(--card-border);
+    }
+    .toc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 36px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out);
+    }
+    .toc-link:hover {
+      background: var(--surface-container-high);
+      color: var(--secondary);
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+    }
+
+    /* Study Sections */
+    .study-section {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-lead {
+      font-weight: 600;
+      color: var(--secondary);
+      margin: 0;
+      max-width: 65ch;
+      line-height: 1.6;
+    }
+
+    /* Asymmetric split for Section 1 */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Prose & Note Cards */
+    .note-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .note-block {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .note-block + .note-block {
+      padding-top: var(--space-md);
+      border-top: var(--card-border);
+    }
+    .subhead {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      color: var(--secondary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .note-p {
+      margin: 0;
+      line-height: 2.05;
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    .note-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: var(--space-sm);
+      line-height: 2.05;
+    }
+    .note-list li::marker {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    /* Interactive Fill-in-the-Blank Token */
+    .blank-token {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: baseline;
+      position: relative;
+      min-height: 30px;
+      padding: 0.1rem 0.6rem;
+      margin: 0.1rem 0.2rem;
+      border-radius: var(--rounded);
+      border: 1.5px solid var(--blank-mask-bg);
+      background-color: var(--blank-mask-bg);
+      color: transparent;
+      font-family: var(--font-body);
+      font-size: 0.96em;
+      font-weight: 700;
+      line-height: 1.45;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .blank-token::before {
+      content: attr(data-hint);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blank-mask-hint);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    .blank-token:hover {
+      background-color: var(--blank-mask-hover);
+      border-color: var(--blank-mask-hover);
+    }
+    .blank-token:active {
+      transform: scale(0.98);
+    }
+    .blank-token.revealed {
+      background-color: var(--reveal-bg);
+      border-color: var(--reveal-border);
+      color: var(--reveal-ink);
+      user-select: text;
+    }
+    .blank-token.revealed::before {
+      content: none;
+    }
+    .blank-token.revealed:hover {
+      background-color: var(--surface-container-low);
+      border-color: var(--reveal-ink);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    table.brief-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    table.brief-table thead th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--section-rule);
+      background: var(--surface-container);
+      white-space: nowrap;
+    }
+    table.brief-table tbody td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--card-border);
+      vertical-align: middle;
+      line-height: 1.85;
+    }
+    table.brief-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Card grids */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Callout / Sidebar boxes */
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .aside-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--tertiary);
+      margin: 0;
+    }
+    .tag-amber {
+      display: inline-block;
+      background: var(--tag-amber-bg);
+      color: var(--tertiary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--rounded);
+    }
+
+    /* Interactive Map Card */
+    .map-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .map-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .map-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .map-layer-toggle {
+      display: inline-flex;
+      gap: var(--space-xs);
+    }
+    .layer-btn {
+      min-height: 34px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 1px solid var(--btn-secondary-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out);
+    }
+    .layer-btn.active {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--on-primary);
+    }
+    .map-viewport {
+      width: 100%;
+      min-height: 400px;
+      background: var(--map-ocean);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .map-viewport svg {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      display: block;
+    }
+    .map-inspector {
+      background: var(--surface-container);
+      border-left: 3px solid var(--secondary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .map-inspector-title {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 2px;
+      display: block;
+    }
+    .map-caption {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Exam practice cards */
+    .exam-q {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .exam-q-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .exam-ans-box {
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      line-height: 2.0;
+    }
+
+    /* Floating Quick Bar */
+    .floating-bar {
+      position: fixed;
+      right: var(--space-lg);
+      bottom: var(--space-lg);
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xs);
+      box-shadow: 0 6px 20px rgba(23, 24, 26, 0.14);
+    }
+    .floating-btn {
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: none;
+      background: transparent;
+      color: var(--on-surface);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .floating-btn:hover {
+      background: var(--surface-container);
+    }
+    .floating-btn.primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .floating-btn.primary:hover {
+      background: var(--secondary);
+    }
+
+    /* Footer */
+    .sources-footer {
+      border-top: var(--section-rule);
+      padding-top: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .split-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-3xl);
+        gap: var(--space-lg);
+      }
+      .note-card, .control-deck, .exam-q {
+        padding: var(--space-md);
+      }
+      .control-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .progress-wrap {
+        max-width: none;
+      }
+      .btn-group {
+        width: 100%;
+      }
+      .btn-group .btn {
+        flex: 1 1 auto;
+      }
+      .floating-bar {
+        right: var(--space-sm);
+        bottom: var(--space-sm);
+        left: var(--space-sm);
+        justify-content: space-between;
+      }
+      .floating-btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="page-grid" id="top">
+   <!-- Masthead -->
+   <header class="masthead">
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">地理まとめノート</span> <span class="dossier-meta">世界の諸地域 第5節 / 期末テスト対策</span>
+     </div>
+     <span class="dossier-meta">タップ・クリックで赤文字表示</span>
+    </div>
+    <h1 class="title">南アメリカ州 完全攻略ノート</h1>
+    <p class="standfirst">自然環境・植民地の歴史・モノカルチャー経済とBRICsの成長・鉱産資源・都市と熱帯林問題まで。黒塗り箇所をタップして正解（赤文字）を確認し、暗記を仕上げましょう。</p>
+    <div class="kpi-grid" aria-label="学習概要">
+     <div class="figure-card">
+      <span class="figure-card-label">COVERAGE / 対象単元</span>
+      <div class="figure-card-value">5分野 + 記述</div>
+      <div class="figure-card-note">自然・歴史民族・産業・資源・環境を網羅</div>
+     </div>
+     <div class="figure-card">
+      <span class="figure-card-label">PROGRESS / 確認状況</span>
+      <div class="figure-card-value" id="kpi-progress">0 / 0 語</div>
+      <div class="figure-card-note">表示済みの重要語句数（自動保存）</div>
+     </div>
+     <div class="figure-card">
+      <span class="figure-card-label">EXAM POINT / テスト鉄則</span>
+      <div class="figure-card-value">〜ため・から</div>
+      <div class="figure-card-note">理由記述の語尾と漢字の正確さに注意</div>
+     </div>
+    </div>
+   </header>
+   <!-- Study Control Deck -->
+   <section class="control-deck" aria-label="暗記コントロールパネル">
+    <div class="control-row">
+     <div class="btn-group">
+      <button type="button" class="btn btn-primary" onclick="revealAllBlanks()"> 
+       <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /> <circle cx="12" cy="12" r="3" />
+       </svg> すべて表示 
+      </button> <button type="button" class="btn btn-secondary" onclick="hideAllBlanks()"> 
+       <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" /> <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /> <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" /> <line x1="2" x2="22" y1="2" y2="22" />
+       </svg> すべて隠す 
+      </button>
+     </div>
+     <div class="progress-wrap">
+      <div class="progress-track" aria-hidden="true">
+       <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <span class="progress-text" id="progress-text">表示中 0 / 0</span>
+     </div>
+    </div>
+    <nav class="toc-nav" aria-label="章ジャンプ">
+     <a class="toc-link" href="#sec-nature"><span class="index-num">01</span> 自然環境</a> <a class="toc-link" href="#sec-history"><span class="index-num">02</span> 歴史・言語・民族</a> <a class="toc-link" href="#sec-industry"><span class="index-num">03</span> 農業と産業</a> <a class="toc-link" href="#sec-resources"><span class="index-num">04</span> 鉱産資源</a> <a class="toc-link" href="#sec-environment"><span class="index-num">05</span> 都市・環境問題</a> <a class="toc-link" href="#sec-exam"><span class="index-num">06</span> 記述対策</a>
+    </nav>
+   </section>
+   <main style="display: grid; gap: var(--space-2xl);">
+    <!-- 01. 自然環境 -->
+    <section class="study-section" id="sec-nature" aria-labelledby="heading-nature">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">01</span> <span class="dossier-meta">NATURAL ENVIRONMENT / 地形と気候帯</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-nature', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-nature', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-nature">西の険しい山脈、北の大河と熱帯林、南の草原が織りなす地形</h2>
+     <p class="section-lead">南北に長い南アメリカ大陸は北部を赤道が通り、冷帯が存在しないのが大きな特徴です。</p>
+     <div class="split-layout">
+      <div class="note-card">
+       <div class="note-block">
+        <h3 class="subhead"><span class="index-num">1-1</span> アンデス山脈（西部）</h3>
+        <p class="note-p">大陸の西側には、北アメリカのロッキー山脈と同じ環太平洋造山帯（ <button type="button" class="blank-token" data-id="b1" data-hint="造山帯" aria-pressed="false">新期造山帯</button> ）に属する、標高6,000m級・南北約7,500kmの世界最長の <button type="button" class="blank-token" data-id="b2" data-hint="山脈名" aria-pressed="false">アンデス山脈</button> がそびえています。標高が非常に高いため、赤道付近であっても気温が低い <button type="button" class="blank-token" data-id="b3" data-hint="気候名" aria-pressed="false">高山気候</button> がみられます。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="subhead"><span class="index-num">1-2</span> アマゾン川とアマゾン盆地（北部・東部）</h3>
+        <p class="note-p">アンデス山脈とブラジル高原に挟まれた赤道直下の地域が <button type="button" class="blank-token" data-id="b4" data-hint="盆地名" aria-pressed="false">アマゾン盆地</button> です。世界最大の流域面積をもつ <button type="button" class="blank-token" data-id="b5" data-hint="河川名" aria-pressed="false">アマゾン川</button> が流れ、年中高温多雨の熱帯雨林気候のもとで広大な <button type="button" class="blank-token" data-id="b6" data-hint="植生" aria-pressed="false">熱帯林</button> （ <button type="button" class="blank-token" data-id="b7" data-hint="別称" aria-pressed="false">ジャングル</button> ）が広がっています。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="subhead"><span class="index-num">1-3</span> パンパと気候分布の特色（南部）</h3>
+        <p class="note-p">南部のアルゼンチン周辺には、 <button type="button" class="blank-token" data-id="b8" data-hint="気候帯" aria-pressed="false">温帯</button> の肥沃な長草草原である <button type="button" class="blank-token" data-id="b9" data-hint="草原名" aria-pressed="false">パンパ</button> が広がり、農業や牧畜が盛んです。さらに南へ進むと砂漠（乾燥帯）となり、大陸に冷帯はなく、南端では急に <button type="button" class="blank-token" data-id="b10" data-hint="気候帯" aria-pressed="false">寒帯</button> へと移り変わります。</p>
+       </div>
+      </div>
+      <!-- Interactive D3 Vector Map -->
+      <div class="map-card">
+       <div class="map-header">
+        <h3 class="map-title">南アメリカ 地形・資源マップ</h3>
+        <div class="map-layer-toggle" role="group" aria-label="地図レイヤー切替">
+         <button type="button" class="layer-btn active" id="btn-layer-nature" onclick="setMapLayer('nature')">地形・気候</button> <button type="button" class="layer-btn" id="btn-layer-resource" onclick="setMapLayer('resource')">鉱産・産業</button>
+        </div>
+       </div>
+       <div class="map-viewport" id="sa-map-container" aria-label="南アメリカのベクター地図">
+        <span class="dossier-meta">地図データを読み込み中…</span>
+       </div>
+       <div class="map-inspector" id="map-inspector">
+        <span class="map-inspector-title" id="map-inspector-title">地点をタップして確認</span> <span id="map-inspector-body">地図上のピンまたは国を選択すると、特徴と重要ポイントが表示されます。</span>
+       </div>
+       <p class="map-caption">Boundaries: Natural Earth (public domain) / ベクター図法（Mercator）</p>
+      </div>
+     </div>
+     <div class="table-wrap">
+      <table class="brief-table">
+       <thead>
+        <tr>
+         <th>地域の名称</th>
+         <th>位置・国</th>
+         <th>気候の特色</th>
+         <th>地形・自然の特徴</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td><strong>アンデス山脈</strong></td>
+         <td>大陸西部（南北約7,500km）</td>
+         <td><button type="button" class="blank-token" data-id="b11" data-hint="気候" aria-pressed="false">高山気候</button></td>
+         <td>6,000m級の険しい山が連なる<button type="button" class="blank-token" data-id="b12" data-hint="造山帯" aria-pressed="false">新期造山帯</button>の山脈</td>
+        </tr>
+        <tr>
+         <td><strong>アマゾン盆地</strong></td>
+         <td>北部〜東部（ブラジル中心）</td>
+         <td>熱帯雨林気候</td>
+         <td><button type="button" class="blank-token" data-id="b13" data-hint="河川" aria-pressed="false">アマゾン川</button>流域に広がる世界最大の<button type="button" class="blank-token" data-id="b14" data-hint="植生" aria-pressed="false">熱帯林</button></td>
+        </tr>
+        <tr>
+         <td><strong>パンパ</strong></td>
+         <td>南部（アルゼンチン周辺）</td>
+         <td><button type="button" class="blank-token" data-id="b15" data-hint="気候帯" aria-pressed="false">温帯</button></td>
+         <td>ブエノスアイレス周辺に広がる<button type="button" class="blank-token" data-id="b16" data-hint="植生" aria-pressed="false">長草草原</button></td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </section>
+    <!-- 02. 歴史・言語・民族 -->
+    <section class="study-section" id="sec-history" aria-labelledby="heading-history">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">02</span> <span class="dossier-meta">HISTORY, LANGUAGE &amp; PEOPLE / 歴史・言語・民族</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-history', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-history', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-history">スペイン・ポルトガルの植民地支配が生んだ言語と多様な民族構成</h2>
+     <div class="note-card">
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">2-1</span> 先住民とヨーロッパの植民地支配</h3>
+       <p class="note-p">南アメリカにはもともと <button type="button" class="blank-token" data-id="b17" data-hint="先住民" aria-pressed="false">インディオ</button> とよばれる先住民が暮らしていましたが、大航海時代以降、ヨーロッパ諸国による植民地化が進みました。南アメリカの多くの地域を植民地にしたのは主に <button type="button" class="blank-token" data-id="b18" data-hint="旧宗主国" aria-pressed="false">スペイン</button> であり、広大なブラジルは <button type="button" class="blank-token" data-id="b19" data-hint="旧宗主国" aria-pressed="false">ポルトガル</button> が支配しました。また、農園などの労働力としてアフリカから大勢の <button type="button" class="blank-token" data-id="b20" data-hint="人々" aria-pressed="false">奴隷</button> が送り込まれました。</p>
+      </div>
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">2-2</span> 公用語と宗教</h3>
+       <p class="note-p">植民地時代の旧宗主国の影響を強く受け、南アメリカの多くの国では <button type="button" class="blank-token" data-id="b21" data-hint="言語" aria-pressed="false">スペイン語</button> が公用語とされ、ブラジルでは <button type="button" class="blank-token" data-id="b22" data-hint="言語" aria-pressed="false">ポルトガル語</button> が公用語になっています（なお、北アメリカ州へ移住するスペイン語話者は <button type="button" class="blank-token" data-id="b23" data-hint="呼び名" aria-pressed="false">ヒスパニック</button> とよばれます）。宗教面では、布教に熱心だったスペイン・ポルトガルの影響により、 <button type="button" class="blank-token" data-id="b24" data-hint="宗教" aria-pressed="false">キリスト教</button> のなかでも特に <button type="button" class="blank-token" data-id="b25" data-hint="宗派" aria-pressed="false">カトリック</button> を信仰する人が大多数を占めています。</p>
+      </div>
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">2-3</span> 民族構成と混血の広がり</h3>
+       <p class="note-p">現在の主な民族構成は、先住民である <button type="button" class="blank-token" data-id="b26" data-hint="先住民" aria-pressed="false">インディオ</button> 、ヨーロッパ系やアフリカ系の人々、そして先住民とヨーロッパ系などの <button type="button" class="blank-token" data-id="b27" data-hint="関係" aria-pressed="false">混血</button> である <button type="button" class="blank-token" data-id="b28" data-hint="混血の名称" aria-pressed="false">メスチソ</button> などで成り立っており、国によって民族の割合は大きく異なります。</p>
+      </div>
+     </div>
+     <div class="card-grid-2">
+      <div class="figure-card">
+       <span class="figure-card-label">COLONIAL PATTERN A / 大部分の国々</span>
+       <p class="note-p">旧宗主国：<button type="button" class="blank-token" data-id="b29" data-hint="国名" aria-pressed="false">スペイン</button>
+        <br>
+        公用語：<button type="button" class="blank-token" data-id="b30" data-hint="言語" aria-pressed="false">スペイン語</button>（アルゼンチン、ペルー、チリ、ボリビア等）
+        <br>
+        主な宗教：<button type="button" class="blank-token" data-id="b31" data-hint="宗派" aria-pressed="false">カトリック</button></p>
+      </div>
+      <div class="figure-card">
+       <span class="figure-card-label">COLONIAL PATTERN B / ブラジル</span>
+       <p class="note-p">旧宗主国：<button type="button" class="blank-token" data-id="b32" data-hint="国名" aria-pressed="false">ポルトガル</button>
+        <br>
+        公用語：<button type="button" class="blank-token" data-id="b33" data-hint="言語" aria-pressed="false">ポルトガル語</button>（南米唯一のポルトガル語圏）
+        <br>
+        主な宗教：<button type="button" class="blank-token" data-id="b34" data-hint="宗派" aria-pressed="false">カトリック</button></p>
+      </div>
+     </div>
+    </section>
+    <!-- 03. 農業と産業 -->
+    <section class="study-section" id="sec-industry" aria-labelledby="heading-industry">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">03</span> <span class="dossier-meta">AGRICULTURE &amp; INDUSTRY / 農業と産業の転換</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-industry', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-industry', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-industry">モノカルチャー経済からの脱却と、BRICsとしてのブラジルの躍進</h2>
+     <div class="note-card">
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">3-1</span> プランテーションとモノカルチャー経済</h3>
+       <p class="note-p">植民地時代、宗主国の利益のために特定の作物を大規模に栽培する農園（ <button type="button" class="blank-token" data-id="b35" data-hint="農園形態" aria-pressed="false">プランテーション</button> ）がつくられました。その結果、特定の農産物や鉱産物の輸出に頼る <button type="button" class="blank-token" data-id="b36" data-hint="経済構造" aria-pressed="false">モノカルチャー経済</button> の国が多くなりました。南アメリカ全域ではとくに <button type="button" class="blank-token" data-id="b37" data-hint="農産物" aria-pressed="false">コーヒー豆</button> の栽培が伝統的に盛んで、南部では大豆やさとうきびも多く生産されています。</p>
+      </div>
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">3-2</span> 環境にやさしいバイオ燃料の生産</h3>
+       <p class="note-p">ブラジルやアルゼンチンなどでは、 <button type="button" class="blank-token" data-id="b38" data-hint="原料作物" aria-pressed="false">さとうきび</button> やとうもろこしを原料として製造される、環境負荷の少ない <button type="button" class="blank-token" data-id="b39" data-hint="燃料総称" aria-pressed="false">バイオ燃料</button> （具体的には <button type="button" class="blank-token" data-id="b40" data-hint="燃料名" aria-pressed="false">バイオエタノール</button> ）の生産と自動車燃料としての活用が注目されています。</p>
+      </div>
+      <div class="note-block">
+       <h3 class="subhead"><span class="index-num">3-3</span> BRICsとしてのブラジルの成長と工業化</h3>
+       <p class="note-p">かつてコーヒー豆の輸出に大きく依存していた <button type="button" class="blank-token" data-id="b41" data-hint="国名" aria-pressed="false">ブラジル</button> は、近年、急速に経済成長を遂げる新興国群 <button type="button" class="blank-token" data-id="b42" data-hint="4か国総称" aria-pressed="false">BRICs</button> の一員として大きく変化しました。農業では <button type="button" class="blank-token" data-id="b43" data-hint="農産物" aria-pressed="false">大豆</button> やさとうきび、オレンジなど生産品目を増やしてリスクを分散し、さらに外国企業を積極的に受け入れることで、海底油田の採掘や <button type="button" class="blank-token" data-id="b44" data-hint="工業分野" aria-pressed="false">自動車</button> 産業、 <button type="button" class="blank-token" data-id="b45" data-hint="工業分野" aria-pressed="false">航空機</button> 産業など高度な工業を発展させています。</p>
+      </div>
+     </div>
+     <aside class="aside-box">
+      <h4 class="aside-title">KEYWORD CHECK / BRICsとは</h4>
+      <p class="note-p" style="line-height: 1.7;">ブラジル（<strong>B</strong>razil）・ロシア（<strong>R</strong>ussia）・インド（<strong>I</strong>ndia）・中国（<strong>C</strong>hina）の頭文字を合わせた、21世紀に入り急成長を遂げている大国の総称です。</p>
+     </aside>
+    </section>
+    <!-- 04. 鉱産資源 -->
+    <section class="study-section" id="sec-resources" aria-labelledby="heading-resources">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">04</span> <span class="dossier-meta">MINERAL RESOURCES / 豊富な鉱産資源</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-resources', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-resources', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-resources">銅・鉄鉱石・海底油田から次世代のリチウムまで、世界を支える資源</h2>
+     <div class="card-grid">
+      <article class="figure-card">
+       <span class="figure-card-label">CHILE / チリ</span>
+       <h3 class="subhead" style="margin-bottom: var(--space-xs);">世界最大の産出地</h3>
+       <p class="note-p">アンデス山脈沿いに位置する <button type="button" class="blank-token" data-id="b46" data-hint="国名" aria-pressed="false">チリ</button> は、電線や電子部品に欠かせない <button type="button" class="blank-token" data-id="b47" data-hint="鉱産資源" aria-pressed="false">銅</button> の産出・輸出が世界トップクラスです。</p>
+      </article>
+      <article class="figure-card">
+       <span class="figure-card-label">BRAZIL / ブラジル</span>
+       <h3 class="subhead" style="margin-bottom: var(--space-xs);">鉄鋼原料と海洋資源</h3>
+       <p class="note-p"><button type="button" class="blank-token" data-id="b48" data-hint="国名" aria-pressed="false">ブラジル</button> では製鉄に不可欠な <button type="button" class="blank-token" data-id="b49" data-hint="鉱産資源" aria-pressed="false">鉄鉱石</button> が豊富に産出され、さらに近年は大西洋岸での <button type="button" class="blank-token" data-id="b50" data-hint="エネルギー資源" aria-pressed="false">海底油田</button> の採掘も進んでいます。</p>
+      </article>
+      <article class="figure-card">
+       <span class="figure-card-label">BOLIVIA / ボリビア</span>
+       <h3 class="subhead" style="margin-bottom: var(--space-xs);">次世代電池の重要資源</h3>
+       <p class="note-p"><button type="button" class="blank-token" data-id="b51" data-hint="国名" aria-pressed="false">ボリビア</button> の <button type="button" class="blank-token" data-id="b52" data-hint="地形名" aria-pressed="false">ウユニ塩原</button> では、スマートフォンや電気自動車の電池に使われる <button type="button" class="blank-token" data-id="b53" data-hint="希少金属" aria-pressed="false">レアメタル</button> の一種である <button type="button" class="blank-token" data-id="b54" data-hint="資源名" aria-pressed="false">リチウム</button> の産出が注目されています。</p>
+      </article>
+     </div>
+     <aside class="aside-box">
+      <h4 class="aside-title">RESOURCE NOTE / 原油産出国</h4>
+      <p class="note-p" style="line-height: 1.7;">大陸北部の<span class="tag-amber">ベネズエラ</span>や<span class="tag-amber">エクアドル</span>などでは、エネルギー資源である<button type="button" class="blank-token" data-id="b55" data-hint="エネルギー" aria-pressed="false">原油</button>の産出が盛んです。</p>
+     </aside>
+    </section>
+    <!-- 05. 都市・環境問題 -->
+    <section class="study-section" id="sec-environment" aria-labelledby="heading-environment">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">05</span> <span class="dossier-meta">URBANIZATION &amp; ENVIRONMENT / 都市・環境問題</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-environment', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-environment', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-environment">急成長のひずみ「スラム」と、アマゾン熱帯林の減少・保護活動</h2>
+     <div class="card-grid-2">
+      <div class="note-card">
+       <h3 class="subhead"><span class="index-num">5-1</span> 都市への人口集中とスラムの発生</h3>
+       <p class="note-p">産業が急速に発達した都市（サンパウロなど）にばかり <button type="button" class="blank-token" data-id="b56" data-hint="都市現象" aria-pressed="false">人口集中</button> が進んだ結果、通常の住宅に住めない低所得者層や仕事にあぶれた人々が住み着く居住環境の悪い地域である <button type="button" class="blank-token" data-id="b57" data-hint="地域名" aria-pressed="false">スラム</button> が発生し、治安や衛生・環境の悪化が課題となっています。</p>
+      </div>
+      <div class="note-card">
+       <h3 class="subhead"><span class="index-num">5-2</span> アマゾン熱帯林の減少と保護活動</h3>
+       <p class="note-p">先住民による焼畑農業に加え、鉄道・道路の建設、農地・牧草地開発、木材輸出などの近代化によって、 <button type="button" class="blank-token" data-id="b58" data-hint="地域名" aria-pressed="false">アマゾン</button> の <button type="button" class="blank-token" data-id="b59" data-hint="森林" aria-pressed="false">熱帯林</button> の減少が進んでいます。これを防ぐため、伐採規制の強化や <button type="button" class="blank-token" data-id="b60" data-hint="監視手段" aria-pressed="false">人工衛星</button> を用いた違法伐採の監視などの保護活動が行われています。</p>
+      </div>
+     </div>
+    </section>
+    <!-- 06. 期末テスト直前・記述対策 -->
+    <section class="study-section" id="sec-exam" aria-labelledby="heading-exam">
+     <div class="dossier-bar">
+      <div class="dossier-bar-left">
+       <span class="dossier-pill">06</span> <span class="dossier-meta">EXAM PRACTICE / 定期テスト記述対策</span>
+      </div>
+      <div class="btn-group">
+       <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-exam', true)">この章を表示</button> <button type="button" class="btn btn-secondary btn-compact" onclick="toggleSectionBlanks('sec-exam', false)">この章を隠す</button>
+      </div>
+     </div>
+     <h2 class="section-heading" id="heading-exam">テスト本番で減点されないための記述・漢字チェック</h2>
+     <p class="section-lead">理由を問う問題では、必ず語尾を「〜ため。」「〜から。」で結び、指定語句や漢字を正確に書き切りましょう。</p>
+     <div class="exam-q">
+      <div class="exam-q-head">
+       <span class="index-num">Q1</span> <span>南アメリカの多くの国でスペイン語が話され、ブラジルでポルトガル語が話されているのはなぜですか。（語尾を「〜ため。」にすること）</span>
+      </div>
+      <div class="exam-ans-box">
+       <strong>模範解答：</strong> かつて南アメリカの大部分は <button type="button" class="blank-token" data-id="b61" data-hint="国名" aria-pressed="false">スペイン</button> の植民地、ブラジルは <button type="button" class="blank-token" data-id="b62" data-hint="国名" aria-pressed="false">ポルトガル</button> の <button type="button" class="blank-token" data-id="b63" data-hint="支配形態" aria-pressed="false">植民地</button> とされていたため。
+      </div>
+     </div>
+     <div class="exam-q">
+      <div class="exam-q-head">
+       <span class="index-num">Q2</span> <span>アマゾン盆地でみられる熱帯林の減少を抑えるために行われている監視の手法を、「人工衛星」という語句を使って説明しなさい。</span>
+      </div>
+      <div class="exam-ans-box">
+       <strong>模範解答：</strong> <button type="button" class="blank-token" data-id="b64" data-hint="監視手段" aria-pressed="false">人工衛星</button> を用いて、森林の <button type="button" class="blank-token" data-id="b65" data-hint="禁止行為" aria-pressed="false">違法な伐採</button> を監視・確認しているため。
+      </div>
+     </div>
+     <div class="exam-q">
+      <div class="exam-q-head">
+       <span class="index-num">Q3</span> <span>ブラジルが長年のモノカルチャー経済から脱却するために進めた農業・工業の変化を説明しなさい。</span>
+      </div>
+      <div class="exam-ans-box">
+       <strong>模範解答：</strong> <button type="button" class="blank-token" data-id="b66" data-hint="従来の主力" aria-pressed="false">コーヒー豆</button> だけでなく大豆やさとうきびなど生産品目を増やし、外国企業を受け入れて海底油田の採掘や <button type="button" class="blank-token" data-id="b67" data-hint="工業製品" aria-pressed="false">自動車・航空機</button> などの工業化を進めているため。
+      </div>
+     </div>
+    </section>
+   </main>
+   <!-- Sources Footer -->
+   <footer class="sources-footer">
+    <div>
+     <strong>出典・参照資料：</strong> 中学校社会科地理「世界の諸地域 第5節 南アメリカ州」学習資料、第1学年2学期 社会科期末テスト対策資料、Natural Earth（Public Domain 地図データ）
+    </div>
+    <div>
+     <strong>学習のコツ：</strong> まず「すべて隠す」で1周テストし、覚えにくかった語句の前後関係（位置・旧宗主国・資源の結びつき）を確認してからもう一度通すと定着が速まります。
+    </div>
+   </footer>
+  </div>
+  <!-- Floating quick control bar -->
+  <div class="floating-bar" aria-label="クイック操作バー">
+   <button type="button" class="floating-btn primary" onclick="revealAllBlanks()">すべて表示</button> <button type="button" class="floating-btn" onclick="hideAllBlanks()">すべて隠す</button> <button type="button" class="floating-btn" onclick="scrollToTop()">↑ 先頭へ</button>
+  </div>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),y,Ba=[];Ba[w]=7;y=Object.freeze(Ba);function z(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function A(a){return a!=null&&a[Aa]===Fa}function B(a,b){return b===void 0?a.h!==E&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==E}var E={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ba=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function F(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(0-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return F(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return F(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return F(Ta(64,a));if(Ya(a))return b==="string"?db(a):F(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(A(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;z(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.R=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.R(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.R(b,!1,!0,c,this.U,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(z([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(A(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(A(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=z(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:A(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=E);a.l=E;return a}function Lb(a){var b=a.j,c=b[w]|0;return B(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(B(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==E)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&B(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=E,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return A(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:y}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=B(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,z(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=z(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.U=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(A(f)){if(!B(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&z(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!B(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!B(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?B(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?B(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===y?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,G=!0,C=0,D=0;for(;C<p.length;C++){let H=gb(p[C],d,!1,r);if(H instanceof d){if(!q){let x=B(H);t&&=!x;G&&=x}p[D++]=H}}D<C&&(p.length=D);l|=4;l=G?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!B(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!B(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===y?7:a[w]|0;(d=B(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.T=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.extensions=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Y=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=
+e(),m[n]=e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Y?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let G=e.l,C=c[G];if(C==null){let D=c.extensions;if(D){let H=D[G];if(H){let x=Sc(H);x!=null&&(C=c[G]=x)}}}if(C==null||!C(e,d,G)){var f=e;let D=f.m;zc(f);if(f.N)var g=void 0;else{let H=f.h.h-D;f.h.h=D;c:{var h=f.h;f=H;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let x=h.h;var m=x+f;if(m>h.i)throw Error();h.h=m;if(h.J&&h.o)var n=h.l.subarray(x,x+f);else{var l=h.l;m=
+x;f=x+f;n=m===f?new Uint8Array(0):l.slice(m,f)}f=n;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;var p=G,r=g;r&&((f=m[xa]??(m[xa]=new wb))[p]??(f[p]=[])).push(r)}}let t=tb(d);t&&(t.h=c.T[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.extensions;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.da)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.ca){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,
+t)}):r(b,O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=F(Ta(64,c));break a;default:c=F(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===y?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=B(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===y?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===y?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.D=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.D;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}C(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.C(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.B(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}B(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.aa;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.B=this.h=this.closed=!1;this.D=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.B=this.h=!0;this.D=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.C(a)}C(a){var b=this.h,c=this.m;return this.B||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.D,c=this.h;this.B?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.C(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{V:c,Z:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.P.next(c);else if(b==="AppDataChange"&&c)a.S?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.O.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.V(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.Z),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.A=Ld();this.API_VERSION="1.0";this.P=new Ad;this.O=new Dd;this.F=new Map;this.X=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.W=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.A);a.includes(10)&&(window.onerror=this.X,window.addEventListener("unhandledrejection",this.W));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.S=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}hasCapability(a){return a!==0&&ld(this.A).includes(a)}addThemeChangeListener(a,b){this.P.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.O.subscribe(a)}notifyAppReady(){ld(this.A).includes(4)&&
+this.sendMessage("AppReady")}notifyAppError(a){ld(this.A).includes(10)&&this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof
+Error?b:Error(String(b));}return null}triggerFileDownload(a){a=JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.A).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    // State store for revealed blank IDs and active map layer
+    let revealedIds = new Set();
+    let currentMapLayer = 'nature';
+    let selectedFeatureId = 'andes';
+    let saCountriesData = null;
+
+    const MAP_POINTS = {
+      nature: [
+        {
+          id: 'andes',
+          name: 'アンデス山脈',
+          lon: -69.5,
+          lat: -16.5,
+          badge: '山脈・気候',
+          summary: `環太平洋造山帯（新期造山帯）に属する世界最長（約7,500km）・標高6,000m級の山脈。標高が高いため高山気候がみられます。`
+        },
+        {
+          id: 'amazon',
+          name: 'アマゾン川・盆地',
+          lon: -60.0,
+          lat: -3.1,
+          badge: '大河・熱帯林',
+          summary: `赤道直下の熱帯雨林気候に属し、世界最大の流域面積をもつアマゾン川と広大な熱帯林（ジャングル）が広がります。`
+        },
+        {
+          id: 'pampas',
+          name: 'パンパ',
+          lon: -60.5,
+          lat: -35.5,
+          badge: '温帯・草原',
+          summary: `アルゼンチンのブエノスアイレス周辺に広がる温帯の長草草原。さらに南へ下ると乾燥帯、南端は寒帯になります。`
+        }
+      ],
+      resource: [
+        {
+          id: 'chile',
+          name: 'チリ（銅）',
+          lon: -70.6,
+          lat: -23.6,
+          badge: '銅の世界的産地',
+          summary: `アンデス山脈の鉱山を中心に、銅の産出・輸出で世界トップクラスを誇ります。`
+        },
+        {
+          id: 'uyuni',
+          name: 'ボリビア・ウユニ塩原',
+          lon: -67.5,
+          lat: -20.1,
+          badge: 'リチウム',
+          summary: `アンデス山中のウユニ塩原では、電池などに不可欠なレアメタル「リチウム」の産出が注目されています。`
+        },
+        {
+          id: 'brazil_res',
+          name: 'ブラジル（鉄鉱石・海底油田）',
+          lon: -43.5,
+          lat: -19.5,
+          badge: '資源・BRICs',
+          summary: `世界有数の鉄鉱石産地であり、大西洋沖では海底油田の採掘や、自動車・航空機などの工業化・大豆生産が進んでいます。`
+        },
+        {
+          id: 'venezuela',
+          name: 'ベネズエラ周辺（原油）',
+          lon: -66.9,
+          lat: 9.8,
+          badge: '原油',
+          summary: `ベネズエラやエクアドルなど大陸北部では、原油の産出が盛んです。`
+        }
+      ]
+    };
+
+    const HIGHLIGHT_COUNTRIES = {
+      nature: ['Brazil', 'Peru', 'Bolivia', 'Chile', 'Argentina', 'Ecuador', 'Colombia'],
+      resource: ['Brazil', 'Chile', 'Bolivia', 'Venezuela', 'Ecuador']
+    };
+
+    function getAllBlanks() {
+      return Array.from(document.querySelectorAll('.blank-token'));
+    }
+
+    function updateProgressUI() {
+      const blanks = getAllBlanks();
+      const total = blanks.length;
+      const shown = blanks.filter(el => el.classList.contains('revealed')).length;
+      const pct = total > 0 ? Math.round((shown / total) * 100) : 0;
+
+      const kpi = document.getElementById('kpi-progress');
+      if (kpi) kpi.textContent = `${shown} / ${total} 語`;
+
+      const pText = document.getElementById('progress-text');
+      if (pText) pText.textContent = `表示中 ${shown} / ${total}`;
+
+      const pFill = document.getElementById('progress-fill');
+      if (pFill) pFill.style.width = `${pct}%`;
+    }
+
+    function applyStateToDOM() {
+      const blanks = getAllBlanks();
+      blanks.forEach(el => {
+        const id = el.dataset.id;
+        const isShown = id ? revealedIds.has(id) : false;
+        el.classList.toggle('revealed', isShown);
+        el.setAttribute('aria-pressed', isShown ? 'true' : 'false');
+      });
+      updateProgressUI();
+    }
+
+    async function persistState() {
+      if (!window.notebookAppApi || typeof window.notebookAppApi.setAppState !== 'function') return;
+      try {
+        await window.notebookAppApi.setAppState({
+          revealedIds: Array.from(revealedIds),
+          currentMapLayer: currentMapLayer,
+          selectedFeatureId: selectedFeatureId
+        });
+      } catch (err) {
+        // Ignore transient storage errors in preview
+      }
+    }
+
+    function toggleBlank(el) {
+      if (!el || !el.dataset.id) return;
+      const id = el.dataset.id;
+      if (revealedIds.has(id)) {
+        revealedIds.delete(id);
+      } else {
+        revealedIds.add(id);
+      }
+      applyStateToDOM();
+      persistState();
+    }
+
+    function revealAllBlanks() {
+      getAllBlanks().forEach(el => {
+        if (el.dataset.id) revealedIds.add(el.dataset.id);
+      });
+      applyStateToDOM();
+      persistState();
+    }
+
+    function hideAllBlanks() {
+      revealedIds.clear();
+      applyStateToDOM();
+      persistState();
+    }
+
+    function toggleSectionBlanks(sectionId, show) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      const blanks = Array.from(section.querySelectorAll('.blank-token'));
+      blanks.forEach(el => {
+        const id = el.dataset.id;
+        if (!id) return;
+        if (show) {
+          revealedIds.add(id);
+        } else {
+          revealedIds.delete(id);
+        }
+      });
+      applyStateToDOM();
+      persistState();
+    }
+
+    function scrollToTop() {
+      const topEl = document.getElementById('top');
+      if (topEl) {
+        topEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function getCssToken(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function updateInspector(point) {
+      const titleEl = document.getElementById('map-inspector-title');
+      const bodyEl = document.getElementById('map-inspector-body');
+      if (!point) return;
+      if (titleEl) titleEl.textContent = `${point.name}（${point.badge}）`;
+      if (bodyEl) bodyEl.textContent = point.summary;
+    }
+
+    function selectMapPoint(pointId) {
+      selectedFeatureId = pointId;
+      const list = MAP_POINTS[currentMapLayer] || [];
+      const found = list.find(p => p.id === pointId) || list[0];
+      if (found) {
+        selectedFeatureId = found.id;
+        updateInspector(found);
+      }
+      renderSouthAmericaMap();
+      persistState();
+    }
+
+    function setMapLayer(layer) {
+      currentMapLayer = layer === 'resource' ? 'resource' : 'nature';
+      const btnNature = document.getElementById('btn-layer-nature');
+      const btnRes = document.getElementById('btn-layer-resource');
+      if (btnNature) btnNature.classList.toggle('active', currentMapLayer === 'nature');
+      if (btnRes) btnRes.classList.toggle('active', currentMapLayer === 'resource');
+
+      const list = MAP_POINTS[currentMapLayer] || [];
+      if (list.length > 0) {
+        selectedFeatureId = list[0].id;
+        updateInspector(list[0]);
+      }
+      renderSouthAmericaMap();
+      persistState();
+    }
+
+    function renderSouthAmericaMap() {
+      const container = document.getElementById('sa-map-container');
+      if (!container || !saCountriesData || typeof d3 === 'undefined') return;
+
+      container.innerHTML = '';
+
+      const width = 440;
+      const height = 430;
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('role', 'img')
+        .attr('aria-label', '南アメリカ州の地形と資源分布図');
+
+      const projection = d3.geoMercator()
+        .center([-60, -21])
+        .scale(345)
+        .translate([width / 2, height / 2]);
+
+      const path = d3.geoPath(projection);
+
+      const landFill = getCssToken('--map-land');
+      const landActive = getCssToken('--map-land-active');
+      const borderCol = getCssToken('--map-border');
+      const equatorCol = getCssToken('--map-equator');
+      const primaryPin = getCssToken('--data-1');
+      const accentPin = getCssToken('--data-2');
+      const activePin = getCssToken('--error');
+      const whiteCol = getCssToken('--on-error');
+      const inkCol = getCssToken('--on-surface');
+
+      const highlights = HIGHLIGHT_COUNTRIES[currentMapLayer] || [];
+
+      // Subtle graticule
+      svg.append('path')
+        .datum(d3.geoGraticule().step([15, 15])())
+        .attr('d', path)
+        .attr('fill', 'none')
+        .attr('stroke', borderCol)
+        .attr('stroke-width', 0.4)
+        .attr('stroke-opacity', 0.45);
+
+      // Country polygons
+      svg.append('g')
+        .selectAll('path')
+        .data(saCountriesData.features)
+        .join('path')
+        .attr('d', path)
+        .attr('fill', d => highlights.includes(d.properties && d.properties.name) ? landActive : landFill)
+        .attr('stroke', borderCol)
+        .attr('stroke-width', 0.85);
+
+      // Equator line (0 deg latitude)
+      const equatorCoords = [[-85, 0], [-30, 0]];
+      const eqLine = { type: 'LineString', coordinates: equatorCoords };
+      svg.append('path')
+        .datum(eqLine)
+        .attr('d', path)
+        .attr('fill', 'none')
+        .attr('stroke', equatorCol)
+        .attr('stroke-width', 1.4)
+        .attr('stroke-dasharray', '5 4');
+
+      const eqPoint = projection([-42, 0]);
+      if (eqPoint) {
+        svg.append('text')
+          .attr('x', eqPoint[0])
+          .attr('y', eqPoint[1] - 6)
+          .attr('fill', equatorCol)
+          .attr('font-size', '11px')
+          .attr('font-weight', '700')
+          .text('赤道 (0°)');
+      }
+
+      // Layer-specific Andes schematic spine in nature mode
+      if (currentMapLayer === 'nature') {
+        const andesCoords = [
+          [-75, 5], [-78, -2], [-76, -10], [-69, -18], [-69, -28], [-71, -40], [-72, -51]
+        ];
+        svg.append('path')
+          .datum({ type: 'LineString', coordinates: andesCoords })
+          .attr('d', path)
+          .attr('fill', 'none')
+          .attr('stroke', accentPin)
+          .attr('stroke-width', 4)
+          .attr('stroke-linecap', 'round')
+          .attr('stroke-opacity', 0.65);
+      }
+
+      // Interactive pins
+      const points = MAP_POINTS[currentMapLayer] || [];
+      const pinGroups = svg.append('g')
+        .selectAll('g')
+        .data(points)
+        .join('g')
+        .attr('transform', d => {
+          const coords = projection([d.lon, d.lat]);
+          return coords ? `translate(${coords[0]}, ${coords[1]})` : 'translate(-100, -100)';
+        })
+        .style('cursor', 'pointer')
+        .attr('tabindex', '0')
+        .attr('role', 'button')
+        .attr('aria-label', d => `${d.name}の詳細を表示`)
+        .on('click', (event, d) => selectMapPoint(d.id))
+        .on('keydown', (event, d) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectMapPoint(d.id);
+          }
+        });
+
+      pinGroups.append('circle')
+        .attr('r', d => d.id === selectedFeatureId ? 10 : 7.5)
+        .attr('fill', d => d.id === selectedFeatureId ? activePin : primaryPin)
+        .attr('stroke', whiteCol)
+        .attr('stroke-width', 2);
+
+      pinGroups.append('text')
+        .attr('x', 12)
+        .attr('y', 4)
+        .attr('fill', inkCol)
+        .attr('font-size', '12px')
+        .attr('font-weight', d => d.id === selectedFeatureId ? '700' : '600')
+        .text(d => d.name);
+    }
+
+    async function loadMapData() {
+      const container = document.getElementById('sa-map-container');
+      try {
+        const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json');
+        if (!res.ok) throw new Error('Map fetch failed');
+        const topo = await res.json();
+        const allCountries = topojson.feature(topo, topo.objects.countries);
+
+        // Filter to Americas bounding region for fast clean rendering
+        const saNames = new Set([
+          'Brazil', 'Argentina', 'Chile', 'Peru', 'Bolivia', 'Colombia',
+          'Venezuela', 'Ecuador', 'Paraguay', 'Uruguay', 'Guyana', 'Suriname',
+          'Panama', 'Costa Rica', 'Falkland Is.'
+        ]);
+
+        saCountriesData = {
+          type: 'FeatureCollection',
+          features: allCountries.features.filter(f => {
+            const name = f.properties && f.properties.name;
+            return saNames.has(name) || name === 'France'; // includes French Guiana polygon part if needed
+          })
+        };
+
+        renderSouthAmericaMap();
+      } catch (err) {
+        if (container) {
+          container.innerHTML = `<div style="padding: 1rem; text-align: center; color: var(--on-surface-variant);">地図の読み込みに失敗しました。各地域カードから内容を確認できます。</div>`;
+        }
+      }
+    }
+
+    async function initApp() {
+      // Bind click events to every blank token
+      getAllBlanks().forEach(btn => {
+        btn.addEventListener('click', () => toggleBlank(btn));
+      });
+
+      // Restore persisted state if available
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && Array.isArray(saved.revealedIds)) {
+            revealedIds = new Set(saved.revealedIds);
+          }
+          if (saved && (saved.currentMapLayer === 'nature' || saved.currentMapLayer === 'resource')) {
+            currentMapLayer = saved.currentMapLayer;
+          }
+          if (saved && typeof saved.selectedFeatureId === 'string') {
+            selectedFeatureId = saved.selectedFeatureId;
+          }
+        } catch (err) {
+          // Ignore state restore errors
+        }
+      }
+
+      applyStateToDOM();
+
+      // Sync map UI controls
+      const btnNature = document.getElementById('btn-layer-nature');
+      const btnRes = document.getElementById('btn-layer-resource');
+      if (btnNature) btnNature.classList.toggle('active', currentMapLayer === 'nature');
+      if (btnRes) btnRes.classList.toggle('active', currentMapLayer === 'resource');
+
+      const list = MAP_POINTS[currentMapLayer] || [];
+      const found = list.find(p => p.id === selectedFeatureId) || list[0];
+      if (found) {
+        selectedFeatureId = found.id;
+        updateInspector(found);
+      }
+
+      loadMapData();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+ </body>
+</html>
