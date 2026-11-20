@@ -1,0 +1,1876 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>オセアニア州 まとめノート＆穴埋め問題｜中学地理 定期テスト対策</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;family=Noto+Serif+JP:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --secondary-soft: #e6eff2;
+      --tertiary: #785008;
+      --tertiary-soft: #f5e6c4;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      /* Map & semantic tokens */
+      --ocean-fill: #e3edf2;
+      --land-fill: #ebe7dc;
+      --land-highlight: #dfd8c6;
+      --land-stroke: #a6a092;
+      --positive: #2b6e52;
+      --positive-soft: #e4f0ea;
+      --warning: #b45309;
+      --focus: #1f4e5f;
+
+      /* Data series, in order of use */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Fonts */
+      --font-headline: 'Noto Serif JP', 'Source Serif 4', serif;
+      --font-body: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', 'Noto Sans JP', monospace;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+      --headline-size: clamp(1.375rem, 1.15rem + 1.1vw, 1.9rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.09375rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.08em;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Dossier header */
+    .dossier-header {
+      padding-top: var(--space-md);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-xl);
+    }
+
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      white-space: nowrap;
+    }
+
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      letter-spacing: 0.04em;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.18;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.55;
+      color: var(--secondary);
+      margin: var(--space-md) 0 0;
+      max-width: 65ch;
+    }
+
+    .hero-summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .figure-card .label-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    .figure-card .value {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.625rem;
+      line-height: 1.25;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    .figure-card .caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+      line-height: 1.45;
+    }
+
+    /* Study toolbar */
+    .study-toolbar {
+      background: var(--surface-container-low);
+      border: var(--section-rule);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .toolbar-status {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-width: 220px;
+      flex: 1 1 240px;
+    }
+
+    .toolbar-status-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .toolbar-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    .toolbar-count {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--secondary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out), transform var(--dur-micro) var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--outline-variant);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .btn-ghost {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border-color: var(--outline-variant);
+      min-height: 36px;
+      font-size: 0.875rem;
+      padding: 0 var(--space-sm);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface-container-high);
+    }
+
+    /* Section Jump Nav */
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out);
+    }
+
+    .nav-link:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+    }
+
+    /* Content Sections */
+    .dossier-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+    }
+
+    .section-head-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      line-height: 1.25;
+      letter-spacing: var(--heading-tracking);
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .section-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-progress {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Two-column asymmetric layout for prose + visual */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .note-panel {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .note-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .note-block:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .note-block-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--secondary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .note-text {
+      margin: 0;
+      color: var(--on-surface);
+      line-height: 1.95;
+      max-width: 65ch;
+    }
+
+    .note-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .note-list li {
+      line-height: 1.95;
+    }
+
+    /* Interactive Fill-in-the-blank Chip */
+    .blank-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      vertical-align: baseline;
+      min-height: 2rem;
+      padding: 0.1rem 0.6rem;
+      margin: 0.1rem 0.15rem;
+      border-radius: var(--rounded);
+      border: 1.5px solid var(--secondary);
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.95em;
+      line-height: 1.35;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out);
+    }
+
+    .blank-chip:hover {
+      background: var(--surface-container-high);
+      box-shadow: 0 0 0 2px var(--secondary-soft);
+    }
+
+    .blank-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.35em;
+      height: 1.35em;
+      padding: 0 0.25em;
+      border-radius: var(--badge-radius);
+      background: var(--secondary);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: 0.75em;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .blank-mask {
+      letter-spacing: 0.04em;
+      font-size: 0.875em;
+      color: var(--secondary);
+    }
+
+    .blank-answer {
+      display: none;
+      color: var(--on-primary-container);
+    }
+
+    .blank-chip.is-revealed {
+      background: var(--primary-container);
+      border-color: var(--tertiary);
+      color: var(--on-primary-container);
+    }
+
+    .blank-chip.is-revealed .blank-num {
+      background: var(--on-primary-container);
+      color: var(--primary-container);
+    }
+
+    .blank-chip.is-revealed .blank-mask {
+      display: none;
+    }
+
+    .blank-chip.is-revealed .blank-answer {
+      display: inline;
+    }
+
+    .blank-chip.is-revealed:hover {
+      background: var(--tertiary-soft);
+      box-shadow: 0 0 0 2px var(--tertiary-soft);
+    }
+
+    /* Aside / Point callout */
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .aside-label {
+      display: inline-block;
+      background: var(--tertiary-soft);
+      color: var(--tertiary);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.125rem 0.45rem;
+      border-radius: var(--rounded);
+      margin-bottom: var(--space-xs);
+    }
+
+    .aside-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0 0 var(--space-xs);
+      color: var(--on-surface);
+    }
+
+    .aside-body {
+      margin: 0;
+      font-size: 0.925rem;
+      line-height: 1.7;
+      color: var(--on-surface);
+    }
+
+    /* Interactive Map Card */
+    .map-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .map-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .layer-btn {
+      min-height: 44px;
+      padding: 0 var(--space-sm);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out);
+    }
+
+    .layer-btn:hover {
+      background: var(--surface-container);
+    }
+
+    .layer-btn.is-active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+
+    .map-stage {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+      background: var(--ocean-fill);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+
+    .map-stage svg {
+      display: block;
+      width: 100%;
+      height: 360px;
+    }
+
+    .map-status-note {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      line-height: 1.5;
+    }
+
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-md);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .map-pin {
+      cursor: pointer;
+    }
+
+    .map-pin-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--on-surface);
+      pointer-events: none;
+    }
+
+    /* Hemisphere climate comparison diagram */
+    .climate-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .climate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .climate-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .climate-box-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    .climate-svg {
+      width: 100%;
+      height: 110px;
+      display: block;
+    }
+
+    /* Tables */
+    .table-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      overflow-x: auto;
+    }
+
+    .table-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin: 0 0 var(--space-sm);
+      color: var(--on-surface);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.925rem;
+    }
+
+    th {
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-sm);
+      border-bottom: var(--section-rule);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: var(--space-sm) var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+      line-height: 1.65;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .num-col {
+      text-align: right;
+      font-family: var(--font-label);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Bar Chart Cards */
+    .chart-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .chart-subtitle {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    .bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr) 54px;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+    }
+
+    .bar-country {
+      font-weight: 600;
+      color: var(--on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bar-track {
+      height: 14px;
+      background: var(--surface-container);
+      border-radius: var(--badge-radius);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: var(--badge-radius);
+    }
+
+    .bar-fill.is-oceania {
+      background: var(--data-1);
+    }
+
+    .bar-fill.is-accent {
+      background: var(--data-2);
+    }
+
+    .bar-fill.is-context {
+      background: var(--data-context);
+    }
+
+    .bar-val {
+      text-align: right;
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    /* Descriptive Exam Practice Cards */
+    .essay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .essay-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .essay-q {
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.55;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .essay-hint {
+      font-size: 0.8125rem;
+      color: var(--secondary);
+      font-weight: 600;
+      margin: var(--space-xs) 0 0;
+    }
+
+    .essay-answer {
+      display: none;
+      background: var(--surface-container);
+      border-left: 3px solid var(--secondary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      font-size: 0.925rem;
+      line-height: 1.65;
+    }
+
+    .essay-card.is-open .essay-answer {
+      display: block;
+    }
+
+    /* Footer */
+    .dossier-footer {
+      border-top: var(--section-rule);
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-2xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .split-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .study-toolbar {
+        padding: var(--space-md);
+      }
+      .bar-row {
+        grid-template-columns: 92px minmax(0, 1fr) 48px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="page-grid">
+   <header class="dossier-header">
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">GEOGRAPHY DOSSIER</span> <span class="dossier-meta">中学地理 2学期末テスト対策 // 第3章 第6節 オセアニア州</span>
+     </div>
+     <span class="dossier-meta">全35問 穴埋め＋記述4題</span>
+    </div>
+    <h1 class="title">オセアニア州 完全まとめノート</h1>
+    <p class="standfirst">広大な乾燥の大地、資源の露天掘り、そして白豪主義から多文化共生・アジアとの結びつきへ。 空欄をタップ（クリック）して重要語句を確かめながら、定期テストの満点を目指そう。</p>
+    <div class="hero-summary-strip">
+     <div class="figure-card">
+      <span class="label-tag">01 // NATURAL ENVIRONMENT</span>
+      <div class="value">乾燥帯と温帯</div>
+      <div class="caption">豪州は中央部が砂漠・乾燥帯、東〜南東岸が温帯。NZは全域が温帯（西岸海洋性気候）。</div>
+     </div>
+     <div class="figure-card">
+      <span class="label-tag">02 // AGRICULTURE &amp; MINING</span>
+      <div class="value">羊毛 40.5%・鉄鉱石 45.8%</div>
+      <div class="caption">世界の輸出市場をけん引するオーストラリアの牧畜と露天掘り鉱業。</div>
+     </div>
+     <div class="figure-card">
+      <span class="label-tag">03 // SOCIETY &amp; TRADE</span>
+      <div class="value">日本の石炭輸入 63.2%</div>
+      <div class="caption">多文化社会へ移行し、APECなどを通じて中国・日本・韓国などアジアとの結びつきが深化。</div>
+     </div>
+    </div>
+   </header>
+   <main style="display: flex; flex-direction: column; gap: var(--space-xl);">
+    <!-- Study Control Toolbar -->
+    <section aria-label="学習コントロール" class="study-toolbar">
+     <div class="toolbar-status">
+      <div class="toolbar-status-row">
+       <span class="toolbar-title">穴埋め問題の確認状況（空欄をタップで正解を表示／非表示）</span> <span class="toolbar-count" id="progress-text">0 / 35 問 表示中</span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+       <div class="progress-fill" id="progress-fill"></div>
+      </div>
+     </div>
+     <div class="toolbar-actions">
+      <button type="button" class="btn btn-primary" onclick="revealAll()">すべて表示</button> <button type="button" class="btn btn-secondary" onclick="hideAll()">すべて隠す</button>
+     </div>
+    </section>
+    <!-- Quick Section Navigation -->
+    <nav aria-label="章の移動" class="section-nav">
+     <a class="nav-link" href="#sec-1"><span class="index-num">01</span> 位置と自然環境</a> <a class="nav-link" href="#sec-2"><span class="index-num">02</span> 農業と牧畜</a> <a class="nav-link" href="#sec-3"><span class="index-num">03</span> 鉱産資源</a> <a class="nav-link" href="#sec-4"><span class="index-num">04</span> 歴史・文化・貿易</a> <a class="nav-link" href="#sec-5"><span class="index-num">05</span> 記述テスト対策</a>
+    </nav>
+    <!-- SECTION 1: 位置と自然環境 -->
+    <section class="dossier-section" id="sec-1">
+     <div class="section-head">
+      <div class="section-head-main">
+       <span class="section-kicker"><span class="index-num">01</span> POSITION &amp; NATURAL ENVIRONMENT</span>
+       <h2 class="section-title">位置と自然環境：3つの島嶼群と東西・南北の気候差</h2>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress" id="sec1-count">0 / 11 表示中</span> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-1', true)">この章を表示</button> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-1', false)">隠す</button>
+      </div>
+     </div>
+     <div class="split-layout">
+      <div class="note-panel">
+       <div class="note-block">
+        <h3 class="note-block-title">1.1 オセアニア州の広がりと太平洋の島々</h3>
+        <p class="note-text">オセアニア州は、南半球に位置する <button type="button" class="blank-chip" data-id="b1" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">1</span><span class="blank-mask">タップして表示</span><span class="blank-answer">オーストラリア大陸</span> </button> と、その南東に浮かぶ島国の <button type="button" class="blank-chip" data-id="b2" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">2</span><span class="blank-mask">タップして表示</span><span class="blank-answer">ニュージーランド</span> </button> 、さらに太平洋に点在する島々から成り立っている。太平洋の島々は、位置や民族・文化の違いから大きく3つの地域に分けられる。</p>
+        <ul class="note-list">
+         <li><strong>ハワイからニュージーランド・イースター島を結ぶ広大な三角形の海域：</strong> <button type="button" class="blank-chip" data-id="b3" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">3</span><span class="blank-mask">タップして表示</span><span class="blank-answer">ポリネシア</span> </button> （「多くの島々」の意）</li>
+         <li><strong>赤道付近の北側（グアム・サイパン・パラオなど小さな島が中心）：</strong> <button type="button" class="blank-chip" data-id="b4" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">4</span><span class="blank-mask">タップして表示</span><span class="blank-answer">ミクロネシア</span> </button> （「小さな島々」の意）</li>
+         <li><strong>オーストラリアの北東側（パプアニューギニア・フィジーなど）：</strong> <button type="button" class="blank-chip" data-id="b5" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">5</span><span class="blank-mask">タップして表示</span><span class="blank-answer">メラネシア</span> </button> （「黒い島々」の意）</li>
+        </ul>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">1.2 大陸の地形と世界遺産の海</h3>
+        <p class="note-text">オーストラリア大陸の東岸に沿って南北に連なる山脈は <button type="button" class="blank-chip" data-id="b6" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">6</span><span class="blank-mask">タップして表示</span><span class="blank-answer">グレートディバイディング山脈</span> </button> とよばれ、この山脈の東側と南側に広がる過ごしやすい地域（シドニーやメルボルンなど）に人口が集中している。北東岸の温かく美しい海には、世界最大のサンゴ礁地帯である <button type="button" class="blank-chip" data-id="b7" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">7</span><span class="blank-mask">タップして表示</span><span class="blank-answer">グレートバリアリーフ</span> </button> が広がる。</p>
+        <p class="note-text">一方、山脈の西側の内陸部には <button type="button" class="blank-chip" data-id="b8" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">8</span><span class="blank-mask">タップして表示</span><span class="blank-answer">大自流盆地</span> </button> （大かんがい盆地）が広がり、地下には <button type="button" class="blank-chip" data-id="b9" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">9</span><span class="blank-mask">タップして表示</span><span class="blank-answer">塩分</span> </button> を含む豊富な地下水が蓄えられている。さらに中央部〜西部にはグレートサンディー砂漠やビクトリア砂漠などの広大な砂漠地帯が広がっている。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">1.3 気候の特徴と南半球の雨温図</h3>
+        <p class="note-text">オーストラリアは中央部から西部にかけてのほぼ全域が <button type="button" class="blank-chip" data-id="b10" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">10</span><span class="blank-mask">タップして表示</span><span class="blank-answer">乾燥帯</span> </button> （砂漠気候・ステップ気候）である。これに対し、ニュージーランドは一年を通して海からの西風の影響を受けるため、全域が <button type="button" class="blank-chip" data-id="b11" data-sec="sec-1" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">11</span><span class="blank-mask">タップして表示</span><span class="blank-answer">温帯（西岸海洋性気候）</span> </button> に属し、年間を通じて気温差が小さく穏やかな気候となっている。</p>
+       </div>
+      </div>
+      <!-- Interactive Vector Map & Hemisphere Note -->
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+       <div class="map-card">
+        <div>
+         <div style="font-weight: 700; font-size: 0.95rem; color: var(--on-surface);">インタラクティブ オセアニア位置図</div>
+         <div style="font-size: 0.8125rem; color: var(--on-surface-variant);">表示テーマを切り替えて、地形・農業・鉱産資源の分布を確認しよう</div>
+        </div>
+        <div class="map-toolbar" role="group" aria-label="地図の表示切替">
+         <button type="button" class="layer-btn is-active" data-layer="nature" onclick="setMapLayer('nature', this)">地形・海域</button> <button type="button" class="layer-btn" data-layer="agri" onclick="setMapLayer('agri', this)">農業・牧畜</button> <button type="button" class="layer-btn" data-layer="mining" onclick="setMapLayer('mining', this)">鉱産資源</button>
+        </div>
+        <div class="map-stage" id="oceania-map-wrap">
+         <svg id="oceania-map" role="img" aria-label="オセアニア州の地形・産業分布図"></svg>
+        </div>
+        <div class="map-legend" id="map-legend"></div>
+        <div class="map-status-note" id="map-detail-note">地図上の各地点（ピン）をクリックすると、その場所の特徴とテスト出題ポイントが表示されます。</div>
+       </div>
+       <div class="climate-card">
+        <div class="aside-label">テスト頻出 // 雨温図の見分け方</div>
+        <div class="climate-grid">
+         <div class="climate-box">
+          <div class="climate-box-title">北半球（日本など）</div>
+          <svg class="climate-svg" viewBox="0 0 180 90" aria-hidden="true">
+           <line x1="18" y1="75" x2="168" y2="75" stroke="var(--outline-variant)" stroke-width="1" /> <path d="M 24 66 Q 93 12 162 64" fill="none" stroke="var(--data-4)" stroke-width="3" stroke-linecap="round" /> <text x="20" y="86" font-size="10" fill="var(--on-surface-variant)">1月</text> <text x="84" y="86" font-size="10" fill="var(--on-surface-variant)">7月(夏)</text> <text x="150" y="86" font-size="10" fill="var(--on-surface-variant)">12月</text>
+          </svg>
+          <div style="font-size: 0.8125rem; color: var(--on-surface-variant);">7月〜8月が高く「山型」になる。</div>
+         </div>
+         <div class="climate-box">
+          <div class="climate-box-title">南半球（オセアニア）</div>
+          <svg class="climate-svg" viewBox="0 0 180 90" aria-hidden="true">
+           <line x1="18" y1="75" x2="168" y2="75" stroke="var(--outline-variant)" stroke-width="1" /> <path d="M 24 22 Q 93 74 162 24" fill="none" stroke="var(--data-1)" stroke-width="3" stroke-linecap="round" /> <text x="20" y="86" font-size="10" fill="var(--on-surface-variant)">1月(夏)</text> <text x="84" y="86" font-size="10" fill="var(--on-surface-variant)">7月(冬)</text> <text x="150" y="86" font-size="10" fill="var(--on-surface-variant)">12月</text>
+          </svg>
+          <div style="font-size: 0.8125rem; color: var(--on-surface-variant);">1月が高く7月が低い「逆さ向き（谷型）」になる！</div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- SECTION 2: 農業と牧畜 -->
+    <section class="dossier-section" id="sec-2">
+     <div class="section-head">
+      <div class="section-head-main">
+       <span class="section-kicker"><span class="index-num">02</span> AGRICULTURE &amp; PASTORALISM</span>
+       <h2 class="section-title">農業と牧畜：降水量の違いが生む適地適作と掘抜き井戸</h2>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress" id="sec2-count">0 / 8 表示中</span> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-2', true)">この章を表示</button> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-2', false)">隠す</button>
+      </div>
+     </div>
+     <div class="split-layout">
+      <div class="note-panel">
+       <div class="note-block">
+        <h3 class="note-block-title">2.1 乾燥地を支える掘抜き井戸と羊の飼育</h3>
+        <p class="note-text">オーストラリアの広大な内陸部（大自流盆地など）では、降水量に乏しい気候を補うため、地下の圧力で水が自然に地上へ噴き出す <button type="button" class="blank-chip" data-id="b12" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">12</span><span class="blank-mask">タップして表示</span><span class="blank-answer">掘抜き井戸</span> </button> （自噴井）が利用されている。ただし、くみ上げられる地下水は塩分を多く含むため農作物の栽培には向かず、乾燥に強い家畜である <button type="button" class="blank-chip" data-id="b13" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">13</span><span class="blank-mask">タップして表示</span><span class="blank-answer">羊</span> </button> の飲み水として使われ、世界有数の <button type="button" class="blank-chip" data-id="b14" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">14</span><span class="blank-mask">タップして表示</span><span class="blank-answer">羊毛</span> </button> の生産・輸出地域となっている。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">2.2 降水量に応じた農牧業の地域分布</h3>
+        <ul class="note-list">
+         <li><strong>東部・北部の比較的降水量が多い地域：</strong> 食肉用として育てられる <button type="button" class="blank-chip" data-id="b15" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">15</span><span class="blank-mask">タップして表示</span><span class="blank-answer">肉牛</span> </button> の放牧が盛んで、日本などへも多くの <button type="button" class="blank-chip" data-id="b16" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">16</span><span class="blank-mask">タップして表示</span><span class="blank-answer">牛肉</span> </button> が輸出されている。</li>
+         <li><strong>南東部・南西部の温暖で適度な降水量がある地域：</strong> 大型機械を使った大規模な <button type="button" class="blank-chip" data-id="b17" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">17</span><span class="blank-mask">タップして表示</span><span class="blank-answer">小麦</span> </button> の栽培が盛んで、世界有数の輸出量を誇る。</li>
+         <li><strong>ニュージーランドの牧畜：</strong> 温暖で牧草がよく育つため、羊（羊毛・食肉用）の飼育とともに、牛の <button type="button" class="blank-chip" data-id="b18" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">18</span><span class="blank-mask">タップして表示</span><span class="blank-answer">酪農</span> </button> （バター・チーズなどの乳製品の生産・輸出）が主要産業となっている。</li>
+        </ul>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">2.3 南半球の季節差を生かした貿易</h3>
+        <p class="note-text">オセアニア州は南半球にあり北半球と季節が逆になるため、北半球が冬で品薄になる時期に新鮮な農産物や、 <button type="button" class="blank-chip" data-id="b19" data-sec="sec-2" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">19</span><span class="blank-mask">タップして表示</span><span class="blank-answer">キウイフルーツ</span> </button> （ニュージーランド特産）などの果実・乳製品・食肉を輸出できる強みがある。</p>
+       </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+       <div class="chart-card">
+        <div>
+         <h3 class="table-title">世界の羊毛輸出に占める割合</h3>
+         <p class="chart-subtitle">オーストラリアとニュージーランドの2か国で世界の過半数</p>
+        </div>
+        <div class="bar-list">
+         <div class="bar-row">
+          <span class="bar-country">オーストラリア</span>
+          <div class="bar-track">
+           <div class="bar-fill is-oceania" style="width: 81%;"></div>
+          </div>
+          <span class="bar-val">40.5%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">ニュージーランド</span>
+          <div class="bar-track">
+           <div class="bar-fill is-oceania" style="width: 31%;"></div>
+          </div>
+          <span class="bar-val">15.5%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">南アフリカ</span>
+          <div class="bar-track">
+           <div class="bar-fill is-context" style="width: 10.6%;"></div>
+          </div>
+          <span class="bar-val">5.3%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">イギリス</span>
+          <div class="bar-track">
+           <div class="bar-fill is-context" style="width: 8.8%;"></div>
+          </div>
+          <span class="bar-val">4.4%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">ドイツ</span>
+          <div class="bar-track">
+           <div class="bar-fill is-context" style="width: 5.4%;"></div>
+          </div>
+          <span class="bar-val">2.7%</span>
+         </div>
+        </div>
+       </div>
+       <div class="table-card">
+        <h3 class="table-title">オーストラリアの農牧業 分布まとめ</h3>
+        <table>
+         <thead>
+          <tr>
+           <th>品目</th>
+           <th>主な分布地域</th>
+           <th>自然条件・背景</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td><strong>羊（羊毛）</strong></td>
+           <td>内陸部・大自流盆地周辺</td>
+           <td>乾燥に強く、掘抜き井戸の地下水を活用</td>
+          </tr>
+          <tr>
+           <td><strong>肉牛（牛肉）</strong></td>
+           <td>東部〜北部の沿岸・草原</td>
+           <td>内陸より降水量がやや多く草が育つ</td>
+          </tr>
+          <tr>
+           <td><strong>小麦</strong></td>
+           <td>南東部・南西部</td>
+           <td>温暖で適度な雨があり機械化農業が発達</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- SECTION 3: 鉱産資源 -->
+    <section class="dossier-section" id="sec-3">
+     <div class="section-head">
+      <div class="section-head-main">
+       <span class="section-kicker"><span class="index-num">03</span> MINERAL RESOURCES &amp; MINING</span>
+       <h2 class="section-title">鉱産資源：大規模な露天掘りとアジアを支える輸出</h2>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress" id="sec3-count">0 / 6 表示中</span> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-3', true)">この章を表示</button> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-3', false)">隠す</button>
+      </div>
+     </div>
+     <div class="split-layout">
+      <div class="note-panel">
+       <div class="note-block">
+        <h3 class="note-block-title">3.1 効率的な採掘方法「露天掘り」</h3>
+        <p class="note-text">オーストラリアは世界有数の鉱産資源大国である。鉱床が地表の浅い部分に広く分布しているため、坑道を掘らずに地表から階段状に大型重機で直接掘り進める <button type="button" class="blank-chip" data-id="b20" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">20</span><span class="blank-mask">タップして表示</span><span class="blank-answer">露天掘り</span> </button> が盛んに行われており、少ない人手で大量・安価に採掘できる。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">3.2 鉱産資源の種類と分布（方角に注意！）</h3>
+        <ul class="note-list">
+         <li><strong>北西部（ピルバラ地域・マウントホエールバック鉱山など）：</strong> 製鉄の原料となる <button type="button" class="blank-chip" data-id="b21" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">21</span><span class="blank-mask">タップして表示</span><span class="blank-answer">鉄鉱石</span> </button> の大規模な露天掘り鉱山が集中し、輸出量は世界第1位（45.8%）である。</li>
+         <li><strong>東部（グレートディバイディング山脈周辺）：</strong> 発電や製鉄用の燃料となる <button type="button" class="blank-chip" data-id="b22" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">22</span><span class="blank-mask">タップして表示</span><span class="blank-answer">石炭</span> </button> が豊富に産出され、日本の輸入先の約6割（63.2%）を占めている。</li>
+         <li><strong>北部（ウェイパなど熱帯周辺）：</strong> アルミニウムの原料となる <button type="button" class="blank-chip" data-id="b23" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">23</span><span class="blank-mask">タップして表示</span><span class="blank-answer">ボーキサイト</span> </button> の産出量が世界第1位（28.7%）である。</li>
+         <li><strong>その他：</strong> 内陸や西部では <button type="button" class="blank-chip" data-id="b24" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">24</span><span class="blank-mask">タップして表示</span><span class="blank-answer">金</span> </button> や、北西沖などで液化天然ガス（LNG）なども多く産出される。採掘された資源は鉄道で港へ運ばれ、主に <button type="button" class="blank-chip" data-id="b25" data-sec="sec-3" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">25</span><span class="blank-mask">タップして表示</span><span class="blank-answer">中国・日本・韓国</span> </button> などのアジア諸国へ輸出される。</li>
+        </ul>
+       </div>
+       <div class="aside-box">
+        <span class="aside-label">漢字・位置のチェック</span>
+        <p class="aside-body">定期テストでは「<strong>露天掘り</strong>」の漢字（「ろてんぼり」→「天」と「掘」の字に注意！）や、「北西部＝鉄鉱石、東部＝石炭、北部＝ボーキサイト」の地図上の位置がそのまま出題されやすい。</p>
+       </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+       <div class="chart-card">
+        <div>
+         <h3 class="table-title">世界の鉄鉱石輸出シェアと輸入国</h3>
+         <p class="chart-subtitle">オーストラリアが世界輸出の約半分を占め、中国・日本が主な買い手</p>
+        </div>
+        <div class="bar-list">
+         <div class="bar-row">
+          <span class="bar-country">豪州（輸出1位）</span>
+          <div class="bar-track">
+           <div class="bar-fill is-oceania" style="width: 91.6%;"></div>
+          </div>
+          <span class="bar-val">45.8%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">ブラジル（2位）</span>
+          <div class="bar-track">
+           <div class="bar-fill is-context" style="width: 49.2%;"></div>
+          </div>
+          <span class="bar-val">24.6%</span>
+         </div>
+         <div class="bar-row">
+          <span class="bar-country">南アフリカ（3位）</span>
+          <div class="bar-track">
+           <div class="bar-fill is-context" style="width: 9.4%;"></div>
+          </div>
+          <span class="bar-val">4.7%</span>
+         </div>
+        </div>
+        <div style="border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);">
+         <p class="chart-subtitle" style="margin-bottom: var(--space-xs);">世界の鉄鉱石輸入シェア（主な輸出先）</p>
+         <div class="bar-list">
+          <div class="bar-row">
+           <span class="bar-country">中国（輸入1位）</span>
+           <div class="bar-track">
+            <div class="bar-fill is-accent" style="width: 100%;"></div>
+           </div>
+           <span class="bar-val">64.3%</span>
+          </div>
+          <div class="bar-row">
+           <span class="bar-country">日本（輸入2位）</span>
+           <div class="bar-track">
+            <div class="bar-fill is-accent" style="width: 16.5%;"></div>
+           </div>
+           <span class="bar-val">10.6%</span>
+          </div>
+          <div class="bar-row">
+           <span class="bar-country">韓国（輸入3位）</span>
+           <div class="bar-track">
+            <div class="bar-fill is-context" style="width: 7.8%;"></div>
+           </div>
+           <span class="bar-val">5.0%</span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="table-card">
+        <h3 class="table-title">オーストラリアの主要鉱産資源データ</h3>
+        <table>
+         <thead>
+          <tr>
+           <th>資源名</th>
+           <th>主な産地</th>
+           <th class="num-col">世界での地位</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td><strong>鉄鉱石</strong></td>
+           <td>北西部（マウントホエールバック等）</td>
+           <td class="num-col">輸出 1位（45.8%）</td>
+          </tr>
+          <tr>
+           <td><strong>石炭</strong></td>
+           <td>東部（グレートディバイディング山脈周辺）</td>
+           <td class="num-col">輸出 2位（25.8%）</td>
+          </tr>
+          <tr>
+           <td><strong>ボーキサイト</strong></td>
+           <td>北部（熱帯地域）</td>
+           <td class="num-col">産出 1位（28.7%）</td>
+          </tr>
+          <tr>
+           <td><strong>金</strong></td>
+           <td>西部・内陸部</td>
+           <td class="num-col">産出 2位（9.3%）</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- SECTION 4: 歴史・文化・貿易 -->
+    <section class="dossier-section" id="sec-4">
+     <div class="section-head">
+      <div class="section-head-main">
+       <span class="section-kicker"><span class="index-num">04</span> HISTORY, CULTURE &amp; TRADE</span>
+       <h2 class="section-title">歴史・文化・貿易：白豪主義の廃止から多文化社会・アジア重視へ</h2>
+      </div>
+      <div class="section-controls">
+       <span class="section-progress" id="sec4-count">0 / 10 表示中</span> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-4', true)">この章を表示</button> <button type="button" class="btn btn-ghost" onclick="toggleSection('sec-4', false)">隠す</button>
+      </div>
+     </div>
+     <div class="split-layout">
+      <div class="note-panel">
+       <div class="note-block">
+        <h3 class="note-block-title">4.1 先住民とヨーロッパによる植民地化</h3>
+        <p class="note-text">ヨーロッパ人が進出する前から、オーストラリアには <button type="button" class="blank-chip" data-id="b26" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">26</span><span class="blank-mask">タップして表示</span><span class="blank-answer">アボリジニ</span> </button> 、ニュージーランドには <button type="button" class="blank-chip" data-id="b27" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">27</span><span class="blank-mask">タップして表示</span><span class="blank-answer">マオリ</span> </button> とよばれる先住民が暮らしていた。18世紀以降、オセアニアの多くの地域が <button type="button" class="blank-chip" data-id="b28" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">28</span><span class="blank-mask">タップして表示</span><span class="blank-answer">イギリス</span> </button> などの植民地となったため、現在も公用語として <button type="button" class="blank-chip" data-id="b29" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">29</span><span class="blank-mask">タップして表示</span><span class="blank-answer">英語</span> </button> が広く使われ、キリスト教の信者が多く、国旗の左上に <button type="button" class="blank-chip" data-id="b30" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">30</span><span class="blank-mask">タップして表示</span><span class="blank-answer">ユニオンジャック</span> </button> （イギリスの国旗）が入ったデザインの国が多い。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">4.2 白豪主義の歴史と多文化社会への移行</h3>
+        <p class="note-text">オーストラリアはかつて、ヨーロッパ系の白人以外の移民（とくにアジア系）を制限・禁止する <button type="button" class="blank-chip" data-id="b31" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">31</span><span class="blank-mask">タップして表示</span><span class="blank-answer">白豪主義</span> </button> という政策をとっていた。しかし、1970年代までにこの政策は廃止され、現在は <button type="button" class="blank-chip" data-id="b32" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">32</span><span class="blank-mask">タップして表示</span><span class="blank-answer">アジア</span> </button> 系などの移民も積極的に受け入れるようになり、多様な文化を認め合う <button type="button" class="blank-chip" data-id="b33" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">33</span><span class="blank-mask">タップして表示</span><span class="blank-answer">多文化社会</span> </button> へと移行している。また、先住民の権利回復や地位向上、先住民の言語の公用語化（ニュージーランドでのマオリ語の公用語化など）も進められている。</p>
+       </div>
+       <div class="note-block">
+        <h3 class="note-block-title">4.3 経済・貿易の軸足がヨーロッパからアジアへ</h3>
+        <p class="note-text">かつては旧宗主国であるイギリスとの貿易が中心だったが、イギリスがEC（のちのEU）に加盟したことや、地理的に近いアジア諸国が急速に経済成長したことを背景に、現在は <button type="button" class="blank-chip" data-id="b34" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">34</span><span class="blank-mask">タップして表示</span><span class="blank-answer">日本や中国</span> </button> などアジア諸国との経済的結びつきが非常に強くなっている。オーストラリアやニュージーランドは、太平洋を囲む国々が参加する <button type="button" class="blank-chip" data-id="b35" data-sec="sec-4" onclick="toggleBlank(this)" aria-expanded="false"> <span class="blank-num">35</span><span class="blank-mask">タップして表示</span><span class="blank-answer">APEC</span> </button> （アジア太平洋経済協力会議）にも加盟し、資源・農畜産物の輸出と工業製品の輸入を通じてアジア太平洋地域の重要なパートナーとなっている。</p>
+       </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+       <div class="table-card">
+        <h3 class="table-title">歴史・社会の変化 比較年表</h3>
+        <table>
+         <thead>
+          <tr>
+           <th>時期・流れ</th>
+           <th>社会・移民政策</th>
+           <th>主な貿易相手</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td><strong>植民地〜20世紀前半</strong></td>
+           <td>先住民を圧迫し、白人中心の<strong>白豪主義</strong>をとる</td>
+           <td>旧宗主国の<strong>イギリス</strong>などヨーロッパ中心</td>
+          </tr>
+          <tr>
+           <td><strong>1970年代〜現在</strong></td>
+           <td>白豪主義を廃止し、アジア系移民も受け入れる<strong>多文化社会</strong>へ。先住民の地位向上</td>
+           <td><strong>中国・日本・韓国</strong>などアジア諸国が中心（APEC参加）</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <div class="aside-box">
+        <span class="aside-label">日本の暮らしとのつながり</span>
+        <p class="aside-body">日本の石炭輸入先の <strong>63.2%</strong> はオーストラリアからであり、鉄鉱石の輸入でもオーストラリアは重要国である（日本の鉄鉱石世界輸入シェア10.6%の主力供給元）。食料品でも牛肉や乳製品など、日本とオセアニア州は密接につながっている。</p>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- SECTION 5: 定期テスト 記述対策 -->
+    <section class="dossier-section" id="sec-5">
+     <div class="section-head">
+      <div class="section-head-main">
+       <span class="section-kicker"><span class="index-num">05</span> EXAM ESSAY PRACTICE</span>
+       <h2 class="section-title">定期テスト 記述問題対策（「〜ため。」「〜から。」で答える練習）</h2>
+      </div>
+     </div>
+     <div class="essay-grid">
+      <div class="essay-card" id="essay-1">
+       <div>
+        <p class="essay-q">Q1. 大自流盆地では、掘抜き井戸で地下水をくみ上げているにもかかわらず、農作物の栽培より羊の牧畜が盛んなのはなぜですか。</p>
+        <p class="essay-hint">解答のポイント：地下水の特徴（塩分）に触れて「〜ため。」で結ぶ。</p>
+       </div>
+       <div class="essay-answer">
+        くみ上げられる地下水に<strong>塩分が多く含まれており、農作物の栽培には向かない</strong>ため。（羊の飲み水として利用される。）
+       </div>
+       <button type="button" class="btn btn-secondary" onclick="toggleEssay('essay-1', this)">模範解答を見る</button>
+      </div>
+      <div class="essay-card" id="essay-2">
+       <div>
+        <p class="essay-q">Q2. オーストラリアで、鉄鉱石や石炭を安価で大量に採掘できるのはどのような方法をとっているからですか。</p>
+        <p class="essay-hint">解答のポイント：鉱床の場所と採掘方法の名称を入れて「〜から。」で結ぶ。</p>
+       </div>
+       <div class="essay-answer">
+        資源が地表の浅い場所に分布しており、大型機械で地表から掘り進める<strong>露天掘り</strong>を行っているから。
+       </div>
+       <button type="button" class="btn btn-secondary" onclick="toggleEssay('essay-2', this)">模範解答を見る</button>
+      </div>
+      <div class="essay-card" id="essay-3">
+       <div>
+        <p class="essay-q">Q3. オーストラリアの貿易相手国が、イギリス中心から日本や中国などのアジア諸国へと変化した理由を説明しなさい。</p>
+        <p class="essay-hint">解答のポイント：イギリスの動きとアジア諸国の変化に触れて「〜ため。」で結ぶ。</p>
+       </div>
+       <div class="essay-answer">
+        イギリスがEC（現在のEU）に加盟したことや、地理的に近い<strong>アジア諸国が急速に経済成長して資源や農産物の需要が増えた</strong>ため。
+       </div>
+       <button type="button" class="btn btn-secondary" onclick="toggleEssay('essay-3', this)">模範解答を見る</button>
+      </div>
+      <div class="essay-card" id="essay-4">
+       <div>
+        <p class="essay-q">Q4. オセアニア州の都市の雨温図を、日本の都市の雨温図と見分けるときの最も大きな特徴は何ですか。</p>
+        <p class="essay-hint">解答のポイント：半球の違いと1月・7月の気温のグラフの形を答える。</p>
+       </div>
+       <div class="essay-answer">
+        南半球に位置するため季節が日本と逆になり、気温の折れ線グラフが<strong>1月ごろに高く7月ごろに低い逆さ向き（谷型）になる</strong>こと。
+       </div>
+       <button type="button" class="btn btn-secondary" onclick="toggleEssay('essay-4', this)">模範解答を見る</button>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer class="dossier-footer">
+    <div>
+     <strong>出典・参照資料：</strong>提供教材「第3章 世界の諸地域（第6節 オセアニア州）」「第1学年2学期 社会科期末テスト範囲ポイント」／地図境界データ：Natural Earth (world-atlas 50m, public domain)
+    </div>
+    <div>
+     <button type="button" class="btn btn-ghost" onclick="resetProgress(this)">学習進捗をリセット</button>
+    </div>
+   </footer>
+  </div>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),y,Ba=[];Ba[w]=7;y=Object.freeze(Ba);function z(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function A(a){return a!=null&&a[Aa]===Fa}function B(a,b){return b===void 0?a.h!==E&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==E}var E={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ba=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function F(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(0-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return F(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return F(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return F(Ta(64,a));if(Ya(a))return b==="string"?db(a):F(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(A(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;z(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.R=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.R(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.R(b,!1,!0,c,this.U,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(z([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(A(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(A(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=z(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:A(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=E);a.l=E;return a}function Lb(a){var b=a.j,c=b[w]|0;return B(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(B(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==E)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&B(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=E,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return A(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:y}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=B(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,z(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=z(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.U=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(A(f)){if(!B(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&z(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!B(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!B(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?B(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?B(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===y?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,G=!0,C=0,D=0;for(;C<p.length;C++){let H=gb(p[C],d,!1,r);if(H instanceof d){if(!q){let x=B(H);t&&=!x;G&&=x}p[D++]=H}}D<C&&(p.length=D);l|=4;l=G?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!B(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!B(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===y?7:a[w]|0;(d=B(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.T=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.extensions=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Y=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=
+e(),m[n]=e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Y?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let G=e.l,C=c[G];if(C==null){let D=c.extensions;if(D){let H=D[G];if(H){let x=Sc(H);x!=null&&(C=c[G]=x)}}}if(C==null||!C(e,d,G)){var f=e;let D=f.m;zc(f);if(f.N)var g=void 0;else{let H=f.h.h-D;f.h.h=D;c:{var h=f.h;f=H;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let x=h.h;var m=x+f;if(m>h.i)throw Error();h.h=m;if(h.J&&h.o)var n=h.l.subarray(x,x+f);else{var l=h.l;m=
+x;f=x+f;n=m===f?new Uint8Array(0):l.slice(m,f)}f=n;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;var p=G,r=g;r&&((f=m[xa]??(m[xa]=new wb))[p]??(f[p]=[])).push(r)}}let t=tb(d);t&&(t.h=c.T[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.extensions;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.da)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.ca){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,
+t)}):r(b,O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=F(Ta(64,c));break a;default:c=F(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===y?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=B(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===y?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===y?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.D=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.D;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}C(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.C(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.B(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}B(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.aa;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.B=this.h=this.closed=!1;this.D=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.B=this.h=!0;this.D=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.C(a)}C(a){var b=this.h,c=this.m;return this.B||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.D,c=this.h;this.B?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.C(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{V:c,Z:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.P.next(c);else if(b==="AppDataChange"&&c)a.S?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.O.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.V(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.Z),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.A=Ld();this.API_VERSION="1.0";this.P=new Ad;this.O=new Dd;this.F=new Map;this.X=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.W=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.A);a.includes(10)&&(window.onerror=this.X,window.addEventListener("unhandledrejection",this.W));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.S=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}hasCapability(a){return a!==0&&ld(this.A).includes(a)}addThemeChangeListener(a,b){this.P.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.O.subscribe(a)}notifyAppReady(){ld(this.A).includes(4)&&
+this.sendMessage("AppReady")}notifyAppError(a){ld(this.A).includes(10)&&this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof
+Error?b:Error(String(b));}return null}triggerFileDownload(a){a=JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.A).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    const TOTAL_BLANKS = 35;
+    let revealedIds = new Set();
+    let currentLayer = 'nature';
+    let mapSvg = null;
+    let mapProjection = null;
+    let mapPath = null;
+    let mapPinGroup = null;
+    let mapRegionGroup = null;
+
+    const MAP_DATA = {
+      nature: {
+        legend: [
+          { color: 'var(--data-1)', label: '主な山脈・地形' },
+          { color: 'var(--data-3)', label: 'サンゴ礁・海域' },
+          { color: 'var(--data-2)', label: '太平洋の3地域' }
+        ],
+        regions: [
+          { name: `ミクロネシア`, lon: 148, lat: 10, desc: `赤道付近の北側に広がる「小さな島々」の地域（グアム・サイパン・パラオなど）。` },
+          { name: `メラネシア`, lon: 158, lat: -10, desc: `オーストラリア北東側に広がる地域（パプアニューギニア・フィジーなど）。` },
+          { name: `ポリネシア`, lon: 176, lat: -18, desc: `ハワイ・ニュージーランド・イースター島を結ぶ広大な三角形の海域（「多くの島々」）。` }
+        ],
+        pins: [
+          { name: `グレートディバイディング山脈`, lon: 147, lat: -28, color: 'var(--data-1)', detail: `オーストラリア大陸東岸を南北に走る山脈。東側と南東岸は温帯で人口が集中（シドニー・メルボルン等）。` },
+          { name: `グレートバリアリーフ`, lon: 148, lat: -18, color: 'var(--data-3)', detail: `オーストラリア北東岸の温かく美しい海に広がる世界最大のサンゴ礁地帯（世界遺産）。` },
+          { name: `大自流盆地`, lon: 141, lat: -25, color: 'var(--data-1)', detail: `グレートディバイディング山脈の西側に広がる大かんがい盆地。塩分を含む豊富な地下水があり、掘抜き井戸を利用。` },
+          { name: `中央〜西部砂漠地帯`, lon: 125, lat: -25, color: 'var(--data-2)', detail: `グレートサンディー砂漠やビクトリア砂漠が広がる乾燥帯。` },
+          { name: `ニュージーランド`, lon: 172.5, lat: -42, color: 'var(--data-3)', detail: `全域が温帯（主に西岸海洋性気候）。穏やかで降水量も安定し、牧草がよく育つ。` }
+        ]
+      },
+      agri: {
+        legend: [
+          { color: 'var(--data-2)', label: '羊（羊毛）' },
+          { color: 'var(--data-4)', label: '肉牛（牛肉）' },
+          { color: 'var(--data-3)', label: '小麦・酪農' }
+        ],
+        regions: [],
+        pins: [
+          { name: `羊の飼育・羊毛（内陸部）`, lon: 141, lat: -28, color: 'var(--data-2)', detail: `大自流盆地などの乾燥地では、掘抜き井戸で塩分を含む地下水をくみ上げ、乾燥に強い羊の牧畜を行う（世界の羊毛輸出1位：40.5%）。` },
+          { name: `肉牛の放牧（東部・北部）`, lon: 145, lat: -21, color: 'var(--data-4)', detail: `比較的降水量が多い東部〜北部では、食肉用の牛の放牧が盛ん。日本へも牛肉を輸出。` },
+          { name: `小麦栽培（南東部）`, lon: 145, lat: -35, color: 'var(--data-3)', detail: `温暖で適度な降水量がある南東部で大規模な小麦栽培が行われる。` },
+          { name: `小麦栽培（南西部）`, lon: 118, lat: -32, color: 'var(--data-3)', detail: `オーストラリア南西部の温暖な地域でも大型機械による小麦栽培が盛ん。` },
+          { name: `ニュージーランド（酪農・羊）`, lon: 174, lat: -40, color: 'var(--data-3)', detail: `西岸海洋性気候で牧草が育ちやすく、牛の酪農品が主要輸出品。羊（羊毛15.5%輸出・食肉用）も多い。` }
+        ]
+      },
+      mining: {
+        legend: [
+          { color: 'var(--data-4)', label: '鉄鉱石（北西部）' },
+          { color: 'var(--data-1)', label: '石炭（東部）' },
+          { color: 'var(--data-2)', label: 'ボーキサイト（北部）' }
+        ],
+        regions: [],
+        pins: [
+          { name: `鉄鉱石（北西部）`, lon: 118.5, lat: -22.5, color: 'var(--data-4)', detail: `マウントホエールバックなどの大規模な露天掘り鉱山が集中。世界輸出シェア45.8%で第1位。中国・日本等へ輸出。` },
+          { name: `石炭（東部）`, lon: 149, lat: -24, color: 'var(--data-1)', detail: `グレートディバイディング山脈周辺で露天掘りが盛ん。日本の石炭輸入先の63.2%をオーストラリアが占める。` },
+          { name: `ボーキサイト（北部）`, lon: 142, lat: -13, color: 'var(--data-2)', detail: `アルミニウムの原料。北部で露天掘りにより採掘され、世界の産出量第1位（28.7%）。` },
+          { name: `金・鉱産資源（西部）`, lon: 121.5, lat: -30.5, color: 'var(--data-2)', detail: `西部・内陸部で金の産出も多く（世界2位：9.3%）、北西沖では液化天然ガスも開発されている。` }
+        ]
+      }
+    };
+
+    function updateProgressUI() {
+      const revealedCount = revealedIds.size;
+      const progressText = document.getElementById('progress-text');
+      const progressFill = document.getElementById('progress-fill');
+      if (progressText) {
+        progressText.textContent = `${revealedCount} / ${TOTAL_BLANKS} 問 表示中`;
+      }
+      if (progressFill) {
+        const pct = Math.round((revealedCount / TOTAL_BLANKS) * 100);
+        progressFill.style.width = `${pct}%`;
+      }
+
+      const sections = [
+        { id: 'sec-1', labelId: 'sec1-count', total: 11 },
+        { id: 'sec-2', labelId: 'sec2-count', total: 8 },
+        { id: 'sec-3', labelId: 'sec3-count', total: 6 },
+        { id: 'sec-4', labelId: 'sec4-count', total: 10 }
+      ];
+      sections.forEach(sec => {
+        const el = document.getElementById(sec.labelId);
+        if (!el) return;
+        const chips = document.querySelectorAll(`.blank-chip[data-sec="${sec.id}"]`);
+        let count = 0;
+        chips.forEach(c => {
+          if (revealedIds.has(c.dataset.id)) count += 1;
+        });
+        el.textContent = `${count} / ${sec.total} 表示中`;
+      });
+    }
+
+    function applyRevealState() {
+      const allChips = document.querySelectorAll('.blank-chip');
+      allChips.forEach(chip => {
+        const id = chip.dataset.id;
+        const isShown = revealedIds.has(id);
+        chip.classList.toggle('is-revealed', isShown);
+        chip.setAttribute('aria-expanded', isShown ? 'true' : 'false');
+      });
+      updateProgressUI();
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            revealedIds: Array.from(revealedIds),
+            currentLayer: currentLayer
+          });
+        } catch (err) {
+          // Ignore transient host persistence errors silently
+        }
+      }
+    }
+
+    function toggleBlank(btn) {
+      if (!btn || !btn.dataset.id) return;
+      const id = btn.dataset.id;
+      if (revealedIds.has(id)) {
+        revealedIds.delete(id);
+      } else {
+        revealedIds.add(id);
+      }
+      applyRevealState();
+      persistState();
+    }
+
+    function revealAll() {
+      document.querySelectorAll('.blank-chip').forEach(chip => {
+        if (chip.dataset.id) revealedIds.add(chip.dataset.id);
+      });
+      applyRevealState();
+      persistState();
+    }
+
+    function hideAll() {
+      revealedIds.clear();
+      applyRevealState();
+      persistState();
+    }
+
+    function toggleSection(secId, show) {
+      const chips = document.querySelectorAll(`.blank-chip[data-sec="${secId}"]`);
+      chips.forEach(chip => {
+        if (!chip.dataset.id) return;
+        if (show) {
+          revealedIds.add(chip.dataset.id);
+        } else {
+          revealedIds.delete(chip.dataset.id);
+        }
+      });
+      applyRevealState();
+      persistState();
+    }
+
+    function toggleEssay(cardId, btn) {
+      const card = document.getElementById(cardId);
+      if (!card || !btn) return;
+      const isOpen = card.classList.toggle('is-open');
+      btn.textContent = isOpen ? `模範解答を隠す` : `模範解答を見る`;
+    }
+
+    function resetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = `もう一度押してリセット`;
+        return;
+      }
+      btn.dataset.armed = 'false';
+      btn.textContent = `学習進捗をリセット`;
+      revealedIds.clear();
+      applyRevealState();
+      document.querySelectorAll('.essay-card.is-open').forEach(card => {
+        card.classList.remove('is-open');
+        const toggleBtn = card.querySelector('button');
+        if (toggleBtn) toggleBtn.textContent = `模範解答を見る`;
+      });
+      persistState();
+    }
+
+    function setMapLayer(layerKey, btnEl) {
+      if (!MAP_DATA[layerKey]) return;
+      currentLayer = layerKey;
+      document.querySelectorAll('.layer-btn').forEach(b => {
+        b.classList.toggle('is-active', b.dataset.layer === layerKey);
+      });
+      renderMapOverlay();
+      persistState();
+    }
+
+    function renderMapOverlay() {
+      const layer = MAP_DATA[currentLayer];
+      const legendEl = document.getElementById('map-legend');
+      const noteEl = document.getElementById('map-detail-note');
+      if (legendEl && layer) {
+        legendEl.innerHTML = layer.legend.map(item => `
+          <span class="legend-item">
+            <span class="legend-dot" style="background: ${item.color};"></span>
+            <span>${item.label}</span>
+          </span>
+        `).join('');
+      }
+      if (noteEl) {
+        noteEl.textContent = `地図上の各地点（ピン）をクリックすると、その場所の特徴とテスト出題ポイントが表示されます。`;
+      }
+
+      if (!mapProjection || !mapPinGroup || !mapRegionGroup || !layer) return;
+
+      mapRegionGroup.selectAll('*').remove();
+      mapPinGroup.selectAll('*').remove();
+
+      layer.regions.forEach(reg => {
+        const pt = mapProjection([reg.lon, reg.lat]);
+        if (!pt) return;
+        const g = mapRegionGroup.append('g')
+          .attr('class', 'map-pin')
+          .attr('transform', `translate(${pt[0]}, ${pt[1]})`)
+          .on('click', () => {
+            if (noteEl) noteEl.innerHTML = `<strong>${reg.name}：</strong>${reg.desc}`;
+          });
+        g.append('rect')
+          .attr('x', -44)
+          .attr('y', -12)
+          .attr('width', 88)
+          .attr('height', 22)
+          .attr('rx', 3)
+          .attr('fill', 'var(--tertiary-soft)')
+          .attr('stroke', 'var(--tertiary)')
+          .attr('stroke-width', 1);
+        g.append('text')
+          .attr('text-anchor', 'middle')
+          .attr('y', 3)
+          .attr('font-size', '11px')
+          .attr('font-weight', '700')
+          .attr('fill', 'var(--tertiary)')
+          .text(reg.name);
+      });
+
+      layer.pins.forEach(pin => {
+        const pt = mapProjection([pin.lon, pin.lat]);
+        if (!pt) return;
+        const g = mapPinGroup.append('g')
+          .attr('class', 'map-pin')
+          .attr('transform', `translate(${pt[0]}, ${pt[1]})`)
+          .on('click', () => {
+            if (noteEl) noteEl.innerHTML = `<strong>${pin.name}：</strong>${pin.detail}`;
+          });
+
+        g.append('circle')
+          .attr('r', 11)
+          .attr('fill', 'transparent');
+        g.append('circle')
+          .attr('r', 6.5)
+          .attr('fill', pin.color)
+          .attr('stroke', 'var(--surface-container-low)')
+          .attr('stroke-width', 2);
+
+        const labelText = pin.name.split('（')[0];
+        g.append('text')
+          .attr('class', 'map-pin-label')
+          .attr('x', 9)
+          .attr('y', 4)
+          .attr('stroke', 'var(--surface-container-low)')
+          .attr('stroke-width', 3)
+          .attr('paint-order', 'stroke')
+          .text(labelText);
+      });
+    }
+
+    function initMap() {
+      const svgEl = document.getElementById('oceania-map');
+      if (!svgEl || typeof d3 === 'undefined' || typeof topojson === 'undefined') return;
+
+      const width = 520;
+      const height = 360;
+      mapSvg = d3.select('#oceania-map')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+      mapProjection = d3.geoMercator()
+        .center([146, -21])
+        .scale(350)
+        .translate([width * 0.45, height * 0.56]);
+
+      mapPath = d3.geoPath(mapProjection);
+
+      mapSvg.append('path')
+        .datum(d3.geoGraticule10())
+        .attr('d', mapPath)
+        .attr('fill', 'none')
+        .attr('stroke', 'var(--outline-variant)')
+        .attr('stroke-width', 0.6)
+        .attr('stroke-dasharray', '3 3');
+
+      const countryGroup = mapSvg.append('g');
+      mapRegionGroup = mapSvg.append('g');
+      mapPinGroup = mapSvg.append('g');
+
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json')
+        .then(r => r.json())
+        .then(topo => {
+          const countries = topojson.feature(topo, topo.objects.countries);
+          const focalNames = new Set([`Australia`, `New Zealand`, `Papua New Guinea`, `Fiji`, `Solomon Is.`, `Vanuatu`, `New Caledonia`]);
+          countryGroup.selectAll('path')
+            .data(countries.features)
+            .join('path')
+            .attr('d', mapPath)
+            .attr('fill', d => focalNames.has(d.properties && d.properties.name) ? 'var(--land-highlight)' : 'var(--land-fill)')
+            .attr('stroke', 'var(--land-stroke)')
+            .attr('stroke-width', 0.7);
+          renderMapOverlay();
+        })
+        .catch(() => {
+          const noteEl = document.getElementById('map-detail-note');
+          if (noteEl) {
+            noteEl.textContent = `地図データの読み込みに失敗しました。下のまとめ表と穴埋め問題で分布を確認してください。`;
+          }
+          renderMapOverlay();
+        });
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            if (Array.isArray(saved.revealedIds)) {
+              revealedIds = new Set(saved.revealedIds);
+            }
+            if (saved.currentLayer && MAP_DATA[saved.currentLayer]) {
+              currentLayer = saved.currentLayer;
+              document.querySelectorAll('.layer-btn').forEach(b => {
+                b.classList.toggle('is-active', b.dataset.layer === currentLayer);
+              });
+            }
+          }
+        } catch (err) {
+          // Proceed with fresh state
+        }
+      }
+
+      applyRevealState();
+      initMap();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+    });
+  </script>
+ </body>
+</html>
