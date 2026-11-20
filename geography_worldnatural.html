@@ -1,0 +1,1409 @@
+<!doctype html>
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';script-src 'self' 'unsafe-inline' blob: https://cdn.tailwindcss.com/3.4.17 https://unpkg.com/lucide@1.43.0/dist/umd/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/ https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/ https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/ https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.32.0/ https://cdn.jsdelivr.net/npm/echarts@6.1.0/dist/ https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/ https://cdn.jsdelivr.net/npm/three@0.160.0/build/ https://cdn.jsdelivr.net/npm/tone@14.9.17/build/ https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/ https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/ https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/ https://cdn.jsdelivr.net/npm/cytoscape@3.34.3/dist/ https://unpkg.com/roughjs@4.6.6/bundled/;style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css https://fonts.googleapis.com/css2 https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/ https://unpkg.com/leaflet@1.9.4/dist/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/ https://cdn.jsdelivr.net/npm/iconoir@7.12.1/css/;img-src 'self' blob: data: https://unpkg.com/leaflet@1.9.4/dist/images/ https://cdn.jsdelivr.net/npm/heroicons@2.2.0/ https://lh3.googleusercontent.com https://contribution.usercontent.google.com https://lh3.google.com/rd-notebooklm/ https://lh3-dz.googleusercontent.com/notebooklm-qual/ https://lh3-dz.sandbox.google.com/rd-notebooklm-qual/ https://lh3-dy.googleusercontent.com/notebooklm/ https://lh3-dy.sandbox.google.com/rd-notebooklm/;font-src 'self' data: https://fonts.gstatic.com/s/ https://fonts.gstatic.com/l/ https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/fonts/ https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/ https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/fonts/ https://www.gstatic.com/external_hosted/katex/dist/fonts/;connect-src 'self' https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/ https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/ https://cdn.jsdelivr.net/npm/plotly.js@2.32.0/dist/topojson/;frame-src 'none';media-src 'self' blob: data:;object-src 'none';base-uri 'none';form-action 'none';worker-src 'self' blob:">
+  <script>document.addEventListener('securitypolicyviolation',function(e){try{var u=e.blockedURI||'',s=e.sourceFile||'';if(!/^https?:/i.test(u)||/^(chrome|moz|safari|safari-web)-extension(:|$)/i.test(s)){return;}window.parent.postMessage({version:'1.0',action:'ResourceBlocked',payload:{uri:u,directive:e.effectiveDirective||''}},'*');}catch(_){}});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="briefing">
+  <title>世界地理 主要地形 まとめノート＆穴埋め演習</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Serif+JP:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700&amp;display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Briefing style tokens */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --tertiary: #785008;
+      --error: #b42318;
+      --on-error: #ffffff;
+
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      --font-headline: 'Noto Serif JP', 'Source Serif 4', serif;
+      --font-body: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', 'Noto Sans JP', monospace;
+
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.06em;
+
+      /* 3. Shared & semantic tokens */
+      --positive: #2b6e52;
+      --warning: #b85d00;
+      --focus: #1f4e5f;
+
+      /* Cloze interaction tokens */
+      --answer-red: #c81e1e;
+      --answer-bg: #fef2f2;
+      --answer-border: #f3b8b8;
+      --blank-bg: #eef4f6;
+      --blank-bg-hover: #dfecee;
+      --blank-border: #89a8b2;
+      --chip-bg: #f5e6c4;
+      --button-secondary-border: #c8c4b8;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+      --headline-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.45rem);
+      --subhead-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      position: static !important;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .page-grid * {
+      min-width: 0;
+    }
+
+    /* Header / Briefing Dossier Bar */
+    .dossier-header {
+      padding-bottom: var(--space-sm);
+    }
+
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      line-height: 1.2;
+    }
+
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      letter-spacing: 0;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      color: var(--secondary);
+      margin: var(--space-sm) 0 0 0;
+      max-width: 65ch;
+      line-height: 1.5;
+    }
+
+    /* Control Deck */
+    .control-deck {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-bottom: var(--card-border);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .control-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .progress-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1 1 240px;
+      max-width: 420px;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .progress-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-value {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+      line-height: 1;
+    }
+
+    .progress-value-sub {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--secondary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: var(--body-size);
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-in-out), transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .btn svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--button-secondary-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-container-high);
+    }
+
+    .btn-hint {
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      border-color: var(--blank-border);
+    }
+
+    .btn-hint[aria-pressed="true"] {
+      background: var(--chip-bg);
+      color: var(--tertiary);
+      border-color: var(--tertiary);
+    }
+
+    /* Filter Chips */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--card-border);
+    }
+
+    .filter-caption {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      margin-right: var(--space-xs);
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--button-secondary-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out);
+    }
+
+    .filter-chip:hover {
+      background: var(--surface-container-high);
+    }
+
+    .filter-chip:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .filter-chip.is-active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+
+    .filter-chip-idx {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      opacity: 0.8;
+    }
+
+    /* Continent Cards Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card-wrapper {
+      container-type: inline-size;
+    }
+
+    .continent-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--section-rule);
+    }
+
+    .card-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .card-index-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+    }
+
+    .card-stat-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-stat-badge.is-complete {
+      background: var(--chip-bg);
+      color: var(--tertiary);
+    }
+
+    .card-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--headline-size);
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn-card {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 1px solid var(--button-secondary-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out);
+    }
+
+    .btn-card:hover {
+      background: var(--surface-container-high);
+    }
+
+    .btn-card:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .card-summary {
+      margin: 0;
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border-left: 3px solid var(--secondary);
+    }
+
+    /* Subsections inside each continent card */
+    .topic-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .topic-group + .topic-group {
+      padding-top: var(--space-sm);
+      border-top: var(--card-border);
+    }
+
+    .topic-label {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--tertiary);
+      background: var(--chip-bg);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      line-height: 1.2;
+    }
+
+    .note-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .note-item {
+      position: relative;
+      padding-left: var(--space-md);
+      font-size: var(--body-size);
+      line-height: 2.05;
+      color: var(--on-surface);
+    }
+
+    .note-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+      background: var(--secondary);
+    }
+
+    /* Interactive Cloze Blank Button */
+    .cloze-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: baseline;
+      min-height: 30px;
+      min-width: 5.5em;
+      padding: var(--space-xs) var(--space-sm);
+      margin: 0 var(--space-xs);
+      border-radius: var(--rounded);
+      border: 1.5px solid var(--blank-border);
+      background-color: var(--blank-bg);
+      color: var(--secondary);
+      font-family: var(--font-body);
+      font-size: inherit;
+      font-weight: 700;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out), transform var(--dur-micro) var(--ease-out);
+      text-align: center;
+    }
+
+    .cloze-btn:hover {
+      background-color: var(--blank-bg-hover);
+      border-color: var(--secondary);
+    }
+
+    .cloze-btn:active {
+      transform: scale(0.98);
+    }
+
+    .cloze-btn:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .cloze-btn.is-revealed {
+      background-color: var(--answer-bg);
+      border-color: var(--answer-border);
+      color: var(--answer-red);
+      min-width: auto;
+      padding: var(--space-xs) var(--space-sm);
+    }
+
+    .cloze-btn.is-revealed:hover {
+      background-color: var(--surface-container-low);
+      border-color: var(--answer-red);
+    }
+
+    .cloze-num {
+      font-family: var(--font-label);
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-right: var(--space-xs);
+      opacity: 0.85;
+    }
+
+    /* Cross-Continent Reference Card */
+    .cross-review-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .cross-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .cross-panel {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .cross-panel-title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+
+    .cross-panel p {
+      margin: 0;
+      font-size: var(--label-size);
+      color: var(--on-surface);
+      line-height: 1.7;
+    }
+
+    .cross-panel strong {
+      color: var(--secondary);
+    }
+
+    /* Footer */
+    .dossier-footer {
+      border-top: var(--card-border);
+      padding-top: var(--space-md);
+      padding-bottom: var(--space-lg);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    @container (max-width: 440px) {
+      .continent-card {
+        padding: var(--space-md);
+      }
+      .card-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .card-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .control-deck {
+        padding: var(--space-md);
+      }
+      .action-group {
+        width: 100%;
+      }
+      .action-group .btn {
+        flex: 1 1 auto;
+      }
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .note-item {
+        line-height: 2.2;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="page-grid">
+   <header class="dossier-header">
+    <div class="dossier-bar">
+     <div class="dossier-bar-left">
+      <span class="dossier-pill">GEOGRAPHY DOSSIER</span> <span class="dossier-meta">世界地理 6州・主要地形マスター</span>
+     </div>
+     <span class="dossier-meta">山脈・高地 / 河川・湖沼・海洋 / 平原・盆地・砂漠 / 特殊地形</span>
+    </div>
+    <h1 class="title">世界地理 主要地形 まとめノート＆穴埋め演習</h1>
+    <p class="standfirst">各州の重要地形を特徴・気候・産業と結びつけて整理しました。青い空欄をタップ（クリック）すると赤文字で正解が表示されます。</p>
+   </header>
+   <section class="control-deck" aria-label="表示操作と州フィルター">
+    <div class="control-top-row">
+     <div class="progress-block">
+      <div class="progress-header">
+       <span class="progress-label">表示中の解答数</span> <span class="progress-value"> <span id="revealed-count">0</span> <span class="progress-value-sub">/ <span id="total-count">0</span> 語</span> </span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+       <div class="progress-fill" id="progress-fill"></div>
+      </div>
+     </div>
+     <div class="action-group">
+      <button type="button" class="btn btn-primary" id="btn-reveal-all" onclick="revealAllVisible()"> <i data-lucide="eye" aria-hidden="true"></i> <span>すべて表示</span> </button> <button type="button" class="btn btn-secondary" id="btn-hide-all" onclick="hideAllVisible()"> <i data-lucide="eye-off" aria-hidden="true"></i> <span>すべて隠す</span> </button> <button type="button" class="btn btn-hint" id="btn-toggle-hints" aria-pressed="false" onclick="toggleHints()"> <i data-lucide="sparkles" aria-hidden="true"></i> <span id="hint-btn-label">頭文字ヒント: OFF</span> </button>
+     </div>
+    </div>
+    <div class="filter-row" role="group" aria-label="州で絞り込み">
+     <span class="filter-caption">州で絞り込む:</span> <button type="button" class="filter-chip is-active" data-filter="all" onclick="setContinentFilter('all')"> <span>すべて（6州）</span> </button> <button type="button" class="filter-chip" data-filter="asia" onclick="setContinentFilter('asia')"> <span class="filter-chip-idx">01</span><span>アジア州</span> </button> <button type="button" class="filter-chip" data-filter="europe" onclick="setContinentFilter('europe')"> <span class="filter-chip-idx">02</span><span>ヨーロッパ州</span> </button> <button type="button" class="filter-chip" data-filter="africa" onclick="setContinentFilter('africa')"> <span class="filter-chip-idx">03</span><span>アフリカ州</span> </button> <button type="button" class="filter-chip" data-filter="north_america" onclick="setContinentFilter('north_america')"> <span class="filter-chip-idx">04</span><span>北アメリカ州</span> </button> <button type="button" class="filter-chip" data-filter="south_america" onclick="setContinentFilter('south_america')"> <span class="filter-chip-idx">05</span><span>南アメリカ州</span> </button> <button type="button" class="filter-chip" data-filter="oceania" onclick="setContinentFilter('oceania')"> <span class="filter-chip-idx">06</span><span>オセアニア州</span> </button>
+    </div>
+   </section>
+   <main>
+    <div id="cards-grid" class="card-grid" aria-live="polite"></div>
+   </main>
+   <section class="cross-review-card" aria-label="複数州をまたぐ横断チェック">
+    <div class="card-head">
+     <div class="card-title-group">
+      <span class="index-num">CROSS-CONTINENT CHECK</span>
+      <h2 class="card-title">定期テスト対策：複数州のつながり＆漢字チェック</h2>
+     </div>
+    </div>
+    <div class="cross-grid">
+     <div class="cross-panel">
+      <h3 class="cross-panel-title">造山帯の対比（山脈の成り立ちと資源）</h3>
+      <p><strong>新期造山帯（高く険しい）：</strong>ヒマラヤ山脈（アジア）・アルプス山脈（ヨーロッパ）・ロッキー山脈（北米）・アンデス山脈（南米）。地震や火山活動が活発。</p>
+      <p><strong>古期造山帯（なだらか）：</strong>アパラチア山脈（北米）・グレートディバイディング山脈（豪州）。周辺で石炭などを多く産出。</p>
+     </div>
+     <div class="cross-panel">
+      <h3 class="cross-panel-title">赤道直下の熱帯盆地と砂漠化</h3>
+      <p><strong>熱帯雨林の2大盆地：</strong>アフリカのコンゴ盆地と南アメリカのアマゾン盆地は、ともに赤道直下の熱帯雨林気候。</p>
+      <p><strong>世界一まとめ：</strong>最長の川＝ナイル川、最大の流域面積＝アマゾン川、最長の山脈＝アンデス山脈、最大の砂漠＝サハラ砂漠、最大の湖＝カスピ海、最大のサンゴ礁＝グレートバリアリーフ。</p>
+     </div>
+     <div class="cross-panel">
+      <h3 class="cross-panel-title">漢字・表記ミス注意リスト</h3>
+      <p><strong>「漠」と「幕」に注意：</strong>タクラマカン砂<strong>漠</strong>、ゴビ砂<strong>漠</strong>、サハラ砂<strong>漠</strong>（さんずい）。</p>
+      <p><strong>特殊地形の漢字：</strong>氷河<strong>侵食</strong>地形（フィヨルド）、大<strong>自流</strong>盆地（地下水）、新期<strong>造山帯</strong>（帯）。カタカナの長音「ー」の位置（プレー<strong>リ</strong>ー、グレートバ<strong>リ</strong>ア<strong>リ</strong>ーフ）も正確に覚えよう。</p>
+     </div>
+    </div>
+   </section>
+   <footer class="dossier-footer">
+    <span>出典：中学社会（地理的分野）世界の諸地域 学習資料・授業ノート</span> <span>使い方：空欄をクリック／タップして赤文字で正解を確認（再タップで非表示）</span>
+   </footer>
+  </div>
+  <script data-api-capabilities="CgoBGQQICg4CAwYH">(function(){'use strict';/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var aa=this||self;function ba(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"}function ca(a){return a};function da(a){aa.setTimeout(()=>{throw a;},0)};var ea,fa;a:{for(var ha=["CLOSURE_FLAGS"],ia=aa,ja=0;ja<ha.length;ja++)if(ia=ia[ha[ja]],ia==null){fa=null;break a}fa=ia}var ka=fa&&fa[748402147];ea=ka!=null?ka:!0;var la=/[-_.]/g,ma={"-":"+",_:"/",".":"="};function na(a){return ma[a]||""}function oa(a){a=la.test(a)?a.replace(la,na):a;a=atob(a);var b=new Uint8Array(a.length);for(let c=0;c<a.length;c++)b[c]=a.charCodeAt(c);return b}var k={};var u=class{constructor(a,b){pa(b);this.h=a;if(a!=null&&a.length===0)throw Error("ByteString should be constructed with non-empty values");}},qa;function pa(a){if(a!==k)throw Error("illegal external caller");};function ra(a,b){a.__closure__error__context__984382||(a.__closure__error__context__984382={});a.__closure__error__context__984382.severity=b};var sa=void 0;function ta(a){a=Error(a);ra(a,"warning");return a}function ua(a,b){if(a!=null){var c=sa??={};var d=c[a]||0;d>=b||(c[a]=d+1,a=Error(),ra(a,"incident"),da(a))}};function v(a,b=!1){return b&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol()}var va=v(),wa=v(),xa=v(),ya=v(),za=v(),Aa=v("m_m",!0);var w=v("jas",!0),y,Ba=[];Ba[w]=7;y=Object.freeze(Ba);function z(a){a[w]|=34;return a}function Ca(a){a[w]|=8192;return a}function Da(a){a[w]|=32;return a}function Ea(a,b){2&b&&(a|=2);return a|1};var Fa={};function A(a){return a!=null&&a[Aa]===Fa}function B(a,b){return b===void 0?a.h!==E&&!!(2&(a.j[w]|0)):!!(2&b)&&a.h!==E}var E={};class Ga{constructor(a,b,c){this.h=a;this.i=b;this.l=c}next(){var a=this.h.next();a.done||(a.value=this.i.call(this.l,a.value));return a}[Symbol.iterator](){return this}}Object.freeze({});
+function Ha(a,b,c){var d=b&128?0:-1,e=a.length,f;if(f=!!e)f=a[e-1],f=f!=null&&typeof f==="object"&&f.constructor===Object;var g=e+(f?-1:0);for(b=b&128?1:0;b<g;b++)c(b-d,a[b]);if(f){a=a[e-1];for(let h in a)!isNaN(h)&&c(+h,a[h])}}var Ia={};function Ja(a){a.ba=!0;return a};var Ka=Ja(a=>typeof a==="number"),La=Ja(a=>typeof a==="string");function F(a){if(La(a)){if(!/^\s*(?:-?[1-9]\d*|0)?\s*$/.test(a))throw Error(String(a));}else if(Ka(a)&&!Number.isSafeInteger(a))throw Error(String(a));return BigInt(a)}var Oa=Ja(a=>a>=Ma&&a<=Na),Ma=BigInt(Number.MIN_SAFE_INTEGER),Na=BigInt(Number.MAX_SAFE_INTEGER);var I=0,J=0;function Pa(a){var b=a>>>0;I=b;J=(a-b)/4294967296>>>0}function Qa(a){if(a<0){Pa(0-a);a=I;var b=J;b=~b;a?a=~a+1:b+=1;let [c,d]=[a,b];I=c>>>0;J=d>>>0}else Pa(a)}function Ra(a,b){b>>>=0;a>>>=0;var c;b<=2097151?c=""+(4294967296*b+a):c=""+(BigInt(b)<<BigInt(32)|BigInt(a));return c}function Sa(){var a=I,b=J,c;b&2147483648?c=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):c=Ra(a,b);return c};var Ta=typeof BigInt==="function"?BigInt.asIntN:void 0,K=Number.isSafeInteger,Ua=Number.isFinite,Va=Math.trunc;function Wa(a){if(a==null||typeof a==="number")return a;if(a==="NaN"||a==="Infinity"||a==="-Infinity")return Number(a)}var Xa=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;function Ya(a){switch(typeof a){case "bigint":return!0;case "number":return Ua(a);case "string":return Xa.test(a);default:return!1}}function Za(a){if(a!=null){if(!Ua(a))throw ta("enum");a|=0}return a}
+function $a(a){return a==null?a:Ua(a)?a|0:void 0}function ab(a){if(a!=null){if(typeof a!=="number")throw ta("int32");if(!Ua(a))throw ta("int32");a|=0}return a}function bb(a){if(a==null)return a;if(typeof a==="string"&&a)a=+a;else if(typeof a!=="number")return;return Ua(a)?a|0:void 0}function cb(a){a=Va(a);K(a)?a=String(a):(Qa(a),a=Sa());return a}function db(a){var b=Va(Number(a));if(K(b))return F(b);b=a.indexOf(".");b!==-1&&(a=a.substring(0,b));return F(Ta(64,BigInt(a)))}
+function eb(a){var b=typeof a;if(a==null)return a;if(b==="bigint")return F(Ta(64,a));if(Ya(a))return b==="string"?db(a):F(K(a)?a:cb(a))}function fb(a){return a==null||typeof a==="string"?a:void 0}function gb(a,b,c,d){if(A(a))return a;if(!Array.isArray(a))return c?d&2?b[va]||(b[va]=hb(b)):new b:void 0;c=a[w]|0;d=c|d&32|d&2;d!==c&&(a[w]=d);return new b(a)}function hb(a){a=new a;z(a.j);return a}function ib(a,b,c){if(b){if(typeof a!=="string")throw Error();}else a=fb(a)??(c?"":void 0);return a};function jb(a){return a};var kb={},lb=(()=>class extends Map{constructor(){super()}})();function mb(a){return a}function nb(a){if(a.v&2)throw Error("Cannot mutate an immutable Map");}
+var L=class extends lb{constructor(a,b,c=mb,d=mb){super();this.v=a[w]|0;this.u=b;this.G=c;this.R=this.u?ob:d;for(let e=0;e<a.length;e++){let f=a[e],g=c(f[0],!1,!0),h=f[1];b?h===void 0&&(h=null):h=d(f[1],!1,!0,void 0,void 0,this.v);super.set(g,h)}}L(a){return Ca(Array.from(super.entries(),a))}clear(){nb(this);super.clear()}delete(a){nb(this);return super.delete(this.G(a,!0,!1))}entries(){if(this.u){var a=super.keys();a=new Ga(a,pb,this)}else a=super.entries();return a}values(){if(this.u){var a=super.keys();
+a=new Ga(a,L.prototype.get,this)}else a=super.values();return a}forEach(a,b){this.u?super.forEach((c,d,e)=>{a.call(b,e.get(d),d,e)}):super.forEach(a,b)}set(a,b){nb(this);a=this.G(a,!0,!1);return a==null?this:b==null?(super.delete(a),this):super.set(a,this.R(b,!0,!0,this.u,!1,this.v))}has(a){return super.has(this.G(a,!1,!1))}get(a){a=this.G(a,!1,!1);var b=super.get(a);if(b!==void 0){var c=this.u;return c?(c=this.R(b,!1,!0,c,this.U,this.v),c!==b&&super.set(a,c),c):b}}[Symbol.iterator](){return this.entries()}};
+L.prototype.toJSON=void 0;function ob(a,b,c,d,e,f){a=gb(a,d,c,f);e&&(a=qb(a));return a}function pb(a){return[a,this.get(a)]}var rb;function sb(){return rb||=new L(z([]),void 0,void 0,void 0,kb)};function tb(a){var b=ca(xa);return b?a[b]:void 0}function ub(a,b){for(let c in a)!isNaN(c)&&b(a,+c,a[c])}function vb(a){var b=new wb;ub(a,(c,d,e)=>{b[d]=[...e]});b.h=a.h;return b}var wb=class{};function xb(a,b){b<100||ua(ya,1)};function yb(a,b,c,d){var e=d!==void 0;d=!!d;var f=ca(xa),g;!e&&f&&(g=a[f])&&ub(g,xb);f=[];var h=a.length;g=4294967295;var m=!1,n=!!(b&64),l=n?b&128?0:-1:void 0;if(!(b&1)){var p=h&&a[h-1];p!=null&&typeof p==="object"&&p.constructor===Object?(h--,g=h):p=void 0;!n||b&128||e||(m=!0,g=(zb??jb)(g-l,l,a,p,void 0)+l)}b=void 0;for(var r=0;r<h;r++){let q=a[r];if(q!=null&&(q=c(q,d))!=null)if(n&&r>=g){let t=r-l;(b??={})[t]=q}else f[r]=q}if(p)for(let q in p){h=p[q];if(h==null||(h=c(h,d))==null)continue;r=+q;let t;
+n&&!Number.isNaN(r)&&(t=r+l)<g?f[t]=h:(b??={})[q]=h}b&&(m?f.push(b):f[g]=b);e&&(c=ca(xa))&&(a=tb(a))&&a instanceof wb&&(f[c]=vb(a));return f}function Ab(a){a[0]=Bb(a[0]);a[1]=Bb(a[1]);return a}
+function Bb(a){switch(typeof a){case "number":return Number.isFinite(a)?a:""+a;case "bigint":return Oa(a)?Number(a):""+a;case "boolean":return a?1:0;case "object":if(Array.isArray(a)){var b=a[w]|0;return a.length===0&&b&1?void 0:yb(a,b,Bb)}if(A(a))return Cb(a);if(a instanceof u){b=a.h;if(b==null)a="";else if(typeof b==="string")a=b;else{let c="",d=0,e=b.length-10240;for(;d<e;)c+=String.fromCharCode.apply(null,b.subarray(d,d+=10240));c+=String.fromCharCode.apply(null,d?b.subarray(d):b);b=btoa(c);a=
+a.h=b}return a}if(a instanceof L)return a=a.size!==0?a.L(Ab):void 0,a;return}return a}var zb;function Cb(a){a=a.j;return yb(a,a[w]|0,Bb)};var Db,Eb;function Fb(a){switch(typeof a){case "boolean":return Db||=[0,void 0,!0];case "number":return a>0?void 0:a===0?Eb||=[0,void 0]:[-a,void 0];case "string":return[0,a];case "object":return a}}function Gb(a,b){return Hb(a,b[0],b[1])}
+function Hb(a,b,c,d=0){if(a==null){var e=32;c?(a=[c],e|=128):a=[];b&&(e=e&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");e=a[w]|0;if(ea&&1&e)throw Error("rfarr");2048&e&&!(2&e)&&Ib();if(e&256)throw Error("farr");if(e&64)return(e|d)!==e&&(a[w]=e|d),a;if(c&&(e|=128,c!==a[0]))throw Error("mid");a:{c=a;e|=64;var f=c.length;if(f){var g=f-1;let m=c[g];if(m!=null&&typeof m==="object"&&m.constructor===Object){b=e&128?0:-1;g-=b;if(g>=1024)throw Error("pvtlmt");for(var h in m)if(f=+h,
+f<g)c[f+b]=m[h],delete m[h];else break;e=e&-16760833|(g&1023)<<14;break a}}if(b){h=Math.max(b,f-(e&128?0:-1));if(h>1024)throw Error("spvt");e=e&-16760833|(h&1023)<<14}}}a[w]=e|64|d;return a}function Ib(){if(ea)throw Error("carr");ua(za,5)};function Jb(a,b){if(typeof a!=="object")return a;if(Array.isArray(a)){var c=a[w]|0;return a.length===0&&c&1?void 0:Kb(a,c,b)}if(A(a))return Lb(a);if(a instanceof L){b=a.v;if(b&2)return a;if(!a.size)return;c=z(a.L());if(a.u)for(a=0;a<c.length;a++){let d=c[a],e=d[1];e==null||typeof e!=="object"?e=void 0:A(e)?e=Lb(e):Array.isArray(e)?e=Kb(e,e[w]|0,!!(b&32)):e=void 0;d[1]=e}return c}if(a instanceof u)return a}
+function Kb(a,b,c){if(b&2)return a;!c||4096&b||16&b?a=Mb(a,b,!1,c&&!(b&16)):(a[w]|=34,b&4&&Object.freeze(a));return a}function Nb(a,b,c){a=new a.constructor(b);c&&(a.h=E);a.l=E;return a}function Lb(a){var b=a.j,c=b[w]|0;return B(a,c)?a:Ob(a,b,c)?Nb(a,b):Mb(b,c)}function Mb(a,b,c,d){d??=!!(34&b);a=yb(a,b,Jb,d);d=32;c&&(d|=2);b=b&16769217|d;a[w]=b;return a}function qb(a){var b=a.j,c=b[w]|0;if(B(a,c)){var d;Ob(a,b,c)?d=Nb(a,b,!0):d=new a.constructor(Mb(b,c,!1));a=d}return a}
+function Pb(a){if(a.h!==E)return!1;var b=a.j;b=Mb(b,b[w]|0);b[w]|=2048;a.j=b;a.h=void 0;a.l=void 0;return!0}function Qb(a){if(!Pb(a)&&B(a,a.j[w]|0))throw Error();}function M(a,b){b===void 0&&(b=a[w]|0);b&32&&!(b&4096)&&(a[w]=b|4096)}function Ob(a,b,c){return c&2?!0:c&32&&!(c&4096)?(b[w]=c|2,a.h=E,!0):!1};function N(a,b,c,d){a=O(a.j,b,c,d);if(a!==null)return a}function Rb(a,b,c){return O(a,b,void 0,c)}function O(a,b,c,d){if(b===-1)return null;var e=b+(c?0:-1),f=a.length-1;if(!(f<1+(c?0:-1))){if(e>=f){var g=a[f];if(g!=null&&typeof g==="object"&&g.constructor===Object){c=g[b];var h=!0}else if(e===f)c=g;else return}else c=a[e];if(d&&c!=null){d=d(c);if(d==null)return d;if(!Object.is(d,c))return h?g[b]=d:a[e]=d,d}return c}}function Sb(a,b,c){Qb(a);a=a.j;P(a,a[w]|0,b,c)}
+function P(a,b,c,d,e){var f=c+(e?0:-1),g=a.length-1;if(g>=1+(e?0:-1)&&f>=g){let h=a[g];if(h!=null&&typeof h==="object"&&h.constructor===Object)return h[c]=d,b}if(f<=g)return a[f]=d,b;d!==void 0&&(g=(b??=a[w]|0)>>14&1023||536870912,c>=g?d!=null&&(a[g+(e?0:-1)]={[c]:d}):a[f]=d);return b}function Tb(a){a=O(a.j,2);return A(a)||Array.isArray(a)}
+function Ub(a,b,c,d,e,f,g,h){var m=b,n=Vb(b);n&&f===2&&(a=[...a],m=0,b=Wb(b,d),d=P(c,d,e,a),n=!1);n||(f===1||(f!==4?0:2&b||!(16&b)&&32&d)?(b|=!a.length||g&&!(4096&b)||32&d&&!(4096&b||16&b)?2:256,b!==m&&(a[w]=b),Object.freeze(a)):(h||(b|=16),b!==m&&(a[w]=b)));2&b||!(4096&b||16&b)||M(c,d);return a}function Xb(a,b,c){a=O(a,b,c);return Array.isArray(a)?a:y}function Vb(a){return!!(2&a)&&!!(4&a)||!!(256&a)}
+function Yb(a){var b=Zb;var c=a.j;var d=c[w]|0;var e=B(a,d);a:{!e&&Pb(a)&&(c=a.j,d=c[w]|0);var f=O(c,1);a=!1;if(f==null){if(e){c=sb();break a}f=[]}else if(f.constructor===L)if(f.v&2&&!e)f=f.L();else{c=f;break a}else Array.isArray(f)?a=!!((f[w]|0)&2):f=[];if(e){if(!f.length){c=sb();break a}a||(a=!0,z(f))}else if(a){a=!1;Ca(f);f=[...f];for(let g=0;g<f.length;g++){let h=f[g]=[...f[g]];Array.isArray(h[1])&&(h[1]=z(h[1]))}f=Ca(f)}!a&&d&32&&Da(f);f=new L(f,b,ib,void 0);d=P(c,d,1,f);a||M(c,d);c=f}!e&&b&&
+(c.U=!0);return c}function Q(a,b,c,d){Qb(a);var e=a.j;P(e,e[w]|0,b,(d==="0"?Number(c)===0:c===d)?void 0:c);return a}function $b(a,b,c,d){Qb(a);var e=a.j,f=e[w]|0;if(d==null){var g=ac(e);if(bc(g,e,f,c)===b)g.set(c,0);else return a}else{g=ac(e);let h=bc(g,e,f,c);h!==b&&(h&&(f=P(e,f,h)),g.set(c,b))}P(e,f,b,d);return a}function R(a,b,c){return cc(a.j,b)===c?c:-1}function cc(a,b){return bc(ac(a),a,void 0,b)}function ac(a){return a[wa]??(a[wa]=new Map)}
+function bc(a,b,c,d){var e=a.get(d);if(e!=null)return e;e=0;for(let f=0;f<d.length;f++){let g=d[f];O(b,g)!=null&&(e!==0&&(c=P(b,c,e)),e=g)}a.set(d,e);return e}function dc(a,b,c){var d=a[w]|0,e=d&128?Ia:void 0,f=O(a,c,e);if(A(f)){if(!B(f))return Pb(f),f.j;var g=f.j}else Array.isArray(f)&&(g=f,d&2&&z(g));if(g){let h=g[w]|0;h&2&&(g=Mb(g,h))}g=Gb(g,b);g!==f&&P(a,d,c,g,e);return g}
+function ec(a,b,c,d){var e=!1;d=Rb(a,d,f=>{var g=gb(f,c,!1,b);e=g!==f&&g!=null;return g});if(d!=null)return e&&!B(d)&&M(a,b),d}function fc(a){var b=hc;a=a.j;return ec(a,a[w]|0,b,2)||b[va]||(b[va]=hb(b))}function ic(a,b,c){var d=a.j,e=d[w]|0;b=ec(d,e,b,c);if(b==null)return b;e=d[w]|0;if(!B(a,e)){let f=qb(b);f!==b&&(Pb(a)&&(d=a.j,e=d[w]|0),b=f,e=P(d,e,c,b),M(d,e))}return b}
+function jc(a,b,c,d,e,f,g,h){f=f&&f!==4?f!==1&&(a?B(a,c):2&c)?1:f:4;g=!!g||f===3;var m=!!h&&!(a?B(a,c):2&c);(f===2||m)&&a&&Pb(a)&&(b=a.j,c=b[w]|0);a=Xb(b,e);var n=a===y?7:a[w]|0,l=Ea(n,c);if(h=!(4&l)){var p=a,r=c;let q=!!(2&l);q&&(r|=2);let t=!q,G=!0,C=0,D=0;for(;C<p.length;C++){let H=gb(p[C],d,!1,r);if(H instanceof d){if(!q){let x=B(H);t&&=!x;G&&=x}p[D++]=H}}D<C&&(p.length=D);l|=4;l=G?l&-4097:l|4096;l=t?l|8:l&-9}l!==n&&(a[w]=l,2&l&&Object.freeze(a));if(m&&!(8&l||!a.length&&(f===1||(f!==4?0:2&l||
+!(16&l)&&32&c)))){Vb(l)&&(a=[...a],l=Wb(l,c),c=P(b,c,e,a));d=a;m=l;for(n=0;n<d.length;n++)p=d[n],l=qb(p),p!==l&&(d[n]=l);m|=8;l=m=d.length?m|4096:m&-4097;a[w]=l}return a=Ub(a,l,b,c,e,f,h,g)}function kc(a,b,c){var d=a.j;return jc(a,d,d[w]|0,b,c,void 0,!1,!0)}function lc(a){a==null&&(a=void 0);return a}function mc(a,b,c){c=lc(c);Sb(a,b,c);c&&!B(c)&&M(a.j);return a}function nc(a,b,c){var d=S;c=lc(c);$b(a,b,d,c);c&&!B(c)&&M(a.j);return a}function Wb(a,b){return a=(2&b?a|2:a&-3)&-273}
+function oc(a,b,c,d,e,f){Qb(a);var g=a.j;a=jc(a,g,g[w]|0,c,b,2,!0);if(f){if(typeof e!=="number"||e<0||e>a.length)throw Error();}else d=d!=null?d:new c;e!=void 0?a.splice(e,f,d):a.push(d);e=c=a===y?7:a[w]|0;(d=B(d))?(c&=-9,a.length===1&&(c&=-4097)):c|=4096;c!==e&&(a[w]=c);d||M(g)};var T=class{constructor(a,b,c){this.buffer=a;if(c&&!b)throw Error();this.h=b}};
+function pc(a,b){if(typeof a==="string")return new T(oa(a),b);if(Array.isArray(a))return new T(new Uint8Array(a),b);if(a.constructor===Uint8Array)return new T(a,!1);if(a.constructor===ArrayBuffer)return a=new Uint8Array(a),new T(a,!1);if(a.constructor===u)return pa(k),b=a.h,b=b==null||b!=null&&b instanceof Uint8Array?b:typeof b==="string"?oa(b):null,b=(b==null?b:a.h=b)||new Uint8Array(0),new T(b,!0,a);if(a instanceof Uint8Array)return a=a.constructor===Uint8Array?a:new Uint8Array(a.buffer,a.byteOffset,
+a.byteLength),new T(a,!1);throw Error();};function U(a){var b=a.l,c=a.h,d=b[c++],e=d&127;if(d&128&&(d=b[c++],e|=(d&127)<<7,d&128&&(d=b[c++],e|=(d&127)<<14,d&128&&(d=b[c++],e|=(d&127)<<21,d&128&&(d=b[c++],e|=d<<28,d&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128&&b[c++]&128)))))throw Error();qc(a,c);return e}function qc(a,b){a.h=b;if(b>a.i)throw Error();}
+var rc=class{constructor(a,b,c,d){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.init(a,b,c,d)}init(a,b,c,{J:d=!1,M:e=!1}={}){this.J=d;this.M=e;a&&(a=pc(a,this.M),this.l=a.buffer,this.o=a.h,this.m=b||0,this.i=c!==void 0?this.m+c:this.l.length,this.h=this.m)}clear(){this.l=null;this.o=!1;this.h=this.i=this.m=0;this.J=!1}},sc=[];var V=0;function tc(a,b,c,d){if(uc.length){let e=uc.pop();vc(e,d);e.h.init(a,b,c,d);return e}return new wc(a,b,c,d)}function vc(a,{N:b=!1}={}){a.N=b}function xc(a){a.h.clear();a.l=-1;a.i=-1;uc.length<100&&uc.push(a)}function yc(a){var b=a.h;if(b.h==b.i)return!1;a.m=a.h.h;var c=U(a.h)>>>0;b=c>>>3;c&=7;if(!(c>=0&&c<=5))throw Error();if(b<1)throw Error();a.l=b;a.i=c;return!0}
+function zc(a){try{switch(a.i){case 0:if(a.i!=0)zc(a);else a:{var b=a.h;let h=b.h;a=h+10;let m=b.l;for(;h<a;)if((m[h++]&128)===0){qc(b,h);break a}throw Error();}break;case 1:var c=a.h;qc(c,c.h+8);break;case 2:if(a.i!=2)zc(a);else{var d=U(a.h)>>>0,e=a.h;qc(e,e.h+d)}break;case 5:var f=a.h;qc(f,f.h+4);break;case 3:Ac();let g=a.l;try{do{if(!yc(a))throw Error();if(a.i==4){if(a.l!=g)throw Error();break}zc(a)}while(1)}catch(h){if(h instanceof RangeError)throw new SyntaxError;throw h;}finally{V>0&&V--}break;
+default:throw Error();}}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}}function Ac(){if(V>=100)throw new SyntaxError;V++}function Bc(a,b,c){var d=a.h.i,e=U(a.h)>>>0;e=a.h.h+e;var f=e-d;f<=0&&(a.h.i=e,c(b,a,void 0,void 0,void 0),f=e-a.h.h);if(f)throw Error();a.h.h=e;a.h.i=d}var wc=class{constructor(a,b,c,d){if(sc.length){let e=sc.pop();e.init(a,b,c,d);a=e}else a=new rc(a,b,c,d);this.h=a;this.m=this.h.h;this.i=this.l=-1;vc(this,d)}},uc=[];function Cc(){var a=class{constructor(){throw Error();}};Object.setPrototypeOf(a,a.prototype);return a}var Dc=Cc(),Ec=Cc();function Fc(a){return JSON.stringify(Cb(a))}var W=class{constructor(a){this.j=Hb(a,void 0,void 0,2048)}toJSON(){return Cb(this)}};W.prototype[Aa]=Fa;W.prototype.toString=function(){return this.j.toString()};var Gc=class{constructor(a,b){this.h=a;a=ca(Dc);this.i=!!a&&b===a||!1}},Hc=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Ic=new Gc(function(a,b,c,d,e){if(a.i!==2)return!1;Bc(a,dc(b,d,c),e);return!0},Dc),Jc=Symbol(),Kc=Symbol(),Lc=Symbol(),Mc,Nc;
+function Oc(a){var b=Pc,c=Qc,d=a[Jc];if(d)return d;d={};d.T=a;d.K=Fb(a[0]);var e=a[1],f=1;e&&e.constructor===Object&&(d.extensions=e,e=a[++f],typeof e==="function"&&e.length>0&&(d.Y=!0,Mc??=e,Nc??=a[f+1],e=a[f+=2]));for(var g={};e&&Array.isArray(e)&&e.length&&typeof e[0]==="number"&&e[0]>0;){for(var h=0;h<e.length;h++)g[e[h]]=e;e=a[++f]}for(h=1;e!==void 0;){typeof e==="number"&&(h+=e,e=a[++f]);let l;var m=void 0;e instanceof Gc?l=e:(l=Hc,f--);if(l?.i){e=a[++f];m=a;var n=f;typeof e==="function"&&(e=
+e(),m[n]=e);m=e}e=a[++f];n=h+1;typeof e==="number"&&e<0&&(n-=e,e=a[++f]);for(;h<n;h++){let p=g[h];m?c(d,h,l,m,p):b(d,h,l,p)}}return a[Jc]=d};function Pc(a,b,c,d){var e=c.h;a[b]=d?(f,g,h)=>e(f,g,h,d):e}function Qc(a,b,c,d,e){var f=c.h,g,h;a[b]=(m,n,l)=>f(m,n,l,h||=Oc(d).K,g||=Rc(d),e)}
+function Rc(a){var b=a[Kc];if(b!=null)return b;var c=Oc(a);b=c.Y?(d,e)=>Mc(d,e,c):(d,e)=>{a:{Ac();try{for(;yc(e)&&e.i!=4;){let G=e.l,C=c[G];if(C==null){let D=c.extensions;if(D){let H=D[G];if(H){let x=Sc(H);x!=null&&(C=c[G]=x)}}}if(C==null||!C(e,d,G)){var f=e;let D=f.m;zc(f);if(f.N)var g=void 0;else{let H=f.h.h-D;f.h.h=D;c:{var h=f.h;f=H;if(f==0){g=qa||=new u(null,k);break c}if(f<0)throw Error();let x=h.h;var m=x+f;if(m>h.i)throw Error();h.h=m;if(h.J&&h.o)var n=h.l.subarray(x,x+f);else{var l=h.l;m=
+x;f=x+f;n=m===f?new Uint8Array(0):l.slice(m,f)}f=n;g=f.length==0?qa||=new u(null,k):new u(f,k)}}f=void 0;m=d;var p=G,r=g;r&&((f=m[xa]??(m[xa]=new wb))[p]??(f[p]=[])).push(r)}}let t=tb(d);t&&(t.h=c.T[Lc]);var q=!0;break a}catch(t){if(t instanceof RangeError)throw new SyntaxError;throw t;}finally{V>0&&V--}q=void 0}return q};a[Kc]=b;a[Lc]=Tc.bind(a);return b}
+function Tc(a,b,c,d){var e=this[Jc],f=this[Kc],g=Gb(void 0,e.K),h=tb(a);if(h){var m=!1,n=e.extensions;if(n){e=(l,p,r)=>{if(r.length!==0)if(n[p])for(let q of r){l=tc(q);try{m=!0,f(g,l)}finally{xc(l)}}else d?.(a,p,r)};if(b==null)ub(h,e);else if(h!=null){let l=h[b];l&&e(h,b,l)}if(m){let l=a[w]|0;if(l&2&&l&2048&&!c?.da)throw Error();let p=l&128?Ia:void 0,r=(q,t)=>{if(O(a,q,p)!=null)switch(c?.ca){case 1:return;default:throw Error();}t!=null&&(l=P(a,l,q,t,p));delete h[q]};b==null?Ha(g,g[w]|0,(q,t)=>{r(q,
+t)}):r(b,O(g,b,p))}}}}function Sc(a){a=Array.isArray(a)?a[0]instanceof Gc?a:[Ic,a]:[a,void 0];var b=a[0].h;if(a=a[1]){let c=Rc(a),d=Oc(a).K;return(e,f,g)=>b(e,f,g,d,c)}return b};function Uc(a){return b=>{if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");b=new a(Da(b))}return b}};function Vc(a){var b=new Wc,c=Yb(b);for(let d in a){let e=a[d];e!==void 0&&c.set(d,Xc(e))}return b}function Yc(a){var b={};Yb(a).forEach(function(c,d){b[d]=Zc(c)});return b}var Wc=class extends W{},$c=Uc(Wc);
+function Xc(a){var b=new Zb;switch(ba(a)){case "string":if(a!=null&&typeof a!=="string")throw Error();return $b(b,3,S,a);case "number":if(a!=null&&typeof a!=="number")throw Error(`Value of float/double field must be a number, found ${typeof a}: ${a}`);return $b(b,2,S,a);case "boolean":if(a!=null&&typeof a!=="boolean")throw Error(`Expected boolean but got ${ba(a)}: ${a}`);return $b(b,4,S,a);case "null":return $b(b,1,S,Za(0));case "array":let e=new ad;for(let f=0;f<a.length;f++){var c=e,d=Xc(a[f]);
+oc(c,1,Zb,d)}return nc(b,6,e);case "object":return a=Vc(a),nc(b,5,a);default:throw Error("Unexpected struct type.");}}
+function Zc(a){switch(cc(a.j,S)){case 1:return null;case 2:var b=R(a,S,2);return N(a,b,void 0,Wa)??0;case 3:return b=R(a,S,3),fb(N(a,b))??"";case 4:return b=R(a,S,4),a=N(a,b),(a==null||typeof a==="boolean"?a:typeof a==="number"?!!a:void 0)??!1;case 5:return Yc(ic(a,Wc,R(a,S,5)));case 6:b=ic(a,ad,R(a,S,6));a=[];b=kc(b,Zb,1);for(let c=0;c<b.length;c++)a[c]=Zc(b[c]);return a;default:throw Error("Unexpected struct type");}}var Zb=class extends W{},ad=class extends W{},S=[1,2,3,4,5,6];var bd=class extends W{getAppState(){return ic(this,Wc,1)}setAppState(a){return mc(this,1,a)}};function cd(a){var b=Number;var c=N(a,1,void 0,eb),d=typeof c;if(c!=null)if(d==="bigint")c=String(Ta(64,c));else if(Ya(c))if(d==="string")d=Va(Number(c)),K(d)?c=String(d):(d=c.indexOf("."),d!==-1&&(c=c.substring(0,d)),d=c.length,(c[0]==="-"?d<20||d===20&&c<="-9223372036854775808":d<19||d===19&&c<="9223372036854775807")||(c.length<16?Qa(Number(c)):(c=BigInt(c),I=Number(c&BigInt(4294967295))>>>0,J=Number(c>>BigInt(32)&BigInt(4294967295))),c=Sa()));else{if(c=Va(c),!K(c)){Qa(c);d=I;var e=J;if(c=e&2147483648)d=
+~d+1>>>0,e=~e>>>0,d==0&&(e=e+1>>>0);let f=e*4294967296+(d>>>0);d=Number.isSafeInteger(f)?f:Ra(d,e);c=typeof d==="number"?c?-d:d:c?"-"+d:d}}else c=void 0;b=b(c??"0");a=bb(N(a,2))??0;return new Date(b*1E3+a/1E6)}function dd(a,b){Number.isFinite(b)||(b=0);var c=Math.floor(b/1E3);if(c!=null)a:{if(!Ya(c))throw ta("int64");switch(typeof c){case "string":c=db(c);break a;case "bigint":c=F(Ta(64,c));break a;default:c=F(K(c)?c:cb(c))}}a=Q(a,1,c,"0");Q(a,2,ab((b%1E3+1E3)%1E3*1E6),0)}var hc=class extends W{};var ed=class extends W{i(){return $a(N(this,1))??0}};var fd=class extends W{};function gd(a){return kc(a,fd,4)}function hd(a){var b=new id;Qb(b);var c=b.j,d=c[w]|0;if(a==null)P(c,d,4);else{var e=a===y?7:a[w]|0,f=e,g=Vb(e),h=g||Object.isFrozen(a),m=!0,n=!0;for(let p=0;p<a.length;p++){var l=a[p];g||(l=B(l),m&&=!l,n&&=l)}g||(e=m?13:5,e=n?e&-4097:e|4096);h&&e===f||(a=[...a],f=0,e=Wb(e,d));e!==f&&(a[w]=e);d=P(c,d,4,a);2&e||!(4096&e||16&e)||M(c,d)}return b}var id=class extends W{setScheduledNotificationConfigs(a,b){oc(this,4,fd,b,a,1);return this}},jd=Uc(id),kd=[1,2,3,6];function ld(a){a=a.j;var b=a[w]|0,c=Xb(a,1),d=c===y?7:c[w]|0,e=Ea(d,b),f=!(4&e);if(f){let g=0,h=0;for(;g<c.length;g++){let m=$a(c[g]);m!=null&&(c[h++]=m)}h<g&&(c.length=h);e=(e|4)&-513;e&=-1025;e&=-4097}e!==d&&(c[w]=e,2&e&&Object.freeze(c));return c=Ub(c,e,a,b,1,4,f,!1)}var md=class extends W{};var nd=function(a,b){return(c,d)=>{a:{let f={M:!0};d&&Object.assign(f,d);c=tc(c,void 0,void 0,f);try{let g=new a,h=g.j;Rc(b)(h,c);var e=g;break a}catch(g){if(g instanceof RangeError)throw new SyntaxError;throw g;}finally{xc(c)}e=void 0}return e}}(md,[0,new Gc(function(a,b,c){if(a.i!==0&&a.i!==2)return!1;var d=b[w]|0;if(d&2)throw Error();var e=d&128?Ia:void 0,f=Xb(b,c,e),g=f===y?7:f[w]|0,h=Ea(g,d);if(2&h||Vb(h)||16&h)h===g||Vb(h)||(f[w]=h),f=[...f],g=0,h=Wb(h,d),P(b,d,c,f,e);h&=-13;h!==g&&(f[w]=h);
+b=f;if(a.i==2)for(c=U(a.h)>>>0,c=a.h.h+c;a.h.h<c;)b.push(U(a.h));else b.push(U(a.h));return!0},Ec)]);/*
+
+
+ Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+var od=class extends Error{constructor(a){super(a?`${a.length} errors occurred during unsubscription:
+${a.map((b,c)=>`${c+1}) ${b.toString()}`).join("\n  ")}`:"");this.h=a;Object.setPrototypeOf(this,new.target.prototype);this.name="UnsubscriptionError"}};function pd(a,b){a&&(b=a.indexOf(b),0<=b&&a.splice(b,1))};function X(a){return typeof a==="function"};var Y=class{constructor(a){this.D=a;this.closed=!1;this.l=this.i=null}unsubscribe(){if(!this.closed){this.closed=!0;let c=this.i;if(Array.isArray(c))for(var a of c)a.remove(this);else c?.remove(this);a=this.D;if(X(a))try{a()}catch(e){var b=e instanceof od?e.h:[e]}let d=this.l;if(d){this.l=null;for(let e of d)try{X(e)?e():e.unsubscribe()}catch(f){b=b??[],f instanceof od?b=[...b,...f.h]:b.push(f)}}if(b)throw new od(b);}}add(a){if(a&&a!==this)if(this.closed)X(a)?a():a.unsubscribe();else{if(a instanceof
+Y){if(a.closed||a.H(this))return;a.m(this)}(this.l=this.l??[]).push(a)}}H(a){var b=this.i;return b===a||Array.isArray(b)&&b.includes(a)}m(a){var b=this.i;this.i=Array.isArray(b)?(b.push(a),b):b?[b,a]:a}C(a){var b=this.i;b===a?this.i=null:Array.isArray(b)&&pd(b,a)}remove(a){var b=this.l;b&&pd(b,a);a instanceof Y&&a.C(this)}},qd=Y,rd=new Y;rd.closed=!0;qd.h=rd;function sd(a){return a instanceof Y||a&&"closed"in a&&X(a.remove)&&X(a.add)&&X(a.unsubscribe)};function td(a){setTimeout(()=>{throw a;})};var wd=class extends Y{static create(a,b,c){return new ud(a,b,c)}constructor(){super();this.h=!1;this.destination=new vd({next:void 0});sd()&&(void 0).add(this)}next(a){this.h||this.I(a)}error(a){this.h||(this.h=!0,this.B(a))}complete(){this.h||(this.h=!0,this.o())}unsubscribe(){this.closed||(this.h=!0,super.unsubscribe())}I(a){this.destination.next(a)}B(a){this.destination.error(a);this.unsubscribe()}o(){this.destination.complete();this.unsubscribe()}};
+class vd{constructor(a){this.h=a}next(a){var b=this.h;if(b.next)try{b.next(a)}catch(c){td(c)}}error(a){var b=this.h;if(b.error)try{b.error(a)}catch(c){td(c)}else td(a)}complete(){var a=this.h;if(a.complete)try{a.complete()}catch(b){td(b)}}}var ud=class extends wd{constructor(a,b,c){super();var d;X(a)||!a?d={next:a??void 0,error:b??void 0,complete:c??void 0}:d=a;this.destination=new vd(d)}};var xd=typeof Symbol==="function"&&Symbol.observable||"@@observable";var yd=class{constructor(a){a&&(this.i=a)}subscribe(a,b,c){a=a&&a instanceof wd||a&&X(a.next)&&X(a.error)&&X(a.complete)&&sd(a)?a:new ud(a,b,c);b=this.aa;c=this.source;a.add(b?b.call(a,c):c?this.i(a):this.o(a));return a}o(a){try{return this.i(a)}catch(b){a.error(b)}}forEach(a,b){b=b??void 0??Promise;return new b((c,d)=>{var e=this.subscribe(f=>{try{a(f)}catch(g){d(g),e?.unsubscribe()}},d,c)})}i(a){return this.source?.subscribe(a)}[xd](){return this}};yd.create=a=>new yd(a);var zd=class extends Error{constructor(){super("object unsubscribed");Object.setPrototypeOf(this,new.target.prototype);this.name="ObjectUnsubscribedError"}};var Ad=class extends yd{constructor(){super();this.m=[];this.B=this.h=this.closed=!1;this.D=null}l(){if(this.closed)throw new zd;}next(a){this.l();if(!this.h){let b=this.m.slice();for(let c of b)c.next(a)}}error(a){this.l();if(!this.h){this.B=this.h=!0;this.D=a;let b=this.m;for(;b.length;)b.shift().error(a)}}complete(){this.l();if(!this.h){this.h=!0;let a=this.m;for(;a.length;)a.shift().complete()}}unsubscribe(){this.h=this.closed=!0;this.m=null}o(a){this.l();return super.o(a)}i(a){this.l();this.I(a);
+return this.C(a)}C(a){var b=this.h,c=this.m;return this.B||b?Y.h:(c.push(a),new Y(()=>pd(this.m,a)))}I(a){var b=this.D,c=this.h;this.B?a.error(b):c&&a.complete()}};Ad.create=(a,b)=>new Bd(a,b);var Bd=class extends Ad{constructor(a,b){super();this.destination=a;this.source=b}next(a){this.destination?.next?.(a)}error(a){this.destination?.error?.(a)}complete(){this.destination?.complete?.()}i(a){return this.source?.subscribe(a)??Y.h}};function Cd(a){var b=a.H;a=a.buffer;b<Infinity&&b<a.length&&a.splice(0,a.length-b)}var Dd=class extends Ad{constructor(){super();this.H=1;this.buffer=[];this.H=1}next(a){var b=this.buffer;this.h||b.push(a);Cd(this);super.next(a)}i(a){this.l();Cd(this);var b=this.C(a),c=this.buffer.slice();for(let d=0;d<c.length&&!a.closed;d+=1)a.next(c[d]);this.I(a);return b}};function Ed(a,b,c,d){var e=setTimeout(()=>{d(Error(`callModel timed out after 60000ms for request ID: ${b}`));a.F.delete(b)},6E4);a.F.set(b,{V:c,Z:e})}
+function Fd(a){window.addEventListener("message",b=>{if(b.source===window.parent){var c=b.data;b=c.action;c=c.payload;if(b==="ThemeChange"&&c&&(c==="light"||c==="dark"))a.P.next(c);else if(b==="AppDataChange"&&c)a.S?.next(c);else if(b==="RenderingModeChange"&&c&&(c==="embedded"||c==="standalone"))a.O.next(c);else if(b==="CallModelResponse"&&c){a:{try{var d=JSON.parse(c);if(!d||typeof d!=="object"){var e=null;break a}let f=d.requestId,g=d.text,h=d.isFinal;e=f&&typeof f==="string"&&g&&typeof g==="string"&&
+typeof h==="boolean"?{requestId:f,text:g,isFinal:h}:null;break a}catch(f){e=null;break a}e=void 0}if(e){if(d=a.F.get(e.requestId))d.V(e.text,e.isFinal),e.isFinal&&(clearTimeout(d.Z),a.F.delete(e.requestId))}else console.error("Failed to parse call model response: ",c)}}})}
+function Z(a,b,c,d,e,f){return new Promise((g,h)=>{var m=setTimeout(()=>{window.removeEventListener("message",n);h(Error(e))},d),n=l=>{l.source===window.parent&&l.data.action===c&&(clearTimeout(m),window.removeEventListener("message",n),g(l.data.payload||null))};window.addEventListener("message",n);a.sendMessage(b,f)})}
+function Gd(a){var b=jd(a);a={};var c=ic(b,bd,R(b,kd,3))?.getAppState();c&&(a.appState=Yc(c));(b=gd(b))&&b.length>0&&(a.scheduledNotificationConfigs=b.map(d=>{var e={type:Hd($a(N(d,3))??0)};bb(N(d,1))!=null&&(e.intervalMinutes=bb(N(d,1))??0);Tb(d)&&(e.createTime=cd(fc(d)));return e}));return a}
+function Id(a){return(a=gd(jd(a)))&&a.length!==0?{scheduledNotificationConfigs:a.map(b=>{var c={type:Hd($a(N(b,3))??0)};bb(N(b,1))!=null&&(c.intervalMinutes=bb(N(b,1))??0);Tb(b)&&(c.createTime=cd(fc(b)));c.schedulingStatus=Jd(ic(b,ed,4)?.i());return c})}:{scheduledNotificationConfigs:[]}}
+class Kd{constructor(){this.A=Ld();this.API_VERSION="1.0";this.P=new Ad;this.O=new Dd;this.F=new Map;this.X=(b,c,d,e,f)=>{this.notifyAppError(typeof b==="string"?b:f?.message||"Script execution error");return!0};this.W=b=>{b=b.reason;this.notifyAppError(typeof b==="string"?b:b?.message||"Unhandled promise rejection")};this.clientType="notebooklm-web";Fd(this);var a=ld(this.A);a.includes(10)&&(window.onerror=this.X,window.addEventListener("unhandledrejection",this.W));a.includes(6)&&a.includes(2)&&
+(this.openArtifactCustomizationDialogWithInitialPrompt=b=>{b=JSON.stringify(b);this.sendMessage("OpenArtifactCustomizationDialogWithInitialPrompt",b)});a.includes(7)&&(this.updateAppData=async(b,c)=>{try{this.sendMessage("UpdateAppData",JSON.stringify({appData:b,etag:c}))}catch(d){throw Error(`Failed to update app data: ${d}`);}});if(a.includes(8)){let b=new Ad;this.addAppDataListener=c=>{b.subscribe(c)};this.S=b}a.includes(3)&&(this.askQuestion=b=>{this.sendMessage("AskQuestion",b)});a.includes(25)&&
+(this.dispatchStreamzEvent=b=>{this.sendMessage("DispatchStreamzEvent",JSON.stringify(b))});a.includes(9)&&(this.setScheduledNotificationConfigs=async b=>{try{let c=b.map(e=>{var f=new fd;f=Q(f,3,Za(Md(e.type)),0);e.intervalMinutes!=null&&Sb(f,1,ab(e.intervalMinutes));if(e.schedulingStatus!=null){var g=new ed;g=Q(g,1,Za(Nd(e.schedulingStatus)),0);mc(f,4,g)}e.createTime!=null&&(g=new hc,dd(g,e.createTime.getTime()),mc(f,2,g));return f}),d=Fc(hd(c));this.sendMessage("SetScheduledNotificationConfigs",
+d)}catch(c){throw c instanceof Error?c:Error(`Error serializing configs: ${c}`);}},this.getArtifactUserState=async()=>{var b=await Z(this,"GetArtifactUserState","GetArtifactUserStateResponse",5E3,"getArtifactUserState timed out after 5000ms");if(b)try{return Gd(b)}catch(c){throw c instanceof Error?c:Error(String(c));}return null});a.includes(11)&&(this.updateScheduledNotificationConfig=async b=>{try{var c=new fd;var d=Q(c,3,Za(Md(b.type)),0);b.intervalMinutes!=null&&Sb(d,1,ab(b.intervalMinutes));
+if(b.schedulingStatus!=null){var e=new ed;var f=Q(e,1,Za(Nd(b.schedulingStatus)),0);mc(d,4,f)}if(b.createTime!=null){let h=new hc;dd(h,b.createTime.getTime());mc(d,2,h)}let g=Fc(d);this.sendMessage("UpdateScheduledNotificationConfig",g)}catch(g){throw g instanceof Error?g:Error(`Error serializing config: ${g}`);}},this.listScheduledNotificationConfigs=async b=>{if(b=await Z(this,"ListScheduledNotificationConfigs","ListScheduledNotificationConfigsResponse",5E3,"listScheduledNotificationConfigs timed out after 5000ms",
+b))try{return Id(b).scheduledNotificationConfigs??[]}catch(c){throw c instanceof Error?c:Error(String(c));}return[]});a.includes(12)&&(this.getSessionIntent=()=>Z(this,"GetSessionIntent","GetSessionIntentResponse",5E3,"getSessionIntent timed out after 5000ms"));a.includes(13)&&(this.checkNotificationPreference=async b=>{if(b==="unspecified")throw Error("Cannot check notification preference for UNKNOWN notification type.");return await Z(this,"CheckNotificationPreference","CheckNotificationPreferenceResponse",
+15E3,"checkNotificationPreference timed out after 15000ms",b)==="NOTIFICATION_ENABLED"},this.getNotificationPreferenceStatus=async b=>{if(b==="unspecified")throw Error("Cannot get notification preference status for UNKNOWN notification type.");return await Z(this,"GetNotificationPreferenceStatus","GetNotificationPreferenceStatusResponse",15E3,"getNotificationPreferenceStatus timed out after 15000ms",b)==="NOTIFICATION_ENABLED"});a.includes(14)&&(this.callModel=async(b,c)=>new Promise((d,e)=>{var f=
+crypto?.randomUUID?.()||Math.random().toString(36).substring(2),g=0;Ed(this,f,(h,m)=>{if(c&&h){let n=h.slice(g);g=h.length;n&&c(n)}m&&d(h||"")},e);this.sendMessage("CallModel",JSON.stringify({prompt:b,requestId:f}))}))}sendMessage(a,b){window.parent.postMessage({version:this.API_VERSION,action:a,payload:b??""},"*")}hasCapability(a){return a!==0&&ld(this.A).includes(a)}addThemeChangeListener(a,b){this.P.subscribe(a);b&&this.sendMessage("GetTheme","")}addRenderingModeChangeListener(a){this.O.subscribe(a)}notifyAppReady(){ld(this.A).includes(4)&&
+this.sendMessage("AppReady")}notifyAppError(a){ld(this.A).includes(10)&&this.sendMessage("AppError",a)}setAppState(a){try{let b=Vc(a);if(!b)return Promise.reject(Error("Failed to convert state to Struct"));let c=Fc(b);this.sendMessage("SetAppState",c);return Promise.resolve()}catch(b){return Promise.reject(b instanceof Error?b:Error(`Error serializing app state: ${b}`))}}async getAppState(){var a=await Z(this,"GetAppState","GetAppStateResponse",5E3,"getAppState timed out after 5000ms");if(a)try{return Yc($c(a))}catch(b){throw b instanceof
+Error?b:Error(String(b));}return null}triggerFileDownload(a){a=JSON.stringify(a);this.sendMessage("TriggerFileDownload",a)}dispatchLogEvent(a){ld(this.A).includes(1)&&this.sendMessage("DispatchLogEvent",a)}}function Md(a){switch(a){case "study_reminder":return 1;case "fsrs_review_reminder":return 2;default:return 0}}function Hd(a){switch(a){case 1:return"study_reminder";case 2:return"fsrs_review_reminder";default:return"unspecified"}}
+function Jd(a){switch(a){case 1:return"pending";case 2:return"scheduled";case 3:return"failed";case 4:return"disabled";default:return"unspecified"}}function Nd(a){switch(a){case "pending":return 1;case "scheduled":return 2;case "failed":return 3;case "disabled":return 4;default:return 0}}
+function Ld(){var a=document.querySelector("script[data-api-capabilities]")?.getAttribute("data-api-capabilities");if(!a)return new md;try{let b=atob(a),c=new Uint8Array(b.length);for(a=0;a<b.length;a++)c[a]=b.charCodeAt(a);if(c)return nd(c)}catch(b){console.error("Failed to decode client capabilities:",b)}return new md};window.notebookAppApi=new class extends Kd{};}).call(this);</script>
+  <script>
+    const CONTINENTS = [
+      {
+        id: `asia`,
+        num: `01`,
+        name: `アジア州の地形`,
+        summary: `世界の陸地と人口の約6割が集中。8,000m級の山脈・高原から大河の平野、内陸の乾燥地帯や塩湖まで極めて多様。`,
+        sections: [
+          {
+            label: `山脈・高原`,
+            items: [
+              `南部のインドとの境界付近には標高8,000m級の新期造山帯である {{ヒマラヤ山脈|ヒ〇〇〇山脈}} が連なり、その北側には世界最高所の広大な高原である {{チベット高原|チ〇〇〇高原}} が広がっている。`,
+              `インド半島の中央部には {{デカン高原|デ〇〇高原}} が広がり、保水性に富む土壌を活かした綿花栽培や、ICT産業都市バンガロールの発展がみられる。`
+            ]
+          },
+          {
+            label: `河川・湖沼`,
+            items: [
+              `中国の中南部を流れる {{長江|長〇}} はアジア最長の大河であり、中国北部を流れる {{黄河|黄〇}} とともに古来より農業と文明を支えてきた。`,
+              `南アジアでは、西側の乾燥地帯を流れる {{インダス川|イ〇〇〇川}} 流域で小麦や綿花、東側の湿潤地帯を流れる {{ガンジス川|ガ〇〇〇川}} 流域で米や茶・ジュートの栽培が盛んである。`,
+              `東南アジアのインドシナ半島を縦断する {{メコン川|メ〇〇川}} の流域や三角州では、高温多雨を活かした稲作が広く行われている。`,
+              `西アジアを流れる {{チグリス川|チ〇〇〇川}} ・ {{ユーフラテス川|ユ〇〇〇〇〇川}} の流域では、古代メソポタミア文明が誕生した。`,
+              `内陸部には世界最大の湖（塩湖）である {{カスピ海|カ〇〇海}} 、過度なかんがい等による縮小が深刻な {{アラル海|ア〇〇海}} 、世界有数の深い淡水湖である {{バイカル湖|バ〇〇〇湖}} がある。`
+            ]
+          },
+          {
+            label: `砂漠・海峡・湾`,
+            items: [
+              `中国北西部のタリム盆地には {{タクラマカン砂漠|タ〇〇〇〇〇砂漠}} が、モンゴルから中国北部にかけては {{ゴビ砂漠|ゴ〇砂漠}} が広がり、遊牧やオアシス農業がみられる。`,
+              `マレー半島とスマトラ島の間にある {{マラッカ海峡|マ〇〇〇海峡}} は海上輸送の要衝であり、西アジアの {{ペルシア湾|ペ〇〇〇湾}} 沿岸は世界最大の原油産出地域となっている。`
+            ]
+          }
+        ]
+      },
+      {
+        id: `europe`,
+        num: `02`,
+        name: `ヨーロッパ州の地形`,
+        summary: `南部の険しいアルプス山脈、北部の氷河地形、国境を越えて物資を運ぶ国際河川、資源や気候を左右する海域が特徴。`,
+        sections: [
+          {
+            label: `山脈・半島・特殊地形`,
+            items: [
+              `ヨーロッパ中南部には険しい新期造山帯の {{アルプス山脈|ア〇〇〇山脈}} が連なり、高地には氷河がみられる。`,
+              `ヨーロッパ北部の {{スカンディナビア半島|ス〇〇〇〇〇〇〇半島}} などの海岸線には、氷河によって谷が深く削られてできた複雑な入り江（氷河侵食地形）である {{フィヨルド|フ〇〇〇〇}} が発達している。`
+            ]
+          },
+          {
+            label: `河川・海洋`,
+            items: [
+              `複数の国や国境を流れ、沿岸国が自由に航行できるよう条約で定められた河川を {{国際河川|国〇〇〇}} といい、西部の {{ライン川|ラ〇〇川}} や中東部を流れ {{黒海|黒〇}} に注ぐ {{ドナウ川|ド〇〇川}} が代表例である。`,
+              `イギリスとスカンディナビア半島に挟まれた {{北海|北〇}} では海底油田が開発され、東側の北欧やバルト三国に囲まれた海域は {{バルト海|バ〇〇海}} とよばれる。`,
+              `ヨーロッパ南部とアフリカ北部に挟まれた {{地中海|地〇〇}} の沿岸は、夏に乾燥し冬に雨が降る地中海性気候となり、オリーブやぶどうの栽培が盛んである。`
+            ]
+          }
+        ]
+      },
+      {
+        id: `africa`,
+        num: `03`,
+        name: `アフリカ州の地形`,
+        summary: `広大な高原状の大陸を貫く世界最長のナイル川、世界最大のサハラ砂漠、東部を南北に走る大地溝帯が骨格をつくる。`,
+        sections: [
+          {
+            label: `河川・盆地・高山`,
+            items: [
+              `アフリカ大陸北東部を北へ流れる {{ナイル川|ナ〇〇川}} は世界最長の河川であり、定期的な氾濫が肥沃な土壌をもたらしエジプト文明をはぐくんだ。`,
+              `赤道直下の中央部には {{コンゴ盆地|コ〇〇盆地}} が広がり、熱帯雨林気候のもとでマングローブ林や大森林帯が形成されている。`,
+              `大陸東部には南北に伸びる巨大な断層・陥没地形である {{アフリカ大地溝帯（リフトバレー）|ア〇〇〇大地〇〇}} が走り、その近くにはアフリカ最高峰の {{キリマンジャロ山|キ〇〇〇〇〇〇山}} がそびえる。`
+            ]
+          },
+          {
+            label: `砂漠・環境変化`,
+            items: [
+              `アフリカ大陸北部には世界最大の砂漠である {{サハラ砂漠|サ〇〇砂漠}} が広がり、オアシス周辺での農業やラクダなどの遊牧が行われてきた。`,
+              `サハラ砂漠の南縁に位置する {{サヘル地帯|サ〇〇地帯}} では、過放牧や無理な焼畑農業などによって急速に砂漠化が進行している。`
+            ]
+          }
+        ]
+      },
+      {
+        id: `north_america`,
+        num: `04`,
+        name: `北アメリカ州の地形`,
+        summary: `東西の山脈に挟まれた広大な中央平原・草原と、西経100度の降水境界が、適地適作の大規模農業と工業を支える。`,
+        sections: [
+          {
+            label: `山脈・造山帯`,
+            items: [
+              `アメリカ合衆国西部からカナダにかけて、標高4,000mを超える険しい高山が南北に連なる {{新期造山帯|新〇〇〇帯}} の {{ロッキー山脈|ロ〇〇〇山脈}} が延びている。`,
+              `大陸東部には、標高1,000mほどのなだらかな {{古期造山帯|古〇〇〇帯}} の {{アパラチア山脈|ア〇〇〇〇山脈}} があり、周辺には重工業を支えた豊富な {{石炭|石〇}} が埋蔵されている。`
+            ]
+          },
+          {
+            label: `平原・草原と農業`,
+            items: [
+              `ロッキー山脈の東側に広がる高原状の大平原を {{グレートプレーンズ|グ〇〇〇〇〇〇〇〇}} といい、西経100度以西で乾燥しているため肉牛の {{放牧|放〇}} や地下水を使ったかんがい農業が行われる。`,
+              `ミシシッピ川の西側に広がる肥沃な大草原を {{プレーリー|プ〇〇〇〇}} といい、適度な降水量に恵まれ小麦・とうもろこし・大豆などの世界的な {{穀物栽培|穀〇〇〇}} 地帯となっている。`
+            ]
+          },
+          {
+            label: `河川・湖沼・湾`,
+            items: [
+              `中央平原を南へ流れる北アメリカ大陸最長の河川が {{ミシシッピ川|ミ〇〇〇〇〇川}} である。`,
+              `アメリカとカナダの国境には5つの巨大な淡水湖群である {{五大湖|五〇〇}} があり、水運や工業用水を供給して自動車・鉄鋼業の発展を支えた。`,
+              `大陸南部に面する {{メキシコ湾|メ〇〇〇湾}} では夏から秋にハリケーンが発生しやすく、沿岸では石油や天然ガスの採掘も盛んである。`
+            ]
+          }
+        ]
+      },
+      {
+        id: `south_america`,
+        num: `05`,
+        name: `南アメリカ州の地形`,
+        summary: `西岸を貫く世界最長のアンデス山脈、世界最大の流域面積を誇るアマゾン川と熱帯林、南部の大草原パンパが特徴。`,
+        sections: [
+          {
+            label: `山脈・高地・特殊地形`,
+            items: [
+              `南アメリカ大陸の西側にそびえる {{アンデス山脈|ア〇〇〇山脈}} は、南北約7,500kmにおよぶ {{世界最長|世〇〇〇}} の新期造山帯の山脈で、標高に応じた {{高山気候|高〇〇〇}} がみられる。`,
+              `アンデス山脈中のボリビア高地には広大な {{ウユニ塩原|ウ〇〇塩原}} があり、近年はEV電池などに欠かせないレアメタル（リチウム）の産出地として注目されている。`
+            ]
+          },
+          {
+            label: `河川・盆地・草原`,
+            items: [
+              `大陸北部を流れ、世界最大の流域面積をもつ {{アマゾン川|ア〇〇〇川}} の周辺には、赤道直下の熱帯雨林（ジャングル）が広がる {{アマゾン盆地|ア〇〇〇盆地}} が形成されている。`,
+              `南部のアルゼンチン（ブエノスアイレス周辺）には、肥沃な温帯の長草草原である {{パンパ|パ〇〇}} が広がり、小麦栽培や牧畜が盛んである。`
+            ]
+          }
+        ]
+      },
+      {
+        id: `oceania`,
+        num: `06`,
+        name: `オセアニア州の地形`,
+        summary: `大陸中央部の広大な乾燥帯・砂漠と、東部の山脈・サンゴ礁、地下水を利用した大自流盆地が自然環境を特徴づける。`,
+        sections: [
+          {
+            label: `大陸・山脈・特殊地形`,
+            items: [
+              `オセアニア州の中核をなす {{オーストラリア大陸|オ〇〇〇〇〇〇大陸}} は中央部から西部にかけて乾燥帯が占め、人口は過ごしやすい温帯の南東部に集中している。`,
+              `大陸の東部には古期造山帯の {{グレートディバイディング山脈|グ〇〇〇〇〇〇〇〇〇〇〇山脈}} が南北に走り、その北東部沿岸の海には世界最大のサンゴ礁地帯である {{グレートバリアリーフ|グ〇〇〇〇〇〇〇〇〇〇}} が広がっている。`
+            ]
+          },
+          {
+            label: `盆地・砂漠`,
+            items: [
+              `グレートディバイディング山脈の西側には {{大自流盆地（大かんがい盆地）|大〇〇盆地}} が広がり、掘り抜き井戸でくみ上げた {{地下水|地〇〇}} を利用して羊や牛の放牧が行われている。`,
+              `大陸中央部から西部の乾燥帯には、 {{グレートサンディー砂漠|グ〇〇〇〇〇〇〇〇〇砂漠}} や {{ビクトリア砂漠|ビ〇〇〇〇〇砂漠}} などの広大な砂漠地帯が広がっている。`
+            ]
+          }
+        ]
+      }
+    ];
+
+    let activeFilter = `all`;
+    let showHints = false;
+    let revealedIds = new Set();
+    let totalClozeMap = new Map();
+
+    function parseItemsAndBuildIndex() {
+      totalClozeMap.clear();
+      let counter = 1;
+      for (const continent of CONTINENTS) {
+        continent._clozeIds = [];
+        for (const section of continent.sections) {
+          section._parsedItems = section.items.map((raw) => {
+            const parts = [];
+            const regex = /\{\{([^|{}]+)\|([^|{}]+)\}\}/g;
+            let lastIndex = 0;
+            let match;
+            while ((match = regex.exec(raw)) !== null) {
+              if (match.index > lastIndex) {
+                parts.push({ type: `text`, value: raw.slice(lastIndex, match.index) });
+              }
+              const id = `c_${continent.id}_${counter}`;
+              const answer = match[1];
+              const hint = match[2];
+              const num = counter;
+              counter += 1;
+              totalClozeMap.set(id, { id, answer, hint, num, continentId: continent.id });
+              continent._clozeIds.push(id);
+              parts.push({ type: `cloze`, id, answer, hint, num });
+              lastIndex = regex.lastIndex;
+            }
+            if (lastIndex < raw.length) {
+              parts.push({ type: `text`, value: raw.slice(lastIndex) });
+            }
+            return parts;
+          });
+        }
+      }
+    }
+
+    function formatBlankLabel(clozeObj) {
+      if (showHints) {
+        return `(${clozeObj.num}) ${clozeObj.hint}`;
+      }
+      return `(${clozeObj.num}) 　　　`;
+    }
+
+    function renderCards() {
+      const grid = document.getElementById(`cards-grid`);
+      if (!grid) return;
+
+      const visibleContinents = activeFilter === `all`
+        ? CONTINENTS
+        : CONTINENTS.filter((c) => c.id === activeFilter);
+
+      grid.innerHTML = ``;
+
+      for (const continent of visibleContinents) {
+        const wrapper = document.createElement(`div`);
+        wrapper.className = `card-wrapper`;
+
+        const card = document.createElement(`article`);
+        card.className = `continent-card`;
+        card.setAttribute(`aria-label`, continent.name);
+
+        const ids = continent._clozeIds || [];
+        const revealedInCard = ids.filter((id) => revealedIds.has(id)).length;
+        const totalInCard = ids.length;
+        const isComplete = revealedInCard === totalInCard && totalInCard > 0;
+
+        const head = document.createElement(`div`);
+        head.className = `card-head`;
+
+        const titleGroup = document.createElement(`div`);
+        titleGroup.className = `card-title-group`;
+
+        const indexRow = document.createElement(`div`);
+        indexRow.className = `card-index-row`;
+
+        const indexNum = document.createElement(`span`);
+        indexNum.className = `index-num`;
+        indexNum.textContent = `${continent.num} / REGION`;
+
+        const statBadge = document.createElement(`span`);
+        statBadge.className = isComplete ? `card-stat-badge is-complete` : `card-stat-badge`;
+        statBadge.id = `stat_${continent.id}`;
+        statBadge.textContent = `${revealedInCard} / ${totalInCard} 表示`;
+
+        indexRow.appendChild(indexNum);
+        indexRow.appendChild(statBadge);
+
+        const titleEl = document.createElement(`h2`);
+        titleEl.className = `card-title`;
+        titleEl.textContent = continent.name;
+
+        titleGroup.appendChild(indexRow);
+        titleGroup.appendChild(titleEl);
+
+        const cardActions = document.createElement(`div`);
+        cardActions.className = `card-actions`;
+
+        const revealCardBtn = document.createElement(`button`);
+        revealCardBtn.type = `button`;
+        revealCardBtn.className = `btn-card`;
+        revealCardBtn.textContent = `この州を表示`;
+        revealCardBtn.setAttribute(`onclick`, `revealContinent('${continent.id}')`);
+
+        const hideCardBtn = document.createElement(`button`);
+        hideCardBtn.type = `button`;
+        hideCardBtn.className = `btn-card`;
+        hideCardBtn.textContent = `隠す`;
+        hideCardBtn.setAttribute(`onclick`, `hideContinent('${continent.id}')`);
+
+        cardActions.appendChild(revealCardBtn);
+        cardActions.appendChild(hideCardBtn);
+
+        head.appendChild(titleGroup);
+        head.appendChild(cardActions);
+        card.appendChild(head);
+
+        const summaryEl = document.createElement(`p`);
+        summaryEl.className = `card-summary`;
+        summaryEl.textContent = continent.summary;
+        card.appendChild(summaryEl);
+
+        for (const section of continent.sections) {
+          const topicGroup = document.createElement(`div`);
+          topicGroup.className = `topic-group`;
+
+          const topicLabel = document.createElement(`span`);
+          topicLabel.className = `topic-label`;
+          topicLabel.textContent = section.label;
+          topicGroup.appendChild(topicLabel);
+
+          const ul = document.createElement(`ul`);
+          ul.className = `note-list`;
+
+          const parsedItems = section._parsedItems || [];
+          for (const parts of parsedItems) {
+            const li = document.createElement(`li`);
+            li.className = `note-item`;
+
+            for (const part of parts) {
+              if (part.type === `text`) {
+                li.appendChild(document.createTextNode(part.value));
+              } else {
+                const isRevealed = revealedIds.has(part.id);
+                const btn = document.createElement(`button`);
+                btn.type = `button`;
+                btn.className = isRevealed ? `cloze-btn is-revealed` : `cloze-btn`;
+                btn.dataset.clozeId = part.id;
+                btn.setAttribute(`aria-expanded`, isRevealed ? `true` : `false`);
+                btn.setAttribute(
+                  `aria-label`,
+                  isRevealed
+                    ? `問題${part.num} 正解: ${part.answer}（タップして隠す）`
+                    : `問題${part.num} の解答を表示`
+                );
+                btn.setAttribute(`onclick`, `toggleCloze(this)`);
+
+                if (isRevealed) {
+                  btn.textContent = part.answer;
+                } else {
+                  btn.textContent = formatBlankLabel(part);
+                }
+                li.appendChild(btn);
+              }
+            }
+            ul.appendChild(li);
+          }
+
+          topicGroup.appendChild(ul);
+          card.appendChild(topicGroup);
+        }
+
+        wrapper.appendChild(card);
+        grid.appendChild(wrapper);
+      }
+
+      updateProgressUI();
+    }
+
+    function updateProgressUI() {
+      const visibleContinents = activeFilter === `all`
+        ? CONTINENTS
+        : CONTINENTS.filter((c) => c.id === activeFilter);
+
+      let totalVisible = 0;
+      let revealedVisible = 0;
+
+      for (const continent of visibleContinents) {
+        const ids = continent._clozeIds || [];
+        totalVisible += ids.length;
+        const cardRevealed = ids.filter((id) => revealedIds.has(id)).length;
+        revealedVisible += cardRevealed;
+
+        const statBadge = document.getElementById(`stat_${continent.id}`);
+        if (statBadge) {
+          statBadge.textContent = `${cardRevealed} / ${ids.length} 表示`;
+          if (cardRevealed === ids.length && ids.length > 0) {
+            statBadge.classList.add(`is-complete`);
+          } else {
+            statBadge.classList.remove(`is-complete`);
+          }
+        }
+      }
+
+      const revealedEl = document.getElementById(`revealed-count`);
+      const totalEl = document.getElementById(`total-count`);
+      const fillEl = document.getElementById(`progress-fill`);
+
+      if (revealedEl) revealedEl.textContent = String(revealedVisible);
+      if (totalEl) totalEl.textContent = String(totalVisible);
+      if (fillEl) {
+        const pct = totalVisible > 0 ? Math.round((revealedVisible / totalVisible) * 100) : 0;
+        fillEl.style.width = `${pct}%`;
+      }
+    }
+
+    function updateFilterChipsUI() {
+      const chips = document.querySelectorAll(`.filter-chip`);
+      for (const chip of chips) {
+        const isActive = chip.dataset.filter === activeFilter;
+        if (isActive) {
+          chip.classList.add(`is-active`);
+          chip.setAttribute(`aria-pressed`, `true`);
+        } else {
+          chip.classList.remove(`is-active`);
+          chip.setAttribute(`aria-pressed`, `false`);
+        }
+      }
+    }
+
+    function updateHintButtonUI() {
+      const btn = document.getElementById(`btn-toggle-hints`);
+      const label = document.getElementById(`hint-btn-label`);
+      if (btn) btn.setAttribute(`aria-pressed`, showHints ? `true` : `false`);
+      if (label) label.textContent = showHints ? `頭文字ヒント: ON` : `頭文字ヒント: OFF`;
+    }
+
+    function toggleCloze(btn) {
+      if (!btn) return;
+      const id = btn.dataset.clozeId;
+      const clozeObj = totalClozeMap.get(id);
+      if (!clozeObj) return;
+
+      if (revealedIds.has(id)) {
+        revealedIds.delete(id);
+        btn.classList.remove(`is-revealed`);
+        btn.setAttribute(`aria-expanded`, `false`);
+        btn.setAttribute(`aria-label`, `問題${clozeObj.num} の解答を表示`);
+        btn.textContent = formatBlankLabel(clozeObj);
+      } else {
+        revealedIds.add(id);
+        btn.classList.add(`is-revealed`);
+        btn.setAttribute(`aria-expanded`, `true`);
+        btn.setAttribute(`aria-label`, `問題${clozeObj.num} 正解: ${clozeObj.answer}（タップして隠す）`);
+        btn.textContent = clozeObj.answer;
+      }
+
+      updateProgressUI();
+      persistState();
+    }
+
+    function revealAllVisible() {
+      const visibleContinents = activeFilter === `all`
+        ? CONTINENTS
+        : CONTINENTS.filter((c) => c.id === activeFilter);
+
+      for (const continent of visibleContinents) {
+        const ids = continent._clozeIds || [];
+        for (const id of ids) {
+          revealedIds.add(id);
+        }
+      }
+      renderCards();
+      persistState();
+    }
+
+    function hideAllVisible() {
+      const visibleContinents = activeFilter === `all`
+        ? CONTINENTS
+        : CONTINENTS.filter((c) => c.id === activeFilter);
+
+      for (const continent of visibleContinents) {
+        const ids = continent._clozeIds || [];
+        for (const id of ids) {
+          revealedIds.delete(id);
+        }
+      }
+      renderCards();
+      persistState();
+    }
+
+    function revealContinent(continentId) {
+      const continent = CONTINENTS.find((c) => c.id === continentId);
+      if (!continent) return;
+      const ids = continent._clozeIds || [];
+      for (const id of ids) {
+        revealedIds.add(id);
+      }
+      renderCards();
+      persistState();
+    }
+
+    function hideContinent(continentId) {
+      const continent = CONTINENTS.find((c) => c.id === continentId);
+      if (!continent) return;
+      const ids = continent._clozeIds || [];
+      for (const id of ids) {
+        revealedIds.delete(id);
+      }
+      renderCards();
+      persistState();
+    }
+
+    function setContinentFilter(filterId) {
+      activeFilter = filterId;
+      updateFilterChipsUI();
+      renderCards();
+      persistState();
+    }
+
+    function toggleHints() {
+      showHints = !showHints;
+      updateHintButtonUI();
+      renderCards();
+      persistState();
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState({
+            revealedIds: Array.from(revealedIds),
+            activeFilter,
+            showHints
+          });
+        } catch (err) {
+          // Ignore persistence errors in standalone preview
+        }
+      }
+    }
+
+    parseItemsAndBuildIndex();
+
+    async function initApp() {
+      if (totalClozeMap.size === 0) {
+        parseItemsAndBuildIndex();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.revealedIds)) {
+              revealedIds = new Set(saved.revealedIds.filter((id) => totalClozeMap.has(id)));
+            }
+            if (typeof saved.activeFilter === `string`) {
+              const valid = saved.activeFilter === `all` || CONTINENTS.some((c) => c.id === saved.activeFilter);
+              if (valid) activeFilter = saved.activeFilter;
+            }
+            if (typeof saved.showHints === `boolean`) {
+              showHints = saved.showHints;
+            }
+          }
+        } catch (err) {
+          // Proceed with default empty state
+        }
+      }
+
+      updateFilterChipsUI();
+      updateHintButtonUI();
+      renderCards();
+
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+ </body>
+</html>
